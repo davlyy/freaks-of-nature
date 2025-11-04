@@ -1,0 +1,466 @@
+.relive-section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 100px 40px;
+}
+
+
+.relive-search{
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.relive-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.relive-filter{
+    width: 394px;
+    height: 892px;
+    background-color: #F5F5F5;
+    border: 2px solid #000;
+    box-shadow: 10px 10px 0px 0px #000;
+    border-radius: 23px;
+    overflow: hidden;
+}
+
+.relive-filter h3{
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding: 28px 28px 0 28px;
+}
+
+.relive-filter-search{
+    padding: 0 28px;
+}
+.filter-search-bar-div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    padding: 5px 20px;
+    background-color: #bcbcbc4d;
+}
+
+.filter-search-icon {
+    color: #BBBBBB;
+    margin-right: 0px;
+    font-size: 18px;
+}
+
+.filter-search-bar {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    font-weight: normal;
+    background-color: transparent;
+}
+
+.filter-search-bar::placeholder {
+    color: #BBBBBB;
+}
+
+.relive-content{
+    width: 1406px;
+    height: 892px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F5F5F5;
+    border: 2px solid #000;
+    box-shadow: 10px 10px 0px 0px #000;
+    border-radius: 23px;
+    padding: 40px 0;
+}
+
+.relive-content-text{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 60px;
+}
+
+.relive-content-text h2{
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    margin: 0;
+}
+
+.relive-content-text p{
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 0;
+}
+
+.search-bar-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: 2px solid #000;
+    border-radius: 15px;
+    box-shadow: 10px 10px 0px 0px #000;
+    padding: 5px 20px;
+    background-color: #fff;
+}
+
+.search-icon {
+    color: #BBBBBB;
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.search-bar {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.search-bar::placeholder {
+    color: #BBBBBB;
+}
+
+.relive-filter-button {
+    margin-top: 10px;
+    padding: 0 28px;
+}    
+
+.relive-filter-button select {
+    width: 100%;
+    padding: 10px 20px; 
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px; 
+    font-weight: 500;
+    appearance: none; 
+    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE2IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTggNi40MzZMMS41NiAxLjMzNUMxLjM1OSAxLjE3MSAxLjA1MiAxLjE3MSAwLjg0NCAxLjMzNUMwLjYzNyAxLjUwMSAwLjYzNyAxLjgxNCAwLjg0NCAyLjAyMUw3LjM3NyA3LjY2M0M3LjYwMiA3Ljg3NSA4LjM5NyA3Ljg3NSA4LjYyMiA3LjY2M0wxNS4xNiAyLjAyMUMxNS4zNjYgMS44MTQgMTUuMzY2IDEuNTAxIDE1LjE2IDEuMzM1QzE0Ljk1NSAxLjE3MSAxNC42NDggMS4xNzEgMTQuNDQxIDEuMzM1TDggNi40MzZaIiBmaWxsPSJibGFjayIvPjwvc3ZnPg==') no-repeat right 10px center;
+    background-size: 20px 20px; 
+    background-color: #bcbcbc4d; 
+    color: #000; 
+}
+
+.relive-filter-button select::-ms-expand {
+    display: none; 
+}
+
+.relive-filter-button select:hover {
+    cursor: pointer;
+}
+
+.relive-filter-button select option {
+    background-color: #bcbcbc4d;
+    color: #000;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: normal;
+    min-block-size: 2em;
+    padding-inline: 10px;
+}
+
+.relive-filter-button select option:hover {
+    background-color: #bcbcbc4d;
+}
+
+.relive-filter-button select:focus {
+    outline: none;
+}
+
+.relive-filter-button {
+    position: relative;
+}
+
+.relive-filter-content-div{
+    position: relative;
+    width: 100%;
+    overflow-y: auto;
+    height: 500px;
+    scrollbar-color: black #f0f0f0; 
+    scrollbar-width: thin;
+    padding: 0 28px;
+}
+
+.relive-video-container{
+    padding: 70px 0;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(414px, 1fr));
+    gap: 50px;
+    margin-top: 20px;
+}
+
+.video-item p{
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #000;
+    margin: 0;
+    padding: 10px;
+}
+
+.video-item img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.relive-filter-content{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.filter-video-item p{
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #000;
+    margin: 16px 0 22px;
+}
+
+.filter-video-item img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.filter-responsive-bar{
+    display: none;
+}
+
+
+@media screen and (max-width: 1500px) {
+
+    .relive-section {
+        padding: 50px 40px;
+    }
+    .relive-filter {
+        width: 25%;
+        height: auto;
+    }
+
+    .relive-content{
+        width: 73%;
+        padding: 40px;
+        height: auto;
+    }
+
+    .relive-filter-content-div {
+        height: 350px;
+    }
+
+    .relive-content-text{
+        padding: 0px;
+        align-items: flex-start;
+    }
+
+    .relive-content-text h2{
+        width: 80%;
+    }
+
+    .video-grid {
+        grid-template-columns: repeat(auto-fill, minmax(314px, 1fr));
+        gap: 20px;
+    }
+
+    .video-item p {
+        font-size: 14px;
+    }
+
+    .relive-video-container {
+        padding: 50px 0;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+
+    .relive-section {
+        padding: 50px 20px;
+    }
+
+    .relive-filter h3 {
+        font-size: 18px;
+        padding: 20px 8px 0 8px ;
+    }
+
+    .relive-filter-search {
+        padding: 0 8px;
+    }
+
+    .relive-filter-button {
+        padding: 0 8px;
+    }
+
+    .relive-filter-content-div {
+        height: 200px;
+        padding: 0 8px;
+    }
+
+    .filter-video-item p {
+        font-size: 14px;
+    }
+
+    .relive-content{
+        padding: 20px;
+    }
+
+    .video-grid {
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .relive-filter{
+        display: none;
+    }
+
+    .relive-content {
+        padding: 20px;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .filter-responsive-bar{
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       position: relative;
+    }
+
+    .filter-icon{
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+    }
+
+    .relive-search{
+        justify-content: space-between;
+    }
+
+    .search-bar-container {
+        width: 90%;
+    }
+
+    .search-bar-container1 {
+        width: 90%;
+    display: flex;
+    align-items: center;
+    border: 2px solid #000;
+    border-radius: 15px;
+    padding: 5px 20px;
+    background-color: #131313;
+    position: relative;
+    z-index: 1;
+    }
+
+    .search-icon {
+        color: #BBBBBB;
+        margin-right: 10px;
+        font-size: 18px;
+    }
+    
+    .search-bar {
+        width: 100%;
+        border: none;
+        outline: none;
+        font-size: 18px;
+        font-weight: normal;
+        background-color: transparent;
+    }
+    
+    .search-bar::placeholder {
+        color: #BBBBBB;
+    }
+
+    .relive-filter-button {
+        position: absolute;
+        left: -20px;
+        padding: 330px 20px 20px;
+        width: 105.5%;
+        background-color: #000;
+        border-radius: 0 0 23px 23px;
+    }
+
+    .relive-filter-button h3{
+        color: #fff;
+        margin-bottom: 20px;
+    }
+
+    .relive-filter-button select {
+        color: #fff;
+        
+        background: url('../assets/chevron-down.svg') no-repeat right 10px center;
+        background-color: #131313;
+  
+    }
+
+    .relive-filter-button select option {
+        color: #fff;
+        background-color: #131313;
+    }
+
+
+}
+
+@media screen and (max-width: 480px) {
+
+    .relive-section {
+        padding: 14px;
+    }
+
+    .search-bar-container {
+        width: 86%;
+        box-shadow: 5px 5px 0px 0px #000;
+    }
+
+    .relive-content {
+        background: none;
+        padding: 0 0 30px;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        border-bottom: 2px solid #000;
+    }
+
+    .relive-content-image .img-fluid{
+        border-radius: 15px;
+    }
+
+    .relive-content-text {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .relive-content-text h2 {
+        width: 100%;
+        font-size: 18px;
+        line-height: 20px;
+    }
+
+    .relive-content-text p {
+        width: 100%;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .relive-filter-button {
+        width: 110%;
+    }
+}
+

@@ -1,0 +1,447 @@
+.about-hero{
+    width: 100%;
+    display: flex;
+    height: 1040px;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px;
+    background-image: url('../assets/aboutHero.png');
+    background-position: 30% 100% ;
+    background-repeat: no-repeat;
+    gap: 110px;
+}
+
+.about-resp-img{
+    display: none;
+}
+
+.aboutus-text{
+    width: 1620px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content1 h1{
+    font-size: 96px;
+    font-weight: bold;
+    color: #000;
+    text-transform: uppercase;
+    width: 505px;
+}
+
+.content1 h5{
+    font-size: 24px;
+    font-weight: normal;
+    color: #000;
+    width: 490px;
+}
+
+.content1 p{
+    font-size: 24px;
+    font-weight: normal;
+    color: #000;
+    width: 446px;
+}
+
+.about-text1{
+    margin-left: 120px;
+}
+
+.episode-section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0;
+    
+}
+
+.episode-div{
+    width: 1620px;
+    height: 912px;
+}
+
+.episode-content{
+    display: flex;
+    justify-content: space-between;
+    margin-top: -44px;
+}
+
+.episode-box1{
+    width: 690px;
+    height: 702px;
+    background-color: #FFF;
+    border: 2px solid #000;
+    box-shadow: 10px 10px 0px 0px #000;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 50px;
+}
+
+.episode-box1 p{
+    font-size: 22px;
+    line-height: 28px;
+    color: #000;
+    font-weight: normal;
+}
+
+.ep-box-img{
+    width: 406px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.ep-box-img h2{      
+    font-size: 40px;
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 40px;
+}
+
+.episode-date1{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.partner-section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    padding: 100px 0;
+}
+
+.partner-section h2{
+    font-size: 96px;
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 40px;
+    text-align: center;
+    
+}
+
+.partner-div{
+    width: 1620px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.partner-box{
+    width: 500px;
+    height: 680px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 10px 10px 0 0 #000;
+    border-radius: 30px;
+}
+
+.partner-box h3{
+    font-size: 64px;
+    color: #fff;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.partner-box p{
+    font-size: 20px;
+    color: #fff;
+    font-weight: 400;
+}
+
+.c1{
+    background-image: url("../assets/p1.png");
+    background-repeat: no-repeat;
+}
+
+.c2{
+    background-image: url("../assets/p2.png");
+    background-repeat: no-repeat;
+}
+
+.c3{
+    background-image: url("../assets/p3.png");
+    background-repeat: no-repeat;
+}
+
+.partner-button{
+    background-color: #FFBF00;
+    border-radius: 10px;
+    border: 2px solid #000;
+    text-transform: uppercase;
+    padding: 13px 22px;
+    font-size: 16px;
+    font-weight: bold;
+    width: 440px;
+    box-shadow: 5px 5px 0 0 #000;
+}
+
+@media (max-width: 1500px) {
+    .about-hero{
+        background-size: 97%;
+        background-position: -14% -25%;
+    }
+
+    .aboutus-text{
+       width: 1335px;
+    }
+
+    .about-text1{
+        margin-left: 74px;
+    }    
+
+    .content1 h5{
+        font-size: 20px;
+    }
+    .content1 p{
+            font-size: 20px;
+            width: 348px;
+    }   
+
+    .episode-div{
+        width: 1335px;
+    }
+
+    .episode-content{
+        gap: 20px;
+    }
+
+    .episode-box1{
+        height: auto;
+        padding: 38px 28px;
+    }
+    .episode-box1 p{
+        font-size: 18px;
+    }
+
+    .partner-div{
+        width: 1335px;
+    }
+
+    .partner-box{
+        width: 430px;
+    }
+
+    .partner-button{
+        width: 380px;
+    }
+
+  
+}
+
+@media (max-width: 1200px) {
+    .about-hero{
+        background-size: 97%;
+        background-position: -14% -25%;
+    }
+
+    .aboutus-text{
+       width: 1000px;
+    }
+
+    .about-text1{
+        margin-left: 74px;
+    }        
+
+    .content1 h5{        
+        font-size: 18px;
+    }
+    .content1 p{
+            font-size: 18px;
+            width: 348px;
+    }   
+
+}
+
+@media (max-width: 1080px) {
+    .about-hero{
+        background-position: bottom center;
+        flex-direction: column;
+        gap: 0px;
+        height: 1080px;
+    }
+
+    .aboutus-text{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0px;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .about-text1{
+        margin-left: 0;
+    }
+
+    .content1 h1{
+        font-size: 80px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .content1 h5{
+        margin-top: 20px;
+        font-size: 18px;
+        line-height: 26px;
+        width: 100%;
+    }
+    .content1 p{
+            font-size: 18px;
+            width: 100%;
+            text-align: center;
+    }
+
+    .episode-div {
+        width: 100%;
+        padding: 50px;
+        height: 100%;
+    }
+
+    .episode-box1 {
+        width: 99%;
+    }
+
+    .episode-content {
+        flex-direction: column;
+    }
+
+    .res{
+        flex-direction: column-reverse;
+    }
+
+    .partner-div {
+        width: 100%;
+        padding: 50px;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .partner-box {
+        width: 500px;
+    }
+
+    .partner-section h2{
+        font-size: 74px;
+        line-height: 40px;
+    }
+
+}
+
+@media (max-width: 468px) {
+    .about-hero{
+        background-image: none;
+        padding: 20px;
+        height: 100%;
+    }
+
+    .about-text1{
+        display: none;
+    }
+    .about-resp-img{
+        display: block;
+    }
+
+    .aboutus-text {
+        padding: 0;
+        width: 100%;
+    }
+
+    .content1 h1{
+        font-size: 66px;
+    }
+
+    .content1 h5{
+        font-size: 20px;
+        line-height: 26px;
+        text-align: left;
+    }
+
+    .content1 p{
+        font-size: 20px;
+        line-height: 26px;
+        text-align: left;
+    }
+
+    .hugs-text{
+        padding: 0px;
+    }
+
+    .episode-section {
+        padding: 0;
+        gap: 20px;
+    }
+    
+    .episode-div{
+        padding: 20px;
+    }
+
+    .episode-content{
+        gap: 0;
+        margin-top: -5px;
+    }
+
+    .episode-box1{
+        width: 100%;
+        padding: 20px 20px 340px;
+        box-shadow: 5px 5px 0px 0px #000;
+        border-radius: 15px;
+    }
+
+    .episode-box2{
+        margin-top: -269px;
+    }
+
+    .ep-box-img {
+        width: 100%;
+    }
+
+    .ep-box-img h2 {
+        font-size: 24px;
+        line-height: 24px;
+    }
+
+    .episode-box1 p {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    
+    .partner-section {
+        padding: 40px 20px;
+        gap: 40px;
+    }
+
+    .partner-div {
+        padding: 0;
+    }
+
+    .partner-section h2 {
+        font-size: 36px;
+    }
+
+    .partner-box {
+        width: 100%;
+    }
+
+    .partner-cta{
+        width: 100%;
+    }
+
+    .partner-button {
+        width: 100%;
+    }
+}

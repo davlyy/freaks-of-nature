@@ -1,0 +1,926 @@
+/* Hero Section */
+  .hero-section {
+    background-image: url('../assets/Rectangle1.png');
+    background-size: cover;
+    background-position: center;
+    padding: 120px 0;
+    position: relative;
+    height: 1090px;
+    margin-top: -120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .hero-div {
+    width: 690px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .time-box {
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 .5rem;
+  }
+
+  .time-box h4 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+    text-transform: uppercase;
+  }
+  
+  .countdown-time {
+    display: flex;
+    gap: 10px; 
+    
+  }
+  
+  .digit-box {
+    width: 90px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFBF00;
+    color: #000;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 1px solid #000;
+    box-shadow: 5px 5px 0px 0px #000;
+    font-size: 96px;
+  }
+  .countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cta-buttons{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  .cta-buttons button {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+
+  .orange-strip {
+    width: 100%;
+    height: 10px;
+    position: absolute;
+    top: 12%;
+    left: 0;
+    z-index: -1;
+  }
+
+  .event-text {
+    width: 100%;
+    font-size: 33px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+  }
+  .b1{
+    background-color: #ED196F;
+    border-radius: 10px;
+    border: 1px solid #000;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 8px 8px 0px 0px #000;
+  }
+  .b1:hover{
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px 0px #000;
+    background-color: #ff3b8a;
+  }
+  .b2{
+    background-color: #FFBF00;
+    border-radius: 10px;
+    border: 2px solid #000;
+    text-transform: uppercase;
+    padding: 13px 22px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 8px 8px 0px 0px #000;
+  }
+  .b2:hover{
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px 0px #000;
+    background-color: #ffcf33;
+  }
+
+  .marquee-container {
+    position: relative;
+    width: 100%;
+    padding: 10px 0;
+    margin-top: -250px;
+ }
+
+ .marquee-bottom {
+  position: relative;
+  width: 100%;
+ }
+
+.navbar-center .dropdown-icon {
+  display: none; 
+}
+
+
+.custom-dropdown {
+  position: absolute;
+  top: 65%; 
+  left: 34%;
+  background-color: black;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.custom-dropdown a {
+  display: block;
+  padding: 8px;
+  color: white;
+  text-decoration: none;
+}
+
+.custom-dropdown a:hover {
+  background-color: #333;
+}
+
+.active-link,
+.custom-dropdown {
+  background-color: black; 
+  color: white;
+}
+
+  
+  /* Merch Section */
+  .merch-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0 50px;
+    gap: 40px;
+  }
+  .merch-div h2 {
+    font-size: 70px;
+    font-weight: bold;
+    color: #000;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .img-cta {
+    background-image: url('../assets/Rectangle2.png');
+    width: 1620px;
+    height: 647px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    border-radius: 30px;
+    padding: 40px 40px 34px;
+  }
+  
+  .merch-section button {
+    font-size: 36px;
+    padding: 10px 20px;
+    background-color: #FFBF00;
+    color: #000;
+    width: 647px;
+    border: 1px solid #000;
+    border-radius: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 10px 10px 0px 0px #000;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .merch-section button:hover {
+    transform: translate(-6px, -6px);
+    box-shadow: 16px 16px 0px 0px #000;
+  }
+  /* Download Section */
+  .download-section {
+    height: 658px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+  }
+  .download-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 436px;
+    width: 1620px;
+    background-color: #FFBF00;
+    border-radius: 30px;
+    border: 2px solid #000;
+    box-shadow: 10px 10px 0px 0px #000;
+    padding: 0 60px 0 0;
+  }
+  .download-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 0px 40px 60px;
+    width: 585px;
+  }
+  .download-text h2 {
+    font-size: 76.65px;
+    color: #000;
+    font-weight: bold;
+    line-height: 76.7px;
+    text-transform: uppercase;
+  }
+  .download-text p {
+    font-size: 20px;
+    color: #000;
+    font-weight: normal;
+    margin-top: 20px;
+  }
+  .download-div img {
+    max-width: 100%;
+  }
+  .app-cta {
+   width: 168px;
+   height: 50px;
+   border-radius: 10px;
+   border: none;
+   margin-top: 20px;
+   box-shadow: 6px 6px 0px 0px #000;
+   cursor: pointer;
+   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  }
+  .apple {
+    background-image: url('../assets/apple-app-store.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .play {
+    background-image: url('../assets/apple-app.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .app-cta:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 10px 10px 0px 0px #000;
+    filter: brightness(1.05);
+  }
+
+  /* Affiliate Section */
+  .affiliate-section {
+    display: flex;
+    justify-content: center;
+    
+  }
+  .affiliate-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 1620px;
+    padding: 100px 0;
+  }
+  .affiliate-div h2 {
+    font-size: 70px;
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .affiliate-div p {
+    font-size: 20px;
+    color: #000;
+    font-weight: normal;
+    width: 984px; 
+  }
+
+  .cta-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .cta-box a {
+    text-decoration: none;
+  }
+
+  .box1 {
+    width: 953px;
+    height: 457px;
+    background-color: #FFBF00;
+    border: 2px solid #000;
+    box-shadow: 10px 10px 0px 0px #000;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .box1:hover {
+    transform: translate(-8px, -8px);
+    box-shadow: 18px 18px 0px 0px #000;
+  }
+
+  .box1-text {
+    padding: 46px 0 40px 40px;
+  }
+
+  .box1-text p {
+    font-size: 20px;
+    color: #000;
+    font-weight: normal;
+    width: 240px; 
+    text-align: left;
+    line-height: 24px;
+    margin-top: 40px;
+  }
+
+  .box1-img {
+    position: relative;
+    margin-left: -84px;
+    margin-top: -20px;
+  }
+
+  .box2{
+    width: 648px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .box-a{
+    width: 100%;
+    height: 270px;
+    background-color: #FFBF00;
+    border: 2px solid #000;
+    box-shadow: 10px 10px 0px 0px #000;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .box-a:hover{
+    transform: translate(-6px, -6px);
+    box-shadow: 16px 16px 0px 0px #000;
+  }
+  
+  .box-b{
+    width: 100%;
+    height: 170px;
+    background-color: #FFBF00;
+    border: 2px solid #000;
+    box-shadow: 10px 10px 0px 0px #000;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .box-b:hover{
+    transform: translate(-6px, -6px);
+    box-shadow: 16px 16px 0px 0px #000;
+  }
+
+  .box-text {
+    padding: 0px 0 20px 40px;
+  }
+
+  .box-b .box-text {
+    padding: 0px 0 12px 40px;
+  }
+  .box-text h3 {
+    font-size: 36px;
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: left; 
+  }
+  .box-text p {
+    font-size: 20px;
+    color: #000;
+    font-weight: normal;
+    width: 223px; 
+    text-align: left;
+    line-height: 24px; 
+    margin-top: 20px;
+  }
+
+   .box-text p {
+    font-size: 20px;
+    color: #000;
+    font-weight: normal;
+    width: 223px; 
+    text-align: left;
+    line-height: 24px; 
+    margin-top: 20px;
+  }
+
+  .box-a-img {
+    position: relative;
+    margin-left: -90px;
+  }
+
+
+/*----------------Tab Responsive ------------*/
+ @media (max-width: 1500px) {
+
+  .merch-div{
+    padding: 100px 50px 0;
+  }
+  .orange-strip {
+    
+    top: 78%;
+    
+  }
+  .img-cta{
+    width: 100%;
+    height: 569px;
+  }
+
+  .marquee-container {
+    margin-top: -220px;
+  }
+
+  .download-section{
+    padding: 0 50px;
+  }
+
+  .download-div{
+    width: 100%;
+    padding: 0;
+  }
+  .download-text {
+    padding: 40px 0px 20px 60px;
+  }  
+
+  .affiliate-section{
+    padding: 0 50px;
+  }
+
+  .affiliate-div{
+    width: 100%;
+  }
+
+  .box1{
+    width: 820px;
+    height: 371px;
+  }
+
+  .box2{
+    width: 500px;
+  }
+
+ .box-a{
+   height: 200px;
+ } 
+
+ .box-a-img {
+   margin-left: -30px;
+ }
+
+ .box-text {
+   padding: 0px 0 0px 40px;
+ }
+
+ .box-b{
+   height: 148px;
+ }
+
+}
+ 
+
+  @media (max-width: 1024px) {
+
+    .orange-strip {
+      display: none;
+   }
+
+    .marquee-container {
+      margin-top: -140px;
+    }
+
+    .merch-div{
+      padding: 50px 40px;
+    }
+  
+    .merch-div h2 {
+      font-size: 60px;
+      padding: 0 40px;
+    }  
+
+    .affiliate-div {
+      padding: 50px 0px;
+   }
+
+    .affiliate-div h2 {
+      font-size: 60px;
+    }
+
+  .img-cta {
+    height: 406px;
+  }
+
+  .download-section {
+    height: 365px;
+  }
+
+  .download-div {
+    height: 344px;
+  }
+
+  .download-text h2 {
+    font-size: 50.65px;
+    line-height: 50.7px;
+  }
+  .download-text p {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  .affiliate-div p {
+    width: 75%;
+  }
+
+  .box-a {
+    height: 270px;
+  }
+
+  .box-text{
+    padding: 0px 0 50px 40px;
+  }
+
+  .box-b {
+    height: 170px;
+  }
+
+  .cta-box {
+    flex-direction: column;
+    gap: 80px;
+  }
+  .box1-text {
+    text-align: left;
+ }
+  .box1 {
+    width: 100%;
+    height: 100%;
+  }
+
+  .box2 {
+    width: 100%;
+    height: 100%;
+    gap: 80px;
+  }
+
+  .download-text {
+    padding: 40px 0px 20px 40px;
+}
+  
+  }
+
+  @media (max-width: 880px) {
+
+    .marquee-container {
+      margin-top: -120px;
+    }
+
+    .merch-div {
+      padding: 50px 20px;
+      gap: 0;
+   }
+
+   .img-cta {
+    justify-content: center;
+  }
+
+  .download-section {
+    margin-top: 100px;
+    padding: 0 20px;
+    height: 700px;
+    
+  }
+
+  .download-div {
+    width: 100%; 
+    flex-direction: column-reverse;
+    height: 85%;
+  } 
+
+  .download-text {
+    padding: 40px ;
+    width: 100%;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    border-radius: 30px 30px 0 0 ;
+    align-items: center;
+
+  }
+
+  .download-text h2 {
+    font-size: 47px;
+    line-height: 47px;
+    text-align: center;
+  }
+
+  .download-text p {
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .affiliate-section {
+    padding: 0 20px;
+  }
+
+  .affiliate-div h2 {
+    font-size: 50px;
+  }
+
+  .merch-div h2 {
+    font-size: 50px;
+  }
+
+  .affiliate-div p {
+    width: 100%;
+  }
+
+  .box1-text p {
+    width: 70%;
+    margin-top: 20px;
+  }
+
+  .box1-text {
+    padding: 46px 0 0px 40px;
+  }
+    
+  }
+
+  @media (max-width: 468px) {
+
+    .marquee-container {
+      margin-top: -70px;
+      overflow: hidden;
+    }
+    .marquee-bottom {
+      margin-top: -80px;
+      margin-bottom: 40px;
+      overflow: hidden;
+     }
+
+    .b1 {
+      font-size: 15px; 
+      padding: 8px 10px;
+    }
+
+    .cta-buttons .b2 {
+      display: block;
+      font-size: 15px; 
+      padding: 8px 10px;
+    }
+
+    .hero-section{
+      height: 100%;
+      padding: 160px 0 80px 0;
+    }
+    
+    .hero-img{
+      width: 50%;
+    }
+
+    .time-box {
+      width: 128px;
+      height: 120px;
+      margin: 0;
+    }
+
+    .time-box h4 {
+      font-size: 12px;
+    }
+    .digit-box {
+      width: 43px;
+      height: 47px;
+      font-size: 46px;
+    }
+
+    .event-text{
+      font-size: 16px;
+      width: 90%;
+    }
+
+    .merch-div {
+      padding: 0 20px 50px 20px;
+      gap: 30px;
+   }
+
+    .merch-div h2 {
+      font-size: 30px;
+      padding: 0;
+    }
+
+    .img-cta {
+      background-image: url('../assets/resp.png');
+      width: 350px;
+      height: 218px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      display: flex;
+      justify-content: end;
+      align-items: flex-end;
+      border-radius: 10px;
+      padding: 0px;
+    }
+
+    .merch-section button {
+      width: 100%;
+      font-size: 24px;
+      margin-bottom: -70px;
+      border-radius: 15px;
+      box-shadow: 5px 5px 0px 0px #000;
+    }
+    
+    .merch-section button img {
+      width: 30px;
+    } 
+
+    .download-section {
+      margin-top: 80px;
+      height: 670px;
+      overflow: hidden;
+      padding: 0 20px 20px;
+      
+    }
+
+    .download-div {
+      flex-direction: column-reverse;
+      height: 78%;
+      box-shadow: 5px 5px 0px 0px #000;
+      border-radius: 20px;
+    } 
+
+    .download-img{
+      margin-left:-40px ;
+    }
+
+    .download-div img {
+      max-width: 113%;
+    }
+
+    .download-text {
+      padding: 20px ;
+      width: 100%;
+      border-top: 2px solid black;
+      border-right: 2px solid black;
+      border-radius: 30px 30px 0 0 ;
+
+    }
+
+    .download-text h2 {
+      font-size: 47px;
+      line-height: 47px;
+      text-align: center;
+    }
+
+    .download-text p {
+      font-size: 14px;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .app-cta {
+      width: 146px;
+      height: 43.5px;
+    }
+    .apple {
+      background-size: contain;
+    }
+    .play {
+      
+      background-size: contain;
+    }
+
+    .affiliate-section {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .affiliate-div {
+      padding: 0px 20px 80px 20px;
+    }
+
+    .affiliate-div h2 {
+      display: none;
+    }
+
+    .para{
+      display: none;
+    }
+
+    .affiliate-div p {
+      font-size: 14px;
+      line-height: 14px;
+      width: 80%;
+    }
+
+    .rel{
+      width: 106px;
+    }
+
+    .cta-box {
+      gap: 60px;
+    }
+
+    .box1 {
+      overflow: hidden;
+      box-shadow: 5px 5px 0px 0px #000;
+      border-radius: 20px;
+    }
+
+    .box1-img .img-fluid {
+      max-width: 115%;
+    }
+
+    .box1-img {
+      margin-left: -38px;
+      margin-top: 0px;
+      margin-right: -17px;
+    }
+
+    .box1-text {
+      padding: 20px 0 0px 20px;
+   }
+
+   .box-text {
+    padding: 20px 0 0px 20px;
+   }
+
+  .box-text h3 {
+    font-size: 24px;
+  }
+
+  .box-text p {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .box-a {
+    height: 180px; 
+    box-shadow: 5px 5px 0px 0px #000;
+    border-radius: 20px;
+ }
+
+  .box-a-img {
+    margin-left: -72px;
+    margin-right: 112px;
+  }
+
+  .box-a-img .img-fluid {
+    max-width: 200%;
+  }
+  
+  .box2{
+    gap: 60px;
+  } 
+
+  .box-b {
+     height: 130px; 
+     box-shadow: 5px 5px 0px 0px #000;
+     border-radius: 20px;
+  }
+
+  .box-b .box-text {
+    padding: 0px 0 0px 20px;
+  }
+
+  .box-b-img {
+    margin-left: -81px;
+    margin-right: 50px;
+    margin-bottom: 0px;
+  }
+  .box-b-img .img-fluid {
+    max-width: 150%;
+  }
+
+}
