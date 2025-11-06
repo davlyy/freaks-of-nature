@@ -74,7 +74,6 @@ const Slider = () => {
                     display: block;
                     flex-shrink: 0;
                 }
-
                 .slider-button {
                     position: absolute;
                     top: 50%;

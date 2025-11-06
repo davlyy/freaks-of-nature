@@ -90,6 +90,8 @@
     justify-content: space-between;
   }
   .b1{
+    z-index: 999;
+    cursor: pointer;
     background-color: #ED196F;
     border-radius: 10px;
     border: 1px solid #000;
@@ -101,11 +103,14 @@
     box-shadow: 8px 8px 0px 0px #000;
   }
   .b1:hover{
+    cursor: pointer;
     transform: translate(-4px, -4px);
     box-shadow: 12px 12px 0px 0px #000;
     background-color: #ff3b8a;
   }
   .b2{
+        z-index: 999;
+
     background-color: #FFBF00;
     border-radius: 10px;
     border: 2px solid #000;
@@ -116,12 +121,15 @@
     box-shadow: 8px 8px 0px 0px #000;
   }
   .b2:hover{
+        cursor: pointer;
+
     transform: translate(-4px, -4px);
     box-shadow: 12px 12px 0px 0px #000;
     background-color: #ffcf33;
   }
 
   .marquee-container {
+    z-index: 2;
     position: relative;
     width: 100%;
     padding: 10px 0;

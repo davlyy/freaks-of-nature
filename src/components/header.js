@@ -25,7 +25,15 @@ function Header() {
       setActiveDropdown((prev) => (prev === linkName ? null : linkName));
     }
   };
+const handleDropdownLinkClick = (hash) => {
+  handleLinkClick(); // Close dropdown
 
+  // If already on Event or About page, manually update hash
+  if (window.location.pathname === '/Event' || window.location.pathname === '/about') {
+    // Force hash change
+    window.location.hash = hash;
+  }
+};
   const handleMouseEnter = (linkName) => {
     if (!isMobile) {
       setActiveDropdown(linkName);
@@ -39,16 +47,36 @@ function Header() {
     }
   };
 
+  const handleLogoClick = () => {
+    setActiveDropdown(null);
+
+    // Always scroll to top after navigation
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  };
+
+  const handleMainNavLinkClick = () => {
+    setActiveDropdown(null);
+    // Scroll to top when clicking main nav links
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  };
+
   const handleMouseLeave = () => {
     if (!isMobile) {
       setActiveDropdown(null);
+    }
+    if (isMobile) {
+      setIsNavOpen(false);
     }
   };
 
   return (
     <>
       <Navbar expand="lg" className="navbar-custom sticky-top">
-        <Navbar.Brand as={Link} to="/" onClick={handleLinkClick}>
+        <Navbar.Brand as={Link} to="/" onClick={handleLogoClick}>
           <img src={logo} alt="Freaks of Nature" className="navbar-logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={toggleNav}>
@@ -57,166 +85,164 @@ function Header() {
         <Navbar.Collapse id="basic-navbar-nav" className={isNavOpen ? 'show' : ''}>
           <Nav className="navbar-center">
             {/* Freakyard Link */}
-            <div
-              className={`nav-item-wrapper ${activeDropdown === 'Freakyard' ? 'active' : ''}`}
-              onMouseEnter={() => handleMouseEnter('Freakyard')}
-              onMouseLeave={handleMouseLeave}
-            >
-              <Nav.Link
-                as={Link}
-                to="/Event#tickets"
-                className={`nav-link ${activeDropdown === 'Freakyard' ? 'active-link' : ''}`}
-                onClick={(event) => toggleDropdown(event, 'Freakyard')}
-              >
-                Freakyard
-                <p className="dropdown-icon">
-                  <FaChevronDown />
-                </p>
-              </Nav.Link>
-              {activeDropdown === 'Freakyard' && (
-                <div className="dropdown-freakyard">
-                  {/* Day Pass Link */}
-                  <div
-                    className={`dropdown-item ${activeSubItem === 'Day Pass' ? 'active' : ''}`}
-                    onMouseEnter={() => setActiveSubItem('Day Pass')}
-                    onMouseLeave={() => setActiveSubItem(null)} 
-                  >
-                    <Link
-                      to="/Event#day-pass"
-                      className="dropdown-link"
-                      onClick={handleLinkClick}
-                    >
-                      Day Pass
-                      {activeSubItem === 'Day Pass' && <FaArrowRight className="right-arrow" />}
-                    </Link>
+<div
+  className={`nav-item-wrapper ${activeDropdown === 'Freakyard' ? 'active' : ''}`}
+  onMouseEnter={() => handleMouseEnter('Freakyard')}
+  onMouseLeave={handleMouseLeave}
+>
+  <Nav.Link
+    as={Link}
+    to="/Event"
+    className={`nav-link ${activeDropdown === 'Freakyard' ? 'active-link' : ''}`}
+    onClick={(event) => {
+      toggleDropdown(event, 'Freakyard');
+      handleMainNavLinkClick();
+    }}
+  >
+    Freakyard
+    <p className="dropdown-icon">
+      <FaChevronDown />
+    </p>
+  </Nav.Link>
+  {activeDropdown === 'Freakyard' && (
+    <div className="dropdown-freakyard">
+      {/* Day Pass Link */}
+      <div
+        className={`dropdown-item ${activeSubItem === 'Day Pass' ? 'active' : ''}`}
+        onMouseEnter={() => setActiveSubItem('Day Pass')}
+        onMouseLeave={() => setActiveSubItem(null)} 
+      >
+        <Link
+          to="/Event#day-pass"
+          className="dropdown-link"
+          onClick={() => handleDropdownLinkClick('#day-pass')}
+        >
+          Day Pass
+          {activeSubItem === 'Day Pass' && <FaArrowRight className="right-arrow" />}
+        </Link>
 
-                    {/* Show the description for Day Pass if it's the active one */}
-                    {activeSubItem === 'Day Pass' && (
-                      <div className="dropdown-description day">
-                        <p className="description-title">Day Pass</p>
-                        <p className="description-subtitle">Plan your ideal schedule, </p>
-                        <p className="description-subtitle">share top artists with friends, </p>
-                        <p className="description-subtitle">and explore amazing food and </p>
-                        <p className="description-subtitle">entertainment. This app has </p>
-                        <p className="description-subtitle">everything you need!</p>
-                      </div>
-                    )}
-                 </div>
+        {/* Show the description for Day Pass if it's the active one */}
+        {activeSubItem === 'Day Pass' && (
+          <div className="dropdown-description day">
+            <p className="description-title">Day Pass</p>
+            <p className="description-subtitle">Access the full festival experience</p>
+            <p className="description-subtitle">for a single day with amazing</p>
+            <p className="description-subtitle">artists, food, and entertainment.</p>
+            <p className="description-subtitle">Choose your perfect day!</p>
+          </div>
+        )}
+      </div>
 
-                 {/* Weekly Pass Link */}
-                 <div
-                    className={`dropdown-item ${activeSubItem === 'Weekly Pass' ? 'active' : ''}`}
-                    onMouseEnter={() => setActiveSubItem('Weekly Pass')}
-                    onMouseLeave={() => setActiveSubItem(null)} 
-                  >
-                    <Link
-                      to="/Event#multi-day-pass"
-                      className="dropdown-link"
-                      onClick={handleLinkClick}
-                    >
-                      Weekly Pass
-                      {activeSubItem === 'Weekly Pass' && <FaArrowRight className="right-arrow" />}
-                    </Link>
+      {/* Weekly Pass Link */}
+      <div
+        className={`dropdown-item ${activeSubItem === 'Weekly Pass' ? 'active' : ''}`}
+        onMouseEnter={() => setActiveSubItem('Weekly Pass')}
+        onMouseLeave={() => setActiveSubItem(null)} 
+      >
+        <Link
+          to="/Event#multi-day-pass"
+          className="dropdown-link"
+          onClick={() => handleDropdownLinkClick('#multi-day-pass')}
+        >
+          Weekly Pass
+          {activeSubItem === 'Weekly Pass' && <FaArrowRight className="right-arrow" />}
+        </Link>
 
-                    {/* Show the description for Weekly Pass if it's the active one */}
-                    {activeSubItem === 'Weekly Pass' && (
-                      <div className="dropdown-description week">
-                        <p className="description-title">Weekly Pass</p>
-                        <p className="description-subtitle">Plan your ideal schedule, </p>
-                        <p className="description-subtitle">share top artists with friends, </p>
-                        <p className="description-subtitle">and explore amazing food and </p>
-                        <p className="description-subtitle">entertainment. This app has </p>
-                        <p className="description-subtitle">everything you need!</p>
-                      </div>
-                    )}
-                 </div>
+        {/* Show the description for Weekly Pass if it's the active one */}
+        {activeSubItem === 'Weekly Pass' && (
+          <div className="dropdown-description week">
+            <p className="description-title">Weekly Pass</p>
+            <p className="description-subtitle">Get unlimited access to all</p>
+            <p className="description-subtitle">festival days with our multi-day</p>
+            <p className="description-subtitle">pass. Experience everything</p>
+            <p className="description-subtitle">Freakyard has to offer!</p>
+          </div>
+        )}
+      </div>
 
-                  {/* DJ Comp Link */}
-                  <div
-                    className={`dropdown-item ${activeSubItem === 'DJ Comp' ? 'active' : ''}`}
-                    onMouseEnter={() => setActiveSubItem('DJ Comp')}
-                    onMouseLeave={() => setActiveSubItem(null)} 
-                  >
-                    <Link
-                      to="/Event#dj-comp"
-                      className="dropdown-link"
-                      onClick={handleLinkClick}
-                    >
-                      DJ Comp
-                      {activeSubItem === 'DJ Comp' && <FaArrowRight className="right-arrow" />}
-                    </Link>
+      {/* DJ Comp Link */}
+      <div
+        className={`dropdown-item ${activeSubItem === 'DJ Comp' ? 'active' : ''}`}
+        onMouseEnter={() => setActiveSubItem('DJ Comp')}
+        onMouseLeave={() => setActiveSubItem(null)}
+      >
+        <Link
+          to="/Event#dj-comp"
+          className="dropdown-link"
+          onClick={() => handleDropdownLinkClick('#dj-comp')}
+        >
+          DJ Comp
+          {activeSubItem === 'DJ Comp' && <FaArrowRight className="right-arrow" />}
+        </Link>
 
-                    {/* Show the description for DJ Comp if it's the active one */}
-                    {activeSubItem === 'DJ Comp' && (
-                      <div className="dropdown-description djcomp">
-                        <p className="description-title">DJ Comp</p>
-                        <p className="description-subtitle">Plan your ideal schedule, </p>
-                        <p className="description-subtitle">share top artists with friends, </p>
-                        <p className="description-subtitle">and explore amazing food and </p>
-                        <p className="description-subtitle">entertainment. This app has </p>
-                        <p className="description-subtitle">everything you need!</p>
-                      </div>
-                    )}
-                 </div>
+        {/* Show the description for DJ Comp if it's the active one */}
+        {activeSubItem === 'DJ Comp' && (
+          <div className="dropdown-description djcomp">
+            <p className="description-title">DJ Competition</p>
+            <p className="description-subtitle">Join our exciting DJ competition</p>
+            <p className="description-subtitle">and showcase your talent.</p>
+            <p className="description-subtitle">Compete with the best and</p>
+            <p className="description-subtitle">win amazing prizes!</p>
+          </div>
+        )}
+      </div>
 
-                  {/* Affiliate Link */}
-                  <div
-                    className={`dropdown-item ${activeSubItem === 'Affiliate' ? 'active' : ''}`}
-                    onMouseEnter={() => setActiveSubItem('Affiliate')}
-                    onMouseLeave={() => setActiveSubItem(null)} 
-                  >
-                    <Link
-                      to="/Event#affiliate"
-                      className="dropdown-link"
-                      onClick={handleLinkClick}
-                    >
-                      Affiliate
-                      {activeSubItem === 'Affiliate' && <FaArrowRight className="right-arrow" />}
-                    </Link>
+      {/* Affiliate Link */}
+      <div
+        className={`dropdown-item ${activeSubItem === 'Affiliate' ? 'active' : ''}`}
+        onMouseEnter={() => setActiveSubItem('Affiliate')}
+        onMouseLeave={() => setActiveSubItem(null)}
+      >
+        <Link
+          to="/Event#affiliate"
+          className="dropdown-link"
+          onClick={() => handleDropdownLinkClick('#affiliate')}
+        >
+          Affiliate
+          {activeSubItem === 'Affiliate' && <FaArrowRight className="right-arrow" />}
+        </Link>
 
-                    {/* Show the description for Affiliate if it's the active one */}
-                    {activeSubItem === 'Affiliate' && (
-                      <div className="dropdown-description affiliate0">
-                        <p className="description-title">Affiliate</p>
-                        <p className="description-subtitle">Plan your ideal schedule, </p>
-                        <p className="description-subtitle">share top artists with friends, </p>
-                        <p className="description-subtitle">and explore amazing food and </p>
-                        <p className="description-subtitle">entertainment. This app has </p>
-                        <p className="description-subtitle">everything you need!</p>
-                      </div>
-                    )}
-                 </div>
+        {/* Show the description for Affiliate if it's the active one */}
+        {activeSubItem === 'Affiliate' && (
+          <div className="dropdown-description affiliate0">
+            <p className="description-title">Affiliate Program</p>
+            <p className="description-subtitle">Partner with Freakyard and</p>
+            <p className="description-subtitle">earn rewards by promoting</p>
+            <p className="description-subtitle">our events to your audience.</p>
+            <p className="description-subtitle">Join our network today!</p>
+          </div>
+        )}
+      </div>
 
-                 {/* FAQ Link */}
-                 <div
-                    className={`dropdown-item ${activeSubItem === 'FAQ' ? 'active' : ''}`}
-                    onMouseEnter={() => setActiveSubItem('FAQ')}
-                    onMouseLeave={() => setActiveSubItem(null)} 
-                  >
-                    <Link
-                      to="/Event#faq"
-                      className="dropdown-link"
-                      onClick={handleLinkClick}
-                    >
-                      FAQ
-                      {activeSubItem === 'FAQ' && <FaArrowRight className="right-arrow" />}
-                    </Link>
+      {/* FAQ Link */}
+      <div
+        className={`dropdown-item ${activeSubItem === 'FAQ' ? 'active' : ''}`}
+        onMouseEnter={() => setActiveSubItem('FAQ')}
+        onMouseLeave={() => setActiveSubItem(null)} 
+      >
+        <Link
+          to="/Event#faq"
+          className="dropdown-link"
+          onClick={() => handleDropdownLinkClick('#faq')}
+        >
+          FAQ
+          {activeSubItem === 'FAQ' && <FaArrowRight className="right-arrow" />}
+        </Link>
 
-                    {/* Show the description for FAQ if it's the active one */}
-                    {activeSubItem === 'FAQ' && (
-                      <div className="dropdown-description faqs">
-                        <p className="description-title">FAQ</p>
-                        <p className="description-subtitle">Plan your ideal schedule, </p>
-                        <p className="description-subtitle">share top artists with friends, </p>
-                        <p className="description-subtitle">and explore amazing food and </p>
-                        <p className="description-subtitle">entertainment. This app has </p>
-                        <p className="description-subtitle">everything you need!</p>
-                      </div>
-                    )}
-                 </div>
-                </div>
-              )}
-            </div>
+        {/* Show the description for FAQ if it's the active one */}
+        {activeSubItem === 'FAQ' && (
+          <div className="dropdown-description faqs">
+            <p className="description-title">FAQ</p>
+            <p className="description-subtitle">Find answers to commonly</p>
+            <p className="description-subtitle">asked questions about tickets,</p>
+            <p className="description-subtitle">the event, and policies.</p>
+            <p className="description-subtitle">We're here to help!</p>
+          </div>
+        )}
+      </div>
+    </div>
+  )}
+</div>
             <div
               className={`nav-item-wrapper ${activeDropdown === 'Relive' ? 'active' : ''}`}
               onMouseEnter={() => handleMouseEnter('Relive')}
@@ -226,7 +252,10 @@ function Header() {
                 as={Link}
                 to="/relive"
                 className={`nav-link ${activeDropdown === 'Relive' ? 'active-link' : ''}`}
-                onClick={(event) => toggleDropdown(event, 'Relive')}
+                onClick={(event) => {
+                  toggleDropdown(event, 'Relive');
+                  handleMainNavLinkClick();
+                }}
               >
                 Relive
                 <span className="dropdown-icon">
@@ -257,7 +286,10 @@ function Header() {
                 as={Link}
                 to="/about"
                 className={`nav-link ${activeDropdown === 'About Us' ? 'active-link' : ''}`}
-                onClick={(event) => toggleDropdown(event, 'About Us')}
+                onClick={(event) => {
+                  toggleDropdown(event, 'About Us');
+                  handleMainNavLinkClick();
+                }}
               >
                 About Us
                 <span className="dropdown-icon">
@@ -270,12 +302,16 @@ function Header() {
                   <div
                     className={`dropdown-item ${activeSubItem === 'About Us' ? 'active' : ''}`}
                     onMouseEnter={() => setActiveSubItem('About Us')}
-                    onMouseLeave={() => setActiveSubItem(null)} 
+                    onMouseLeave={() => setActiveSubItem(null)}
                   >
-                    <a href="/day-pass" className="dropdown-link">
+                    <Link
+                      to="/about#about-us"
+                      className="dropdown-link"
+                      onClick={() => handleDropdownLinkClick('#about-us')}
+                    >
                       About Us
                       {activeSubItem === 'About Us' && <FaArrowRight className="right-arrow" />}
-                    </a>
+                    </Link>
 
                     {/* Show the description for About Us if it's the active one */}
                     {activeSubItem === 'About Us' && (
@@ -294,12 +330,16 @@ function Header() {
                  <div
                     className={`dropdown-item ${activeSubItem === 'Freak Squad' ? 'active' : ''}`}
                     onMouseEnter={() => setActiveSubItem('Freak Squad')}
-                    onMouseLeave={() => setActiveSubItem(null)} 
+                    onMouseLeave={() => setActiveSubItem(null)}
                   >
-                    <a href="/freak-squad" className="dropdown-link">
+                    <Link
+                      to="/about#freak-squad"
+                      className="dropdown-link"
+                      onClick={() => handleDropdownLinkClick('#freak-squad')}
+                    >
                       Freak Squad
                       {activeSubItem === 'Freak Squad' && <FaArrowRight className="right-arrow" />}
-                    </a>
+                    </Link>
 
                     {/* Show the description for Freak Squad if it's the active one */}
                     {activeSubItem === 'Freak Squad' && (
@@ -318,12 +358,16 @@ function Header() {
                  <div
                     className={`dropdown-item ${activeSubItem === 'Timeline' ? 'active' : ''}`}
                     onMouseEnter={() => setActiveSubItem('Timeline')}
-                    onMouseLeave={() => setActiveSubItem(null)} 
+                    onMouseLeave={() => setActiveSubItem(null)}
                   >
-                    <a href="/timeline" className="dropdown-link">
+                    <Link
+                      to="/about#timeline"
+                      className="dropdown-link"
+                      onClick={() => handleDropdownLinkClick('#timeline')}
+                    >
                       Timeline
                       {activeSubItem === 'Timeline' && <FaArrowRight className="right-arrow" />}
-                    </a>
+                    </Link>
 
                     {/* Show the description for Timeline if it's the active one */}
                     {activeSubItem === 'Timeline' && (
@@ -342,12 +386,16 @@ function Header() {
                  <div
                     className={`dropdown-item ${activeSubItem === 'Partner With Us' ? 'active' : ''}`}
                     onMouseEnter={() => setActiveSubItem('Partner With Us')}
-                    onMouseLeave={() => setActiveSubItem(null)} 
+                    onMouseLeave={() => setActiveSubItem(null)}
                   >
-                    <a href="/partner" className="dropdown-link">
+                    <Link
+                      to="/about#partner-with-us"
+                      className="dropdown-link"
+                      onClick={() => handleDropdownLinkClick('#partner-with-us')}
+                    >
                       Partner With Us
                       {activeSubItem === 'Partner With Us' && <FaArrowRight className="right-arrow" />}
-                    </a>
+                    </Link>
 
                     {/* Show the description for Partner With Us if it's the active one */}
                     {activeSubItem === 'Partner With Us' && (
@@ -366,12 +414,16 @@ function Header() {
                   <div
                     className={`dropdown-item ${activeSubItem === 'DJ Comp' ? 'active' : ''}`}
                     onMouseEnter={() => setActiveSubItem('DJ Comp')}
-                    onMouseLeave={() => setActiveSubItem(null)} 
+                    onMouseLeave={() => setActiveSubItem(null)}
                   >
-                    <a href="/dj-comp" className="dropdown-link">
+                    <Link
+                      to="/about#about-dj-comp"
+                      className="dropdown-link"
+                      onClick={() => handleDropdownLinkClick('#about-dj-comp')}
+                    >
                       DJ Comp
                       {activeSubItem === 'DJ Comp' && <FaArrowRight className="right-arrow" />}
-                    </a>
+                    </Link>
 
                     {/* Show the description for DJ Comp if it's the active one */}
                     {activeSubItem === 'DJ Comp' && (
@@ -390,12 +442,16 @@ function Header() {
                  <div
                     className={`dropdown-item ${activeSubItem === 'Affiliate' ? 'active' : ''}`}
                     onMouseEnter={() => setActiveSubItem('Affiliate')}
-                    onMouseLeave={() => setActiveSubItem(null)} 
+                    onMouseLeave={() => setActiveSubItem(null)}
                   >
-                    <a href="/affiliate" className="dropdown-link">
+                    <Link
+                      to="/about#about-dj-comp"
+                      className="dropdown-link"
+                      onClick={() => handleDropdownLinkClick('#about-dj-comp')}
+                    >
                       Affiliate
                       {activeSubItem === 'Affiliate' && <FaArrowRight className="right-arrow" />}
-                    </a>
+                    </Link>
 
                     {/* Show the description for Affiliate if it's the active one */}
                     {activeSubItem === 'Affiliate' && (
@@ -423,7 +479,10 @@ function Header() {
                 as={Link}
                 to="/blog"
                 className={`nav-link ${activeDropdown === 'Blog' ? 'active-link' : ''}`}
-                onClick={(event) => toggleDropdown(event, 'Blog')}
+                onClick={(event) => {
+                  toggleDropdown(event, 'Blog');
+                  handleMainNavLinkClick();
+                }}
               >
                 Blog
                 <p className="dropdown-icon">
@@ -447,7 +506,7 @@ function Header() {
           </Nav>
         </Navbar.Collapse>
         <div className="navbar-buttons">
-          <button className="b1">Buy Tickets</button>
+           <Link to="/Event#tickets" className="b1">Buy Tickets</Link>
           <button className="b2">Learn More</button>
         </div>
       </Navbar>

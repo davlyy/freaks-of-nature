@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import './about.css';
 import Cta from '../components/cta.js';
 import Slider from '../components/slider.js';
@@ -6,12 +6,112 @@ import A2022 from '../assets/A2022.svg';
 import eplogo from '../assets/eplogo.png';
 import Animation from '../components/animation.js';
 import ResponsiveImg from '../assets/aboutheroResp.png';
+import { useLocation } from 'react-router-dom';
 
 function About() {
-    
+    const location = useLocation();
+    const pendingHashRef = useRef(null);
+
+    // Helper function to scroll to element centered in viewport
+    const scrollToElement = useCallback((elementId) => {
+        const element = document.getElementById(elementId);
+        if (!element) {
+            return false;
+        }
+
+        // Use requestAnimationFrame to ensure layout is complete
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                // Get fresh element reference in case DOM updated
+                const freshElement = document.getElementById(elementId);
+                if (!freshElement) return;
+
+                // Get element position and dimensions
+                const elementRect = freshElement.getBoundingClientRect();
+                // Get absolute position from top of document
+                const absoluteTop = elementRect.top + window.scrollY;
+                const elementHeight = elementRect.height;
+
+                // Header height based on screen size
+                const headerHeight = window.innerWidth <= 768 ? 80 : 124;
+
+                let scrollPosition;
+
+                // Timeline section should scroll to top, not center
+                if (elementId === 'timeline') {
+                    scrollPosition = Math.max(0, absoluteTop - headerHeight - 20);
+                } else {
+                    // Calculate viewport height
+                    const viewportHeight = window.innerHeight;
+
+                    // Calculate position to center element in viewport
+                    const centerPosition = absoluteTop - (viewportHeight / 2) + (elementHeight / 2);
+
+                    // Add header offset
+                    scrollPosition = Math.max(0, centerPosition - headerHeight);
+                }
+
+                window.scrollTo({
+                    top: scrollPosition,
+                    behavior: "smooth",
+                });
+            });
+        });
+
+        return true;
+    }, []);
+
+    // Handle hash changes from location
+    useEffect(() => {
+        if (!location.hash) {
+            return;
+        }
+
+        const hashValue = location.hash.replace("#", "");
+        if (!hashValue) {
+            return;
+        }
+
+        pendingHashRef.current = hashValue;
+    }, [location.hash]);
+
+    // Listen for native hashchange events (for when clicking links on same page)
+    useEffect(() => {
+        const handleHashChange = () => {
+            const hashValue = window.location.hash.replace("#", "");
+            if (!hashValue) {
+                return;
+            }
+
+            pendingHashRef.current = hashValue;
+        };
+
+        window.addEventListener("hashchange", handleHashChange);
+        return () => window.removeEventListener("hashchange", handleHashChange);
+    }, []);
+
+    // Execute scroll when pendingHashRef is set
+    useEffect(() => {
+        if (!pendingHashRef.current) {
+            return;
+        }
+
+        const scrollTarget = pendingHashRef.current;
+
+        // Clear the pending ref immediately to prevent duplicate scrolls
+        pendingHashRef.current = null;
+
+        // Always use a delay to ensure DOM updates are complete
+        const timeoutId = window.setTimeout(() => {
+            scrollToElement(scrollTarget);
+        }, 100);
+
+        return () => window.clearTimeout(timeoutId);
+    }, [scrollToElement, location.hash]);
+
     return (
         <>
-        <div className="about-hero">
+        <div className="about-hero" id="about-us">
             <div className="aboutus-text">
                 <div className='content1'>
                     <h1>ABOUT US</h1>
@@ -32,10 +132,12 @@ function About() {
                 </div>
             </div>
         </div>
-        
-        <Animation />
 
-        <div className="episode-section">
+        <div id="freak-squad">
+            <Animation />
+        </div>
+
+        <div className="episode-section" id="timeline">
             <div className="episode-div">
                 <div className="episode-date">
                     <img src={A2022} alt="PLUR Warrior"  className='img-fluid'/>
@@ -124,7 +226,7 @@ function About() {
             
         </div>
 
-        <div className="partner-section">
+        <div className="partner-section" id="partner-with-us">
             <h2>Partner with us</h2>
             <div className="partner-div">
                 <div className="partner-box c1">
@@ -161,7 +263,9 @@ function About() {
             </div>
         </div>
 
-       <Cta />
+        <div id="about-dj-comp">
+            <Cta />
+        </div>
 
         
         </>

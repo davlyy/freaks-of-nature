@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import img from '../assets/footer.png';
-import logo from '../assets/footerlogo.png'; 
+import logo from '../assets/footerlogo.png';
 import instagram from '../assets/instagram.svg';
 import youtube from '../assets/youtube.svg';
 import twitter from '../assets/twitter.svg';
@@ -23,19 +24,19 @@ function Footer() {
 
       <div className="links-section">
       <ul>
-          <li>EVENT PAGE</li>
-          <li>ABOUT US</li>
-          <li>BLOG</li>
+          <li><Link to="/Event">EVENT PAGE</Link></li>
+          <li><Link to="/about#about-us">ABOUT US</Link></li>
+          <li><Link to="/blog">BLOG</Link></li>
           <li>FREAK</li>
           <li>OUR APP</li>
-          <li>TICKETS</li>
+          <li><Link to="/Event#tickets">TICKETS</Link></li>
         </ul>
         <ul>
-          <li>PARTNER WITH US</li>
+          <li><Link to="/about#partner-with-us">PARTNER WITH US</Link></li>
           <li>AFFILIATE</li>
           <li>DJ COMP</li>
-          <li>RELIVE</li>
-          <li>FAQ</li>
+          <li><Link to="/relive">RELIVE</Link></li>
+          <li><Link to="/Event#faq">FAQ</Link></li>
           <li>FREAK SQUAD</li>
         </ul>
       </div>
@@ -112,6 +113,14 @@ function Footer() {
     font-weight: 400;
     text-decoration: uppercase;
     cursor: pointer;
+  }
+  .links-section li a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+  .links-section li a:hover {
+    opacity: 0.7;
   }
   
   .social-section {

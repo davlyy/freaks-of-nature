@@ -72,7 +72,7 @@ const blogsection = () => {
     <style jsx>{`
     .blog-post-section {
     width: 100%;
-  padding: 100px 0px;
+  padding: 100px 100px;
   color: #000;
   display: flex;
   flex-direction: column;
@@ -91,6 +91,7 @@ const blogsection = () => {
   scrollbar-color: black #f0f0f0; 
   scrollbar-width: thin;
   margin-left: 300px;
+  margin-right: 300px;
 }
 .blog-post-div::-webkit-scrollbar {
   height: 10px; 

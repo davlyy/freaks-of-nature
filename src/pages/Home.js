@@ -11,7 +11,7 @@ import Blogsection from '../components/blogsection.js';
 import { Player } from '@lottiefiles/react-lottie-player'; // For Lottie animations
 import topStripeAnimation from '../stripsJSON/topstripe .json';
 import bottomStripeAnimation from '../stripsJSON/bottomstripe .json';
-// import marquee1 from '../assets/GROUP.png';
+import { Link } from 'react-router-dom';
 
 const FESTIVAL_MONTH = 1; // February (0-indexed months)
 const FESTIVAL_START_DAY = 5;
@@ -118,8 +118,8 @@ function Home() {
           </div>
 
           <div className="cta-buttons">
-            <button className="b1" >Buy Tickets</button>
-            <button className="b2" >Learn More</button>
+            <Link to="/Event#tickets" className="b1">Buy Tickets</Link>
+            <button className="b2">Learn More</button>
         </div>
         </div>
         
@@ -178,33 +178,33 @@ function Home() {
             creative community, and spread the word as an affiliate to earn epic rewards.</p>
 
             <div className="cta-box" >
-              <a href='/#' className="box1">
+              <Link to="/relive" className="box1">
                 <div className="box1-text">
-                 <img src={cta0} alt="Freaks of Nature" className='rel' /> 
+                 <img src={cta0} alt="Freaks of Nature" className='rel' />
                  <p>Replay your favorite DJ sets anytime on our exclusive platform</p>
                 </div>
                 <div className="box1-img">
-                 <img src={cta1} alt="Freaks of Nature" className='img-fluid' /> 
+                 <img src={cta1} alt="Freaks of Nature" className='img-fluid' />
                 </div>
-              </a>
+              </Link>
               <div className="box2">
-                <a href='/#' className="box-a">
+                <Link to="/about" className="box-a">
                   <div className="box-text">
                    <h3>ABOUT US</h3>
                    <p>Would you like to know more about freaks of nature?</p>
-                  </div>  
-                  <div className="box-a-img">
-                    <img src={cta2} alt="Freaks of Nature" className='img-fluid'/> 
                   </div>
-                </a>
+                  <div className="box-a-img">
+                    <img src={cta2} alt="Freaks of Nature" className='img-fluid'/>
+                  </div>
+                </Link>
 
                 <a href='/#' className="box-b">
-                  <div className="box-text">  
+                  <div className="box-text">
                    <h3>Affiliate</h3>
                    <p>Join our program and win amazing prizes</p>
                   </div>
                   <div className="box-b-img">
-                    <img src={cta3} alt="Freaks of Nature" className='img-fluid' /> 
+                    <img src={cta3} alt="Freaks of Nature" className='img-fluid' />
                   </div>
                 </a>
               </div>
