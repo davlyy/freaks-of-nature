@@ -1,0 +1,79 @@
+/* Countdown Banner - Mobile Only */
+.countdown-banner {
+  display: none; /* Hidden by default */
+}
+
+/* Show only on mobile devices */
+@media (max-width: 768px) {
+  /* Add space below the fixed banner - accounts for banner + header height */
+  body {
+    padding-top: calc(20px);
+    margin: 0;
+  }
+
+  .countdown-banner {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #FFBF00;
+    border-bottom: 2px solid #000;
+    overflow: hidden;
+    z-index: 10000;
+    padding: 18px 0;
+    margin: 0;
+    line-height: 1;
+  }
+
+  .countdown-banner-track {
+    display: flex;
+    width: fit-content;
+    animation: scrollLeft 20s linear infinite;
+    gap: 80px;
+  }
+
+  .countdown-banner-content {
+    display: flex;
+    white-space: nowrap;
+    gap: 80px;
+  }
+
+  .countdown-banner-content span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Ensure header sits right below banner without gap */
+  .navbar-custom.sticky-top {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  @keyframes scrollLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 468px) {
+  body {
+    /* padding-top: calc(50px + 124px); */
+  }
+
+  .countdown-banner {
+    padding: 12px 0;
+  }
+
+  .countdown-banner-content span {
+    font-size: 14px;
+  }
+}

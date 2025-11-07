@@ -5,9 +5,10 @@ import Event from './pages/Event';
 import About from './pages/about';
 import Blog from './pages/blog';
 import Blogpost from './pages/blogpost';
-import Header from './components/header';
+import Header from './components/Header';
 import Footer from './components/footer';
 import ScrollToTop from './components/ScrollToTop';
+import CountdownBanner from './components/CountdownBanner';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './assets/stolzl/font.css';
@@ -20,6 +21,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <div>
+        <CountdownBanner />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
