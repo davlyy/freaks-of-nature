@@ -7,6 +7,7 @@ import Blog from './pages/blog';
 import Blogpost from './pages/blogpost';
 import Header from './components/header';
 import Footer from './components/footer';
+import ScrollToTop from './components/ScrollToTop';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './assets/stolzl/font.css';
@@ -15,8 +16,9 @@ import Relive from './pages/relive';
 
 
 function App() {
-  return (  
+  return (
     <Router>
+      <ScrollToTop />
       <div>
         <Header />
         <Routes>

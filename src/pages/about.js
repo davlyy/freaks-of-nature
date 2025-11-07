@@ -3,6 +3,13 @@ import './about.css';
 import Cta from '../components/cta.js';
 import Slider from '../components/slider.js';
 import A2022 from '../assets/A2022.svg';
+import A2021 from '../assets/2021.svg';
+import A2023 from '../assets/2023.svg';
+import logoep1 from '../assets/logoep1.svg';
+import logoep2 from '../assets/logoep2.svg';
+import logoep3 from '../assets/logoep3.svg';
+
+
 import eplogo from '../assets/eplogo.png';
 import Animation from '../components/animation.js';
 import ResponsiveImg from '../assets/aboutheroResp.png';
@@ -140,17 +147,18 @@ function About() {
         <div className="episode-section" id="timeline">
             <div className="episode-div">
                 <div className="episode-date">
-                    <img src={A2022} alt="PLUR Warrior"  className='img-fluid'/>
+                    <img src={A2021} alt="PLUR Warrior"  className='img-fluid'/>
                 </div>
                 <div className="episode-content">
                     <div className="episode-box1">
                         <div className="ep-box-img">
-                            <img src={eplogo} alt="PLUR Warrior" />
-                            <h2>Episode 7 
-                            Freak yard</h2>
+                            <img src={logoep1} alt="PLUR Warrior" />
+                            <h2>Episode 1
+                            Freak Show </h2>
                         </div>
                         <p>Following the huge success of its first ever digital edition in 2020, Tomorrowland brought back the spectacular two-day digital music festival experience on July 16 & 17, 2021, welcoming the most spectacular group of entertainers in the universe ‘The Amicorum Spectaculum’.</p>
-                        <p>The magnificent second edition of Tomorrowland – Around the World was adapted to all time zones and brought together a stellar line-up featuring more than 40 of the planet’s biggest names in electronic dance music, while the People of Tomorrow from all corners of the globe united again as one in one place – celebrating the spectacle of friendship.</p>
+                        <p>
+The magnificent second edition of Tomorrowland – Around the World was adapted to all time zones and brought together a stellar line-up featuring more than 40 of the planet’s biggest names in electronic dance music, while the People of Tomorrow from all corners of the globe united again as one in one place – celebrating the spectacle of friendship.</p>
                     </div>
                     <div className="episode-box2">
                         <Slider />
@@ -170,7 +178,7 @@ function About() {
                     </div>
                     <div className="episode-box1">
                         <div className="ep-box-img">
-                            <img src={eplogo} alt="PLUR Warrior" />
+                            <img src={logoep2} alt="PLUR Warrior" />
                             <h2>Episode 6 
                             ADE EDITION</h2>
                         </div>
@@ -183,12 +191,12 @@ function About() {
 
             <div className="episode-div">
                 <div className="episode-date">
-                    <img src={A2022} alt="PLUR Warrior"  className='img-fluid' />
+                    <img src={A2023} alt="PLUR Warrior"  className='img-fluid' />
                 </div>
                 <div className="episode-content">
                     <div className="episode-box1">
                         <div className="ep-box-img">
-                            <img src={eplogo} alt="PLUR Warrior" />
+                            <img src={logoep3} alt="PLUR Warrior" />
                             <h2>Episode 5 
                             QUERENCIA</h2>
                         </div>
