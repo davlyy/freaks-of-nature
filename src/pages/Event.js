@@ -824,9 +824,22 @@ function Event() {
         // Position = element's top - (viewport height / 2) + (element height / 2)
         const centerPosition = absoluteTop - (viewportHeight / 2) + (elementHeight / 2);
 
-        // Header height based on screen size (proper calculation)
-        const headerHeight = window.innerWidth <= 768 ? 80 : 124;
-        const scrollPosition = Math.max(0, centerPosition - headerHeight);
+        // Header offset based on screen size (accounting for countdown banner on mobile)
+        // Desktop: 124px header
+        // Mobile (≤880px): 124px header + countdown banner offset (54px) = 178px total
+        // Extra small (≤468px): 124px header + countdown banner offset (40px) = 164px total
+        const getHeaderOffset = () => {
+          const width = window.innerWidth;
+          if (width <= 468) {
+            return 164; // 124px header + 40px banner offset
+          } else if (width <= 880) {
+            return 178; // 124px header + 54px banner offset
+          } else {
+            return 124; // Just header height on desktop
+          }
+        };
+        const headerOffset = getHeaderOffset();
+        const scrollPosition = Math.max(0, centerPosition - headerOffset);
 
         window.scrollTo({
           top: scrollPosition,

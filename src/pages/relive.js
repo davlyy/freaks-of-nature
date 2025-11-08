@@ -246,11 +246,13 @@ const Relive = () => {
             </div>
 
             <div className="relive-content">
-              <iframe
-                width="1220"
-                height="1100"
-                src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1"
-              ></iframe>
+              <div className="relive-iframe-wrapper">
+                <iframe
+                  src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1"
+                  allowFullScreen
+                  title="Video Player"
+                ></iframe>
+              </div>
               <div className="relive-content-text">
                 <h2>
                   ALAA JAZAERI - Freaks OF Nature E3: Freaks Of Araveia - Main

@@ -5,7 +5,7 @@ import Event from './pages/Event';
 import About from './pages/about';
 import Blog from './pages/blog';
 import Blogpost from './pages/blogpost';
-import Header from './components/Header';
+import Header from './components/header';
 import Footer from './components/footer';
 import ScrollToTop from './components/ScrollToTop';
 import CountdownBanner from './components/CountdownBanner';

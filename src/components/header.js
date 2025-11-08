@@ -39,18 +39,86 @@ function Header() {
       setActiveDropdown((prev) => (prev === linkName ? null : linkName));
     }
   };
-  const handleDropdownLinkClick = (hash) => {
+  const handleDropdownLinkClick = (hash, event) => {
+    // Close dropdown first
     setActiveDropdown(null);
+    
+    // Close mobile menu immediately (no delay)
     setIsNavOpen(false);
 
-    // If already on Event or About page, manually update hash
-    if (
-      window.location.pathname === "/Event" ||
-      window.location.pathname === "/about"
-    ) {
-      // Force hash change
-      window.location.hash = hash;
+    // Extract hash from the link if not provided
+    const linkElement = event?.currentTarget?.closest('a');
+    const href = linkElement?.getAttribute('href') || '';
+    const targetHash = hash || (href.includes('#') ? '#' + href.split('#')[1] : '');
+    
+    // Normalize paths for comparison (remove trailing slashes)
+    // Note: React Router paths are case-sensitive, so we compare as-is
+    const currentPath = window.location.pathname.replace(/\/$/, '');
+    let targetPath = href.split('#')[0] || currentPath;
+    // Handle relative paths (starting with /)
+    if (targetPath.startsWith('/')) {
+      targetPath = targetPath.replace(/\/$/, '');
+    } else {
+      // If relative path, use current path
+      targetPath = currentPath;
     }
+    
+    if (targetPath === currentPath && targetHash) {
+      // Same page navigation - prevent default and handle scroll
+      if (event) {
+        event.preventDefault();
+      }
+      
+      // Update hash
+      const hashValue = targetHash.replace('#', '');
+      window.location.hash = hashValue;
+      
+      // Calculate header height properly
+      // Desktop: 124px header
+      // Mobile (≤880px): 124px header + countdown banner offset (54px) = 178px total
+      // Extra small (≤468px): 124px header + countdown banner offset (40px) = 164px total
+      const getHeaderOffset = () => {
+        const width = window.innerWidth;
+        if (width <= 468) {
+          return 164; // 124px header + 40px banner offset
+        } else if (width <= 880) {
+          return 178; // 124px header + 54px banner offset
+        } else {
+          return 124; // Just header height on desktop
+        }
+      };
+      
+      // Scroll to element after a short delay to ensure DOM is ready
+      setTimeout(() => {
+        const element = document.getElementById(hashValue);
+        if (element) {
+          const headerOffset = getHeaderOffset();
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - headerOffset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        } else {
+          // If element not found, try again after a longer delay (for dynamic content)
+          setTimeout(() => {
+            const retryElement = document.getElementById(hashValue);
+            if (retryElement) {
+              const headerOffset = getHeaderOffset();
+              const elementPosition = retryElement.getBoundingClientRect().top + window.pageYOffset;
+              const offsetPosition = elementPosition - headerOffset;
+              
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+              });
+            }
+          }, 300);
+        }
+      }, 150);
+    }
+    // If navigating to different page, let React Router Link handle it naturally
   };
   const handleMouseEnter = (linkName) => {
     if (!isMobile) {
@@ -141,8 +209,7 @@ function Header() {
                     <Link
                       to="/Event#day-pass"
                       className="dropdown-link"
-                      onClick={() => handleDropdownLinkClick("#day-pass")
-                      }
+                      onClick={(e) => handleDropdownLinkClick("#day-pass", e)}
                     >
                       Day Pass
                       {activeSubItem === "Day Pass" && (
@@ -181,7 +248,7 @@ function Header() {
                     <Link
                       to="/Event#multi-day-pass"
                       className="dropdown-link"
-                      onClick={() => handleDropdownLinkClick("#multi-day-pass")}
+                      onClick={(e) => handleDropdownLinkClick("#multi-day-pass", e)}
                     >
                       Weekly Pass
                       {activeSubItem === "Weekly Pass" && (
@@ -220,7 +287,7 @@ function Header() {
                     <Link
                       to="/Event#dj-comp"
                       className="dropdown-link"
-                      onClick={() => handleDropdownLinkClick("#dj-comp")}
+                      onClick={(e) => handleDropdownLinkClick("#dj-comp", e)}
                     >
                       DJ Comp
                       {activeSubItem === "DJ Comp" && (
@@ -259,7 +326,7 @@ function Header() {
                     <Link
                       to="/Event#affiliate"
                       className="dropdown-link"
-                      onClick={() => handleDropdownLinkClick("#affiliate")}
+                      onClick={(e) => handleDropdownLinkClick("#affiliate", e)}
                     >
                       Affiliate
                       {activeSubItem === "Affiliate" && (
@@ -298,7 +365,7 @@ function Header() {
                     <Link
                       to="/Event#faq"
                       className="dropdown-link"
-                      onClick={() => handleDropdownLinkClick("#faq")}
+                      onClick={(e) => handleDropdownLinkClick("#faq", e)}
                     >
                       FAQ
                       {activeSubItem === "FAQ" && (
@@ -328,42 +395,19 @@ function Header() {
                 </div>
               )}
             </div>
-            <div
-              className={`nav-item-wrapper ${
-                activeDropdown === "Relive" ? "active" : ""
-              }`}
-              onMouseEnter={() => handleMouseEnter("Relive")}
-              onMouseLeave={handleMouseLeave}
-            >
+            <div className="nav-item-wrapper">
               <Nav.Link
                 as={Link}
                 to="/relive"
-                className={`nav-link ${
-                  activeDropdown === "Relive" ? "active-link" : ""
-                }`}
-                onClick={(event) => {
-                  toggleDropdown(event, "Relive");
+                className="nav-link"
+                onClick={() => {
+                  setActiveDropdown(null);
+                  setIsNavOpen(false);
                   handleMainNavLinkClick();
                 }}
               >
                 Relive
-                <span className="dropdown-icon">
-                  <FaChevronDown />
-                </span>
               </Nav.Link>
-              {activeDropdown === "Relive" && (
-                <div className="dropdown-relive">
-                  <div className="dropdown-item">
-                    <div className="dropdown-link-relive">
-                      RELIVE
-                      <p>Plan your ideal schedule, share top </p>
-                      <p>artists with friends, and explore </p>
-                      <p>amazing food and entertainment. </p>
-                      <p>This app has everything you need!</p>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
             {/* About Us Link */}
             <div
@@ -404,7 +448,7 @@ function Header() {
                     <Link
                       to="/about#about-us"
                       className="dropdown-link"
-                      onClick={() => handleDropdownLinkClick("#about-us")}
+                      onClick={(e) => handleDropdownLinkClick("#about-us", e)}
                     >
                       About Us
                       {activeSubItem === "About Us" && (
@@ -446,7 +490,7 @@ function Header() {
                     <Link
                       to="/about#freak-squad"
                       className="dropdown-link"
-                      onClick={() => handleDropdownLinkClick("#freak-squad")}
+                      onClick={(e) => handleDropdownLinkClick("#freak-squad", e)}
                     >
                       Freak Squad
                       {activeSubItem === "Freak Squad" && (
@@ -488,7 +532,7 @@ function Header() {
                     <Link
                       to="/about#timeline"
                       className="dropdown-link"
-                      onClick={() => handleDropdownLinkClick("#timeline")}
+                      onClick={(e) => handleDropdownLinkClick("#timeline", e)}
                     >
                       Timeline
                       {activeSubItem === "Timeline" && (
@@ -530,8 +574,8 @@ function Header() {
                     <Link
                       to="/about#partner-with-us"
                       className="dropdown-link"
-                      onClick={() =>
-                        handleDropdownLinkClick("#partner-with-us")
+                      onClick={(e) =>
+                        handleDropdownLinkClick("#partner-with-us", e)
                       }
                     >
                       Partner With Us
@@ -574,7 +618,7 @@ function Header() {
                     <Link
                       to="/about#about-dj-comp"
                       className="dropdown-link"
-                      onClick={() => handleDropdownLinkClick("#about-dj-comp")}
+                      onClick={(e) => handleDropdownLinkClick("#about-dj-comp", e)}
                     >
                       DJ Comp
                       {activeSubItem === "DJ Comp" && (
@@ -616,7 +660,7 @@ function Header() {
                     <Link
                       to="/about#about-dj-comp"
                       className="dropdown-link"
-                      onClick={() => handleDropdownLinkClick("#about-dj-comp")}
+                      onClick={(e) => handleDropdownLinkClick("#about-dj-comp", e)}
                     >
                       Affiliate
                       {activeSubItem === "Affiliate" && (
@@ -651,42 +695,19 @@ function Header() {
             </div>
 
             {/* Blog Link */}
-            <div
-              className={`nav-item-wrapper ${
-                activeDropdown === "Blog" ? "active" : ""
-              }`}
-              onMouseEnter={() => handleMouseEnter("Blog")}
-              onMouseLeave={handleMouseLeave}
-            >
+            <div className="nav-item-wrapper">
               <Nav.Link
                 as={Link}
                 to="/blog"
-                className={`nav-link ${
-                  activeDropdown === "Blog" ? "active-link" : ""
-                }`}
-                onClick={(event) => {
-                  toggleDropdown(event, "Blog");
+                className="nav-link"
+                onClick={() => {
+                  setActiveDropdown(null);
+                  setIsNavOpen(false);
                   handleMainNavLinkClick();
                 }}
               >
                 Blog
-                <p className="dropdown-icon">
-                  <FaChevronDown />
-                </p>
               </Nav.Link>
-              {activeDropdown === "Blog" && (
-                <div className="dropdown-blog">
-                  <div className="dropdown-item">
-                    <div className="dropdown-link-relive">
-                      BLOG
-                      <p>Plan your ideal schedule, share top </p>
-                      <p>artists with friends, and explore </p>
-                      <p>amazing food and entertainment. </p>
-                      <p>This app has everything you need!</p>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           </Nav>
         </Navbar.Collapse>
@@ -995,7 +1016,7 @@ function Header() {
         @media (max-width: 880px) {
           .sticky-top {
             position: sticky;
-            top: 0;
+            top: 54px; /* Account for countdown banner height (18px padding + 16px font + 18px padding + 2px border) */
             z-index: 1020;
           }
 
@@ -1014,8 +1035,23 @@ function Header() {
             background-color: #000;
             padding: 130px 40px 40px;
             border-radius: 0 0 20px 20px;
+            transition: opacity 0.25s ease-out, transform 0.25s ease-out;
             /* max-height: 80vh;
             overflow-y: auto; */
+          }
+          
+          .navbar-collapse.collapsing {
+            transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+          }
+          
+          .navbar-collapse:not(.show) {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          
+          .navbar-collapse.show {
+            opacity: 1;
+            transform: translateY(0);
           }
 
           .navbar-toggler {
@@ -1148,6 +1184,10 @@ function Header() {
         }
 
         @media (max-width: 468px) {
+          .sticky-top {
+            top: 40px; /* Account for countdown banner height on extra small devices (12px padding + 14px font + 12px padding + 2px border) */
+          }
+
           .navbar-logo {
             width: 91px;
             margin-left: 40px;
