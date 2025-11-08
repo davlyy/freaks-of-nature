@@ -212,553 +212,7 @@ const FAQ_ITEMS = [
   },
 ];
 
-// function Event() {
-//     const [activeTab, setActiveTab] = useState(TICKET_TABS[0].id);
-//     const [activeTicket, setActiveTicket] = useState(null);
-//     const [counts, setCounts] = useState(() => ({ ...INITIAL_COUNTS }));
-//     const [isStickyOpen, setIsStickyOpen] = useState(false);
-//     const [activeFaq, setActiveFaq] = useState(null);
-//     const location = useLocation();
-//     const pendingHashRef = useRef(null);
 
-//     const activeTabData =
-//         TICKET_TABS.find((tab) => tab.id === activeTab) ?? TICKET_TABS[0];
-
-//     const selectedOptions = TICKET_OPTIONS.filter(
-//         (option) => (counts[option.id] ?? 0) > 0
-//     ).map((option) => {
-//         const count = counts[option.id] ?? 0;
-//         return {
-//             ...option,
-//             count,
-//             totalPrice: roundToTwo(count * option.ticketPrice),
-//         };
-//     });
-
-//     const subtotal = roundToTwo(
-//         selectedOptions.reduce((sum, item) => sum + item.totalPrice, 0)
-//     );
-//     const discount = subtotal ? roundToTwo(subtotal * 0.1) : 0;
-//     const subtotalAfterDiscount = subtotal ? roundToTwo(subtotal - discount) : 0;
-//     const fees = subtotal ? roundToTwo(subtotalAfterDiscount * 0.06) : 0;
-//     const totalDue = subtotal ? roundToTwo(subtotalAfterDiscount + fees) : 0;
-//     const totalQuantity = selectedOptions.reduce(
-//         (sum, item) => sum + item.count,
-//         0
-//     );
-//     const hasSelections = selectedOptions.length > 0;
-//     const discountLabel = discount > 0 ? `-${formatSar(discount)}` : formatSar(0);
-
-//     const handleTabClick = (tabId) => {
-//         setActiveTab(tabId);
-//         setActiveTicket(null);
-//     };
-
-//     const toggleTicketAccordion = (ticketKey) => {
-//         setActiveTicket((prev) => (prev === ticketKey ? null : ticketKey));
-//     };
-
-//     const handleIncrement = (optionId) => {
-//         setCounts((prev) => ({
-//             ...prev,
-//             [optionId]: (prev[optionId] ?? 0) + 1,
-//         }));
-//     };
-
-//     const handleDecrement = (optionId) => {
-//         setCounts((prev) => {
-//             const current = prev[optionId] ?? 0;
-//             if (current <= 0) {
-//                 return prev;
-//             }
-//             return {
-//                 ...prev,
-//                 [optionId]: current - 1,
-//             };
-//         });
-//     };
-
-//     const handleRemoveItem = (optionId) => {
-//         setCounts((prev) => {
-//             if (!prev[optionId]) {
-//                 return prev;
-//             }
-//             return {
-//                 ...prev,
-//                 [optionId]: 0,
-//             };
-//         });
-//     };
-
-//     const handleClearAll = () => {
-//         if (!hasSelections) {
-//             return;
-//         }
-//         setCounts(() => ({ ...INITIAL_COUNTS }));
-//     };
-
-//     const toggleStickyOrder = () => {
-//         setIsStickyOpen((prev) => !prev);
-//     };
-
-//     const toggleFaqAccordion = (faqId) => {
-//         setActiveFaq((prev) => (prev === faqId ? null : faqId));
-//     };
-
-//     useEffect(() => {
-//         if (!location.hash) {
-//             return;
-//         }
-
-//         const hashValue = location.hash.replace('#', '');
-//         if (!hashValue) {
-//             return;
-//         }
-
-//         const normalizedHash = hashValue.toLowerCase();
-
-//         if (normalizedHash === 'day-pass') {
-//             setActiveTab('tab2');
-//         } else if (
-//             normalizedHash === 'multi-day-pass' ||
-//             normalizedHash === 'weekly-pass' ||
-//             normalizedHash === 'tickets'
-//         ) {
-//             setActiveTab('tab1');
-//         }
-
-//         pendingHashRef.current = hashValue;
-//     }, [location.hash]);
-
-//     useEffect(() => {
-//         if (!pendingHashRef.current) {
-//             return;
-//         }
-
-//         const scrollTarget = pendingHashRef.current;
-//         const element = document.getElementById(scrollTarget);
-//         console.log('Scrolling to element:', pendingHashRef.current, element);
-
-//         if (element) {
-//             // Responsive offset based on screen size
-//             let offset;
-//             if (window.innerWidth <= 768) {
-//                 offset = 120; // Mobile
-//             } else if (window.innerWidth <= 1440) {
-//                 offset = 180; // Laptop
-//             } else {
-//                 offset = 220; // Large monitor
-//             }
-
-//             const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-//             const offsetPosition = elementPosition - offset;
-
-//             window.scrollTo({
-//                 top: offsetPosition,
-//                 behavior: 'smooth'
-//             });
-//             pendingHashRef.current = null;
-//         } else {
-//             const timeoutId = window.setTimeout(() => {
-//                 const retryElement = document.getElementById(scrollTarget);
-//                 if (retryElement) {
-//                     // Responsive offset based on screen size
-//                     let offset;
-//                     if (window.innerWidth <= 768) {
-//                         offset = 120; // Mobile
-//                     } else if (window.innerWidth <= 1440) {
-//                         offset = 180; // Laptop
-//                     } else {
-//                         offset = 220; // Large monitor
-//                     }
-
-//                     const elementPosition = retryElement.getBoundingClientRect().top + window.pageYOffset;
-//                     const offsetPosition = elementPosition - offset;
-
-//                     window.scrollTo({
-//                         top: offsetPosition,
-//                         behavior: 'smooth'
-//                     });
-//                 }
-//                 pendingHashRef.current = null;
-//             }, 150);
-
-//             return () => window.clearTimeout(timeoutId);
-//         }
-
-//         return undefined;
-//     }, [activeTab]);
-
-//     return (
-//         <div>
-//             <section className='hero-event'> </section>
-
-//             <section className='event-section' id='tickets'>
-//                 <div className='event-div'>
-//                     <div className='event-tabs'>
-//                         <div className='tabs'>
-//                             {TICKET_TABS.map((tab) => (
-//                                 <button
-//                                     key={tab.id}
-//                                     className={activeTab === tab.id ? 'tab active' : 'tab'}
-//                                     onClick={() => handleTabClick(tab.id)}
-//                                 >
-//                                     {tab.label}
-//                                 </button>
-//                             ))}
-//                         </div>
-
-//                         <div
-//                             className='tab-content'
-//                             id={activeTab === 'tab1' ? 'multi-day-pass' : 'day-pass'}
-//                         >
-//                             {activeTabData.tickets.map((ticket) => {
-//                                 const accordionKey = `${activeTabData.id}-${ticket.key}`;
-//                                 const isActive = activeTicket === accordionKey;
-//                                 return (
-//                                     <div
-//                                         key={ticket.key}
-//                                         className={`accordin-item ${isActive ? 'active' : ''}`}
-//                                     >
-//                                         <div
-//                                             className='accordin-header'
-//                                             onClick={() => toggleTicketAccordion(accordionKey)}
-//                                         >
-//                                             <div className='accordin-main-title'>
-//                                                 <h3>{ticket.title}</h3>
-//                                                 <h4>
-//                                                     SAR {formatCurrency(ticket.price)}
-//                                                     {ticket.compareAt && (
-//                                                         <>
-//                                                             {' '}
-//                                                             <span className='line-through'>
-//                                                                 SAR {formatCurrency(ticket.compareAt)}
-//                                                             </span>
-//                                                         </>
-//                                                     )}
-//                                                 </h4>
-//                                             </div>
-//                                             <span className={`arrow ${isActive ? 'rotate' : ''}`}>
-//                                                 <FaChevronDown className='arrow-icon-down' />
-//                                             </span>
-//                                         </div>
-//                                         {isActive && (
-//                                             <div className='accordin-content'>
-//                                                 <div className='accordin-content-div'>
-//                                                     <div className='content-text'>
-//                                                         <h3>
-//                                                             {ticket.perks.map((perk, index) => (
-//                                                                 <Fragment key={perk}>
-//                                                                     {perk}
-//                                                                     {index < ticket.perks.length - 1 && <br />}
-//                                                                 </Fragment>
-//                                                             ))}
-//                                                         </h3>
-//                                                     </div>
-//                                                     <div className='content-ticket'>
-//                                                         <h4>Ticket include:</h4>
-//                                                         <div className='ticket-list'>
-//                                                             {ticket.includes.map((include) => (
-//                                                                 <p key={include}>{include}</p>
-//                                                             ))}
-//                                                         </div>
-//                                                     </div>
-//                                                 </div>
-//                                                 <div className='accordin-content-div1'>
-//                                                     {ticket.options.map((option) => {
-//                                                         const optionCount = counts[option.id] ?? 0;
-//                                                         return (
-//                                                             <div className='weekend-div' key={option.id}>
-//                                                                 <h3>{option.label}</h3>
-//                                                                 {optionCount > 0 ? (
-//                                                                     <div className='plusminus-function'>
-//                                                                         <div className='function-text'>
-//                                                                             {option.dayLabel}{' '}
-//                                                                             <span>{option.dateLabel}</span>
-//                                                                         </div>
-//                                                                         <div className='function-plusminus'>
-//                                                                             <div
-//                                                                                 className='plusminus1 plus'
-//                                                                                 onClick={() =>
-//                                                                                     handleIncrement(option.id)
-//                                                                                 }
-//                                                                                 role='button'
-//                                                                             >
-//                                                                                 +
-//                                                                             </div>
-//                                                                             <div className='plusminus1 number'>
-//                                                                                 {optionCount}
-//                                                                             </div>
-//                                                                             <div
-//                                                                                 className='plusminus1 minus'
-//                                                                                 onClick={() =>
-//                                                                                     handleDecrement(option.id)
-//                                                                                 }
-//                                                                                 role='button'
-//                                                                             >
-//                                                                                 -
-//                                                                             </div>
-//                                                                         </div>
-//                                                                     </div>
-//                                                                 ) : (
-//                                                                     <div
-//                                                                         className='add-function'
-//                                                                         onClick={() => handleIncrement(option.id)}
-//                                                                         role='button'
-//                                                                     >
-//                                                                         <div className='function-text'>
-//                                                                             {option.dayLabel}{' '}
-//                                                                             <span>{option.dateLabel}</span>
-//                                                                         </div>
-//                                                                         <div className='add-cta'>+ Add</div>
-//                                                                     </div>
-//                                                                 )}
-//                                                             </div>
-//                                                         );
-//                                                     })}
-//                                                 </div>
-//                                             </div>
-//                                         )}
-//                                     </div>
-//                                 );
-//                             })}
-//                         </div>
-//                     </div>
-
-//                     <div className='event-order'>
-//                         <div className='event-order-div order-summary-card'>
-//                             <div className='order-summary-header'>
-//                                 <h4>ORDER SUMMARY</h4>
-//                                 <button
-//                                     type='button'
-//                                     className='clear-button desktop'
-//                                     onClick={handleClearAll}
-//                                     disabled={!hasSelections}
-//                                 >
-//                                     Clear all
-//                                 </button>
-//                             </div>
-
-//                             <div className='order-summary-body'>
-//                                 {hasSelections ? (
-//                                     selectedOptions.map((item) => (
-//                                         <div className='order-summary-item' key={item.id}>
-//                                             <div className='order-summary-copy'>
-//                                                 <span className='order-summary-qty'>{item.count}x</span>
-//                                                 <div>
-//                                                     <p className='order-summary-title'>
-//                                                         {item.ticketTitle}
-//                                                     </p>
-//                                                     <p className='order-summary-detail'>
-//                                                         {item.summaryLabel}
-//                                                     </p>
-//                                                 </div>
-//                                             </div>
-//                                             <div className='order-summary-meta'>
-//                                                 <span className='order-summary-price'>
-//                                                     {formatSar(item.totalPrice)}
-//                                                 </span>
-//                                                 <button
-//                                                     type='button'
-//                                                     className='remove-button desktop'
-//                                                     onClick={() => handleRemoveItem(item.id)}
-//                                                     aria-label={`Remove ${item.ticketTitle}`}
-//                                                 >
-//                                                     <img src={removeIcon} alt='Remove item' />
-//                                                 </button>
-//                                             </div>
-//                                         </div>
-//                                     ))
-//                                 ) : (
-//                                     <p className='order-summary-empty'>
-//                                         Select tickets to see them appear here.
-//                                     </p>
-//                                 )}
-//                             </div>
-
-//                             <div className='order-summary-totals'>
-//                                 <p>
-//                                     <span>Total</span>
-//                                     <span>{formatSar(subtotal)}</span>
-//                                 </p>
-//                                 <p>
-//                                     <span>Discount (10%)</span>
-//                                     <span>{discountLabel}</span>
-//                                 </p>
-//                                 <p>
-//                                     <span>Ticketing fees (6%)</span>
-//                                     <span>{formatSar(fees)}</span>
-//                                 </p>
-//                                 <p className='order-summary-total-due'>
-//                                     <span>Total Amount Due</span>
-//                                     <span>{formatSar(totalDue)}</span>
-//                                 </p>
-//                             </div>
-
-//                             <button
-//                                 type='button'
-//                                 className='total-button'
-//                                 disabled={!hasSelections}
-//                             >
-//                                 CONFIRM
-//                             </button>
-
-//                             <p className='order-summary-note'>
-//                                 *All Tickets are nonrefundable *Name in the ticket must match
-//                                 name in tawaklna * Full Ticket T&C <span>HERE</span>
-//                             </p>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </section>
-
-//             <Cta />
-
-//             <section className='FAQs-section' id='faq'>
-//                 <div className='FAQs-div'>
-//                     <h2>FAQs</h2>
-
-//                     <div className='FAQs-accordion'>
-//                         {FAQ_ITEMS.map((faq) => {
-//                             const isActive = activeFaq === faq.id;
-//                             return (
-//                                 <div className='FAQs-accordion-item' key={faq.id}>
-//                                     <div
-//                                         className='FAQs-accordion-header'
-//                                         onClick={() => toggleFaqAccordion(faq.id)}
-//                                     >
-//                                         <span className='plusminus'>{isActive ? '-' : '+'}</span>
-//                                         <span>{faq.question}</span>
-//                                     </div>
-//                                     {isActive && (
-//                                         <div className='FAQs-accordion-content'>
-//                                             <p>{faq.answer}</p>
-//                                         </div>
-//                                     )}
-//                                 </div>
-//                             );
-//                         })}
-//                     </div>
-//                 </div>
-//             </section>
-
-//             <section className={`sticky-order ${isStickyOpen ? 'open' : ''}`}>
-//                 <div
-//                     className={`sticky-arrow ${isStickyOpen ? 'down' : ''}`}
-//                     onClick={toggleStickyOrder}
-//                 >
-//                     <FaChevronUp className='rotate-arrow' />
-//                 </div>
-
-//                 {isStickyOpen ? (
-//                     <div className='sticky-order-summary'>
-//                         <div className='summary'>
-//                             <div className='box-summary1'>
-//                                 <span className='summary-clear-cta'>
-//                                     <h4>Summary Order</h4>
-//                                     <button
-//                                         type='button'
-//                                         className='clear-button'
-//                                         onClick={handleClearAll}
-//                                         disabled={!hasSelections}
-//                                     >
-//                                         clear all
-//                                     </button>
-//                                 </span>
-
-//                                 <div className='summary-items'>
-//                                     {hasSelections ? (
-//                                         selectedOptions.map((item) => (
-//                                             <div className='s-box-card' key={item.id}>
-//                                                 <div className='s-card-text'>
-//                                                     <div className='s-card-copy'>
-//                                                         <p className='s-card-title'>
-//                                                             <span>{item.count}x</span> {item.ticketTitle}
-//                                                         </p>
-//                                                         <p className='s-card-detail'>
-//                                                             {item.summaryLabel}
-//                                                         </p>
-//                                                     </div>
-//                                                     <div className='s-card-meta'>
-//                                                         <span className='s-card-price'>
-//                                                             {formatSar(item.totalPrice)}
-//                                                         </span>
-//                                                         <button
-//                                                             type='button'
-//                                                             className='remove-button'
-//                                                             onClick={() => handleRemoveItem(item.id)}
-//                                                             aria-label={`Remove ${item.ticketTitle}`}
-//                                                         >
-//                                                             <img src={removeIcon} alt='Remove item' />
-//                                                         </button>
-//                                                     </div>
-//                                                 </div>
-//                                             </div>
-//                                         ))
-//                                     ) : (
-//                                         <p className='order-summary-empty'>Your order is empty.</p>
-//                                     )}
-//                                 </div>
-//                             </div>
-
-//                             <div className='box-summary2'>
-//                                 <div className='total-summary'>
-//                                     <p>
-//                                         Total <span>{formatSar(subtotal)}</span>
-//                                     </p>
-//                                     <p>
-//                                         Discount (10%) <span>{discountLabel}</span>
-//                                     </p>
-//                                     <p>
-//                                         Ticketing fees (6%) <span>{formatSar(fees)}</span>
-//                                     </p>
-//                                     <p>
-//                                         Total Amount Due <span>{formatSar(totalDue)}</span>
-//                                     </p>
-//                                 </div>
-//                                 <div className='final-total'>
-//                                     <p>
-//                                         Total: <span>{formatSar(totalDue)}</span>
-//                                     </p>
-//                                 </div>
-
-//                                 <button
-//                                     type='button'
-//                                     className='total-button'
-//                                     disabled={!hasSelections}
-//                                 >
-//                                     CONFIRM
-//                                 </button>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 ) : (
-//                     <div className='sticky-order-content'>
-//                         <div className='ticket-icon'>
-//                             <p>
-//                                 <img
-//                                     src={ticketicon}
-//                                     alt='Freaks of Nature'
-//                                     className='img-fluid'
-//                                 />{' '}
-//                                 x{totalQuantity}
-//                             </p>
-//                             <h4>Total: {formatSar(totalDue)}</h4>
-//                         </div>
-
-//                         <button
-//                             type='button'
-//                             className='confirm-button'
-//                             disabled={!hasSelections}
-//                         >
-//                             CONFIRM
-//                         </button>
-//                     </div>
-//                 )}
-//             </section>
-//         </div>
-//     );
-// }
 
 function Event() {
   const [activeTab, setActiveTab] = useState(TICKET_TABS[0].id);
@@ -797,7 +251,7 @@ function Event() {
   const hasSelections = selectedOptions.length > 0;
   const discountLabel = discount > 0 ? `-${formatSar(discount)}` : formatSar(0);
 
-  // Helper function to scroll to element centered in viewport
+  // Helper function to scroll to element with proper header offset
   const scrollToElement = useCallback((elementId) => {
     const element = document.getElementById(elementId);
     if (!element) {
@@ -811,18 +265,10 @@ function Event() {
         const freshElement = document.getElementById(elementId);
         if (!freshElement) return;
 
-        // Get element position and dimensions
+        // Get element position
         const elementRect = freshElement.getBoundingClientRect();
         // Get absolute position from top of document
         const absoluteTop = elementRect.top + window.scrollY;
-        const elementHeight = elementRect.height;
-
-        // Calculate viewport height
-        const viewportHeight = window.innerHeight;
-
-        // Calculate position to center element in viewport
-        // Position = element's top - (viewport height / 2) + (element height / 2)
-        const centerPosition = absoluteTop - (viewportHeight / 2) + (elementHeight / 2);
 
         // Header offset based on screen size (accounting for countdown banner on mobile)
         // Desktop: 124px header
@@ -839,7 +285,10 @@ function Event() {
           }
         };
         const headerOffset = getHeaderOffset();
-        const scrollPosition = Math.max(0, centerPosition - headerOffset);
+        
+        // Position element at top of viewport with header offset (not centered)
+        // This ensures the element is fully visible below the header
+        const scrollPosition = Math.max(0, absoluteTop - headerOffset);
 
         window.scrollTo({
           top: scrollPosition,
@@ -907,7 +356,64 @@ function Event() {
     setActiveFaq((prev) => (prev === faqId ? null : faqId));
   };
 
-  // Handle hash changes from location
+  // Helper function to process hash
+  const processHash = useCallback((hashValue) => {
+    if (!hashValue) {
+      return;
+    }
+
+    const normalizedHash = hashValue.toLowerCase();
+
+    // Set the appropriate tab based on the hash
+    if (normalizedHash === "day-pass" || normalizedHash === "tickets-day-pass") {
+      setActiveTab("tab2");
+      // Scroll to tickets section which contains the day-pass tab
+      pendingHashRef.current = "tickets";
+    } else if (
+      normalizedHash === "multi-day-pass" ||
+      normalizedHash === "weekly-pass" ||
+      normalizedHash === "tickets-multi-day-pass"
+    ) {
+      setActiveTab("tab1");
+      // Scroll to tickets section which contains the multi-day-pass tab
+      pendingHashRef.current = "tickets";
+    } else if (normalizedHash === "tickets") {
+      //eta huinea 
+      if (activeTab === null || activeTab === undefined) {
+        setActiveTab("tab1");
+      }
+      pendingHashRef.current = "tickets";
+    } else if (normalizedHash === "dj-comp" || normalizedHash === "affiliate") {
+      pendingHashRef.current = "djcomp";
+    } else if (normalizedHash === "faq") {
+      pendingHashRef.current = "faq";
+    } else {
+      pendingHashRef.current = hashValue;
+    }
+  }, []);
+
+  // Handle hash on mount and when pathname changes (for navigation from other pages)
+  useEffect(() => {
+    // When navigating from another page, wait a bit longer for DOM to be ready
+    const timeoutId = setTimeout(() => {
+      // Check window.location.hash first (more reliable when navigating from another page)
+      const windowHash = window.location.hash.replace("#", "");
+      if (windowHash) {
+        processHash(windowHash);
+        return;
+      }
+
+      // Fallback to location.hash from React Router
+      const locationHash = location.hash.replace("#", "");
+      if (locationHash) {
+        processHash(locationHash);
+      }
+    }, 50); // Small delay to ensure DOM is ready
+
+    return () => clearTimeout(timeoutId);
+  }, [location.pathname, location.hash, processHash]);
+
+  // Handle hash changes from location (for same-page navigation)
   useEffect(() => {
     if (!location.hash) {
       return;
@@ -918,29 +424,8 @@ function Event() {
       return;
     }
 
-    const normalizedHash = hashValue.toLowerCase();
-
-    // Set the appropriate tab based on the hash
-    if (normalizedHash === "day-pass") {
-      setActiveTab("tab2");
-      pendingHashRef.current = "day-pass";
-    } else if (
-      normalizedHash === "multi-day-pass" ||
-      normalizedHash === "weekly-pass"
-    ) {
-      setActiveTab("tab1");
-      pendingHashRef.current = "multi-day-pass";
-    } else if (normalizedHash === "tickets") {
-      setActiveTab("tab1");
-      pendingHashRef.current = "tickets";
-    } else if (normalizedHash === "dj-comp" || normalizedHash === "affiliate") {
-      pendingHashRef.current = "djcomp";
-    } else if (normalizedHash === "faq") {
-      pendingHashRef.current = "faq";
-    } else {
-      pendingHashRef.current = hashValue;
-    }
-  }, [location.hash]);
+    processHash(hashValue);
+  }, [location.hash, processHash]);
 
   // Listen for native hashchange events (for when clicking links on same page)
   useEffect(() => {
@@ -950,33 +435,12 @@ function Event() {
         return;
       }
 
-      const normalizedHash = hashValue.toLowerCase();
-
-      // Set the appropriate tab based on the hash
-      if (normalizedHash === "day-pass") {
-        setActiveTab("tab2");
-        pendingHashRef.current = "day-pass";
-      } else if (
-        normalizedHash === "multi-day-pass" ||
-        normalizedHash === "weekly-pass"
-      ) {
-        setActiveTab("tab1");
-        pendingHashRef.current = "multi-day-pass";
-      } else if (normalizedHash === "tickets") {
-        setActiveTab("tab1");
-        pendingHashRef.current = "tickets";
-      } else if (normalizedHash === "dj-comp" || normalizedHash === "affiliate") {
-        pendingHashRef.current = "djcomp";
-      } else if (normalizedHash === "faq") {
-        pendingHashRef.current = "faq";
-      } else {
-        pendingHashRef.current = hashValue;
-      }
+      processHash(hashValue);
     };
 
     window.addEventListener("hashchange", handleHashChange);
     return () => window.removeEventListener("hashchange", handleHashChange);
-  }, []);
+  }, [processHash]);
 
   useEffect(() => {
     if (!pendingHashRef.current) {
@@ -988,13 +452,29 @@ function Event() {
     // Clear the pending ref immediately to prevent duplicate scrolls
     pendingHashRef.current = null;
 
-    // Always use a delay to ensure tab switching and DOM updates are complete
+    // Use a longer delay when navigating from another page to ensure DOM is fully ready
+    // Check if we just navigated from another page by checking if we're at the top
+    const isNavigatingFromOtherPage = window.scrollY === 0 || window.pageYOffset === 0;
+    const delay = isNavigatingFromOtherPage ? 400 : 100;
+
     const timeoutId = window.setTimeout(() => {
-      scrollToElement(scrollTarget);
-    }, 100);
+      // Double-check element exists before scrolling
+      const element = document.getElementById(scrollTarget);
+      if (element) {
+        scrollToElement(scrollTarget);
+      } else {
+        // If element still doesn't exist, try one more time after a longer delay
+        setTimeout(() => {
+          const retryElement = document.getElementById(scrollTarget);
+          if (retryElement) {
+            scrollToElement(scrollTarget);
+          }
+        }, 200);
+      }
+    }, delay);
 
     return () => window.clearTimeout(timeoutId);
-  }, [activeTab, scrollToElement]);
+  }, [scrollToElement, location.pathname]);
 
   return (
     <div>

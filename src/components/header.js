@@ -88,35 +88,69 @@ function Header() {
         }
       };
       
-      // Scroll to element after a short delay to ensure DOM is ready
-      setTimeout(() => {
-        const element = document.getElementById(hashValue);
-        if (element) {
-          const headerOffset = getHeaderOffset();
-          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = elementPosition - headerOffset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        } else {
-          // If element not found, try again after a longer delay (for dynamic content)
-          setTimeout(() => {
-            const retryElement = document.getElementById(hashValue);
-            if (retryElement) {
-              const headerOffset = getHeaderOffset();
-              const elementPosition = retryElement.getBoundingClientRect().top + window.pageYOffset;
-              const offsetPosition = elementPosition - headerOffset;
-              
-              window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-              });
-            }
-          }, 300);
-        }
-      }, 150);
+      // Handle special cases for tickets navigation
+      // These hashes don't have direct element IDs, so scroll to tickets section instead
+      if (hashValue === "tickets-multi-day-pass" || hashValue === "tickets-day-pass") {
+        // Scroll to tickets section
+        setTimeout(() => {
+          const ticketsElement = document.getElementById("tickets");
+          if (ticketsElement) {
+            const headerOffset = getHeaderOffset();
+            const elementPosition = ticketsElement.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - headerOffset;
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          } else {
+            // If tickets section not found, try again after a longer delay
+            setTimeout(() => {
+              const retryTicketsElement = document.getElementById("tickets");
+              if (retryTicketsElement) {
+                const headerOffset = getHeaderOffset();
+                const elementPosition = retryTicketsElement.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - headerOffset;
+                
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                });
+              }
+            }, 300);
+          }
+        }, 150);
+      } else {
+        // Scroll to element after a short delay to ensure DOM is ready
+        setTimeout(() => {
+          const element = document.getElementById(hashValue);
+          if (element) {
+            const headerOffset = getHeaderOffset();
+            const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - headerOffset;
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          } else {
+            // If element not found, try again after a longer delay (for dynamic content)
+            setTimeout(() => {
+              const retryElement = document.getElementById(hashValue);
+              if (retryElement) {
+                const headerOffset = getHeaderOffset();
+                const elementPosition = retryElement.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - headerOffset;
+                
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                });
+              }
+            }, 300);
+          }
+        }, 150);
+      }
     }
     // If navigating to different page, let React Router Link handle it naturally
   };
@@ -207,9 +241,16 @@ function Header() {
                     onMouseLeave={() => setActiveSubItem(null)}
                   >
                     <Link
-                      to="/Event#day-pass"
+                      to={isMobile ? "/Event#day-pass" : "/Event#tickets-day-pass"}
                       className="dropdown-link"
-                      onClick={(e) => handleDropdownLinkClick("#day-pass", e)}
+                      onClick={(e) => {
+                        if (!isMobile) {
+                          // On desktop, navigate to tickets section and set Day Pass tab
+                          handleDropdownLinkClick("#tickets-day-pass", e);
+                        } else {
+                          handleDropdownLinkClick("#day-pass", e);
+                        }
+                      }}
                     >
                       Day Pass
                       {activeSubItem === "Day Pass" && (
@@ -246,9 +287,16 @@ function Header() {
                     onMouseLeave={() => setActiveSubItem(null)}
                   >
                     <Link
-                      to="/Event#multi-day-pass"
+                      to={isMobile ? "/Event#multi-day-pass" : "/Event#tickets-multi-day-pass"}
                       className="dropdown-link"
-                      onClick={(e) => handleDropdownLinkClick("#multi-day-pass", e)}
+                      onClick={(e) => {
+                        if (!isMobile) {
+                          // On desktop, navigate to tickets section and set Multi-day Pass tab
+                          handleDropdownLinkClick("#tickets-multi-day-pass", e);
+                        } else {
+                          handleDropdownLinkClick("#multi-day-pass", e);
+                        }
+                      }}
                     >
                       Weekly Pass
                       {activeSubItem === "Weekly Pass" && (
