@@ -119,6 +119,12 @@
     font-size: 16px;
     font-weight: bold;
     box-shadow: 8px 8px 0px 0px #000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
   }
   .b2:hover{
         cursor: pointer;
@@ -131,14 +137,15 @@
   .marquee-container {
     z-index: 2;
     position: relative;
-    width: 100%;
+    width: 102%;
     padding: 10px 0;
     margin-top: -250px;
  }
 
  .marquee-bottom {
+  margin-left: -1%;
   position: relative;
-  width: 100%;
+  width: 103%;
  }
 
 .navbar-center .dropdown-icon {
@@ -190,42 +197,90 @@
     color: #000;
     text-transform: uppercase;
     text-align: center;
+    margin: 0;
   }
-  .img-cta {
-    background-image: url('../assets/Rectangle2.png');
-    width: 1620px;
-    height: 647px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+
+  .merch-visual {
+    position: relative;
+    width: 100%;
+    max-width: 1620px;
     display: flex;
-    justify-content: end;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .img-cta {
+    position: relative;
+    background-image: url('../assets/Rectangle2.png');
+    width: 100%;
+    max-width: 1620px;
+    height: 647px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: top center;
+    display: flex;
+    justify-content: flex-start;
     align-items: flex-end;
     border-radius: 30px;
     padding: 40px 40px 34px;
   }
-  
-  .merch-section button {
-    font-size: 36px;
-    padding: 10px 20px;
+
+  .merch-buttons {
+    position: absolute;
+    bottom: 34px;
+    left: 40px;
+    right: 40px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    width: calc(100% - 80px);
+  }
+
+  .merch-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-size: clamp(18px, 1.5vw, 24px);
+    padding: 14px 28px;
     background-color: #FFBF00;
     color: #000;
-    width: 647px;
     border: 1px solid #000;
     border-radius: 17px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     font-weight: bold;
     text-transform: uppercase;
     box-shadow: 10px 10px 0px 0px #000;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    flex: 1 1 0;
   }
-  .merch-section button:hover {
+  .merch-btn:hover {
     transform: translate(-6px, -6px);
     box-shadow: 16px 16px 0px 0px #000;
   }
+
+  .merch-icon {
+    font-size: clamp(18px, 1.6vw, 24px);
+  }
+
+  .coming-soon-btn {
+    background-color: #605ddb;
+    color: #fff;
+  }
+
+  .coming-soon-btn:hover {
+    background-color: #6f6feb;
+  }
+
+  .notify-btn {
+    background-color: #FFBF00;
+    color: #000;
+  }
+
+  .notify-btn:hover {
+    background-color: #ffcf33;
+  }
+
   /* Download Section */
   .download-section {
     height: 658px;
@@ -327,7 +382,7 @@
   .cta-box {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     width: 100%;
     margin-top: 40px;
   }
@@ -373,22 +428,26 @@
   }
 
   .box2{
-    width: 648px;
+    flex: 1;
+    width: 100%;
+    max-width: 648px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    height: 457px;
+    min-width: 0;
   }
 
   .box-a{
     width: 100%;
-    height: 270px;
+    height: 100%;
     background-color: #FFBF00;
     border: 2px solid #000;
     box-shadow: 10px 10px 0px 0px #000;
     border-radius: 30px;
     display: flex;
     justify-content: space-between;
-    align-items: end;
+    align-items: flex-end;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .box-a:hover{
@@ -415,6 +474,12 @@
 
   .box-text {
     padding: 0px 0 20px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 16px;
+    height: 100%;
   }
 
   .box-b .box-text {
@@ -431,25 +496,24 @@
     font-size: 20px;
     color: #000;
     font-weight: normal;
-    width: 223px; 
+    max-width: 260px; 
     text-align: left;
-    line-height: 24px; 
-    margin-top: 20px;
-  }
-
-   .box-text p {
-    font-size: 20px;
-    color: #000;
-    font-weight: normal;
-    width: 223px; 
-    text-align: left;
-    line-height: 24px; 
-    margin-top: 20px;
+    line-height: 28px; 
+    margin: 0;
   }
 
   .box-a-img {
     position: relative;
     margin-left: -90px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .box-a-img img {
+    width: clamp(340px, 42vw, 500px);
+    max-width: 100%;
+    height: auto;
   }
 
 
@@ -458,6 +522,9 @@
 
   .merch-div{
     padding: 100px 50px 0;
+  }
+  .merch-visual {
+    width: 100%;
   }
   .orange-strip {
     
@@ -499,11 +566,12 @@
   }
 
   .box2{
-    width: 500px;
+    max-width: 500px;
+    height: 371px;
   }
 
  .box-a{
-   height: 200px;
+   height: 100%;
  } 
 
  .box-a-img {
@@ -552,6 +620,12 @@
     height: 406px;
   }
 
+  .merch-buttons {
+    bottom: 24px;
+    left: 28px;
+    gap: 20px;
+  }
+
   .download-section {
     height: 365px;
   }
@@ -572,14 +646,6 @@
     width: 75%;
   }
 
-  .box-a {
-    height: 270px;
-  }
-
-  .box-text{
-    padding: 0px 0 50px 40px;
-  }
-
   .box-b {
     height: 170px;
   }
@@ -597,9 +663,35 @@
   }
 
   .box2 {
+    max-width: 100%;
+    height: auto;
+    gap: 40px;
+  }
+
+  .box-a {
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .box-text{
+    padding: 20px 24px 0 24px;
+    height: auto;
+  }
+
+  .box-text p {
+    max-width: none;
+  }
+
+  .box-a-img {
+    margin-left: 0;
     width: 100%;
-    height: 100%;
-    gap: 80px;
+    justify-content: flex-start;
+  }
+
+  .box-a-img img {
+    width: min(100%, 420px);
   }
 
   .download-text {
@@ -618,9 +710,27 @@
       padding: 50px 20px;
       gap: 0;
    }
+  .merch-visual {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
    .img-cta {
-    justify-content: center;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: top center;
+  }
+
+  .merch-buttons {
+    position: static;
+    width: 100%;
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 16px;
   }
 
   .download-section {
@@ -739,39 +849,51 @@
 
     .merch-div {
       padding: 0 20px 50px 20px;
-      gap: 30px;
+      gap: 16px;
    }
 
     .merch-div h2 {
       font-size: 30px;
       padding: 0;
+      margin-bottom: 0;
     }
 
     .img-cta {
       background-image: url('../assets/resp.png');
-      width: 350px;
-      height: 218px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
+      width: 100%;
+      max-width: 360px;
+      min-height: 220px;
+
       display: flex;
-      justify-content: end;
-      align-items: flex-end;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: stretch;
       border-radius: 10px;
-      padding: 0px;
+      padding: 16px;
+      gap: 12px;
     }
 
-    .merch-section button {
+    .merch-visual {
       width: 100%;
-      font-size: 24px;
-      margin-bottom: -70px;
+      gap: 12px;
+    }
+
+    .merch-buttons {
+      position: static;
+      width: 100%;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 0;
+    }
+
+    .merch-btn {
+      width: 100%;
+      font-size: 20px;
+      margin: 0;
       border-radius: 15px;
       box-shadow: 5px 5px 0px 0px #000;
+      justify-content: flex-start;
     }
-    
-    .merch-section button img {
-      width: 30px;
-    } 
 
     .download-section {
       margin-top: 80px;
@@ -877,39 +999,48 @@
     }
 
     .box1-text {
-      padding: 20px 0 0px 20px;
-   }
+      padding: 16px 16px 0;
+    }
 
-   .box-text {
-    padding: 20px 0 0px 20px;
-   }
+    .box-text {
+      padding: 0;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+    }
 
-  .box-text h3 {
-    font-size: 24px;
-  }
+    .box-text h3 {
+      font-size: 24px;
+    }
 
-  .box-text p {
-    width: 100%;
-    margin-top: 10px;
-  }
+    .box-text p {
+      width: 100%;
+      margin-top: 8px;
+    }
 
-  .box-a {
-    height: 180px; 
-    box-shadow: 5px 5px 0px 0px #000;
-    border-radius: 20px;
- }
+    .box-a {
+      padding: 20px;
+      height: auto;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      box-shadow: 5px 5px 0px 0px #000;
+      border-radius: 20px;
+    }
 
-  .box-a-img {
-    margin-left: -72px;
-    margin-right: 112px;
-  }
+    .box-a-img {
+      margin: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
 
-  .box-a-img .img-fluid {
-    max-width: 200%;
-  }
+    .box-a-img .img-fluid {
+      max-width: min(240px, 100%);
+    }
   
   .box2{
-    gap: 60px;
+    gap: 24px;
   } 
 
   .box-b {

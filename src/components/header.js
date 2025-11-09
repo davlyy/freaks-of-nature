@@ -760,10 +760,17 @@ function Header() {
           </Nav>
         </Navbar.Collapse>
         <div className="navbar-buttons">
-          <Link to="/Event#tickets" className="b1">
-            Buy Tickets
-          </Link>
-          <button className="b2">Learn More</button>
+          <button type="button" className="b1">
+            Join Next Event
+          </button>
+          <a
+            className="b2"
+            href="https://www.instagram.com/werfreaksofnature/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn More
+          </a>
         </div>
       </Navbar>
 
@@ -830,6 +837,11 @@ function Header() {
           font-size: 20px;
           font-weight: bold;
           box-shadow: 5px 5px 0px 0px #000;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          text-decoration: none;
         }
 
         .b2 {
@@ -841,6 +853,12 @@ function Header() {
           font-size: 20px;
           font-weight: bold;
           box-shadow: 5px 5px 0px 0px #000;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
         }
 
         .dropdown-freakyard {

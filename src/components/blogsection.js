@@ -70,140 +70,111 @@ const blogsection = () => {
     </div>
 
     <style jsx>{`
-    .blog-post-section {
-    width: 100%;
-  padding: 100px 100px;
-  color: #000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 0px;
-  overflow-x: hidden;
-  
-}
+      .blog-post-section {
+        width: 100%;
+        padding: 80px 20px 100px;
+        color: #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+      }
 
-.blog-post-div {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: flex-start;
-  overflow-x: auto;
-  scrollbar-color: black #f0f0f0; 
-  scrollbar-width: thin;
-  margin-left: 300px;
-  margin-right: 300px;
-}
-.blog-post-div::-webkit-scrollbar {
-  height: 10px; 
-}
+      .blog-post-header {
+        width: 100%;
+        max-width: 1200px;
+      }
 
-.blog-post-div::-webkit-scrollbar-thumb {
-  background-color: black; 
-  border-radius: 20px; 
-}
+      .blog-post-header h2 {
+        font-size: clamp(32px, 6vw, 70px);
+        font-weight: bold;
+        color: #000;
+        margin: 0;
+        text-transform: uppercase;
+        text-align: left;
+      }
 
-.blog-post-div::-webkit-scrollbar-track {
-  background-color: #f0f0f0; 
-  border-radius: 20px; 
-}
+      .blog-post-div {
+        width: 100%;
+        max-width: 1200px;
+        overflow-x: auto;
+        padding-bottom: 12px;
+        scrollbar-color: #000 #f0f0f0;
+        scrollbar-width: thin;
+      }
 
-.blog-post-div::-webkit-scrollbar-button {
-  display: none; 
-}
+      .blog-post-div::-webkit-scrollbar {
+        height: 8px;
+      }
 
-.blog-post-div::-webkit-scrollbar-thumb:hover {
-  background-color: #444; 
-}
+      .blog-post-div::-webkit-scrollbar-thumb {
+        background-color: #000;
+        border-radius: 20px;
+      }
 
-@supports (-ms-overflow-style: none) {
-  .blog-post-div {
-    -ms-overflow-style: scrollbar; 
-  }
-}
-.blog-post-header {
-   width: 1620px;
-  }
-.blog-post-header h2 {
-  font-size: 70px;
-  font-weight: bold;
-  color: #000;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  
-}
+      .blog-post-div::-webkit-scrollbar-track {
+        background-color: #f0f0f0;
+        border-radius: 20px;
+      }
 
-.blog-post-items-div {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px 0;
-  
-}
+      .blog-post-items-div {
+        display: flex;
+        gap: 24px;
+        width: max-content;
+      }
 
-.blog-post-item {
-  width: 351px; 
-}
-
-
-.blog-post-image {
-  width: 100%;
-  border-radius: 20px;
-    border: 2px solid #000;
-    box-shadow: 5px 5px 0px 0px #000;
-}
-
-.blog-post-caption {
-  padding: 20px 20px;
-}
-
-.blog-post-heading{
-  margin-bottom: 0px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #000;
-  text-transform: uppercase;
-}
-  .blog-post-text {
-  font-size: 20px;
-  font-weight: 500;
-  color: #949494;
-  text-transform: uppercase;
-}
-
-@media (max-width: 1500px) {
-  .blog-post-header {
-    width: 80%;
-}
-}
-
-  @media (max-width: 1080px) {
-    .blog-post-div {
-      width: 100%;
-      padding-left: 0px;
-      margin-left: 178px;
-    }
-
-    .blog-post-section {
-      padding: 0px 0px 100px;
-    }
-  }
-
-  @media (max-width: 468px) {
-
-    .blog-post-div {
-      padding-left: 40px;
-      margin-left: 0px;
-    }
-
-    .blog-post-header h2 {
-      font-size: 32px;
-    }
       .blog-post-item {
-  flex: 0 0 auto;
-  width: 251px;
-}
-  }
+        display: flex;
+        flex-direction: column;
+        width: clamp(240px, 28vw, 320px);
+        border-radius: 20px;
+        flex: 0 0 auto;
+      }
 
+      .blog-post-image {
+        width: 100%;
+        border-radius: 20px;
+        border: 2px solid #000;
+        box-shadow: 5px 5px 0px 0px #000;
+      }
+
+      .blog-post-caption {
+        padding: 16px 0;
+      }
+
+      .blog-post-heading {
+        margin-bottom: 4px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #000;
+        text-transform: uppercase;
+      }
+
+      .blog-post-text {
+        font-size: 16px;
+        font-weight: 500;
+        color: #949494;
+        text-transform: uppercase;
+      }
+
+      @media (max-width: 768px) {
+        .blog-post-section {
+          padding: 60px 16px 80px;
+          gap: 24px;
+        }
+
+        .blog-post-header h2 {
+          text-align: center;
+        }
+
+        .blog-post-caption {
+          text-align: center;
+        }
+
+        .blog-post-div {
+          padding: 0 0 8px;
+        }
+      }
     `}</style>
     </>
   );

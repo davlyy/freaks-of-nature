@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './home.css';
 import image from '../assets/bg.png';
-import icon from '../assets/arrow.svg';
-import image1 from '../assets/Frame1.png';
 import cta0 from '../assets/cta0.png';
 import cta1 from '../assets/cta1.png';
 import cta2 from '../assets/cta2.png';
-import cta3 from '../assets/cta3.png';
 import Blogsection from '../components/blogsection.js';
 import { Player } from '@lottiefiles/react-lottie-player'; // For Lottie animations
-import topStripeAnimation from '../stripsJSON/topstripe .json';
-import bottomStripeAnimation from '../stripsJSON/bottomstripe .json';
 import { Link } from 'react-router-dom';
+import { FaClock, FaBell } from 'react-icons/fa';
+import lineAnimation from '../stripsJSON/lineAnimation.json';
 
 const FESTIVAL_MONTH = 1; // February (0-indexed months)
 const FESTIVAL_START_DAY = 5;
@@ -118,8 +115,15 @@ function Home() {
           </div>
 
           <div className="cta-buttons">
-            <Link to="/Event#tickets" className="b1">Buy Tickets</Link>
-            <button className="b2">Learn More</button>
+            <button type="button" className="b1">Join Next Event</button>
+            <a
+              className="b2"
+              href="https://www.instagram.com/werfreaksofnature/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Learn More
+            </a>
         </div>
         </div>
         
@@ -134,9 +138,10 @@ function Home() {
           <Player
             autoplay
             loop
-            src={topStripeAnimation}
+            src={lineAnimation}
             className="img-fluid"
-            style={{ transform: "rotate(180deg)" }}
+
+            // style={{ transform: "rotate(180deg)" }}
           />
         </div>
       </div>
@@ -144,10 +149,18 @@ function Home() {
 <section className="merch-section">
   <div className="merch-div">
     <h2>Embrace Your Freakness in Style</h2>
-    <div className="img-cta">
-      <button  >
-        MERCH STORE <img src={icon} alt="Freaks of Nature" className="img-fluid" />
-      </button>
+    <div className="merch-visual">
+      <div className="img-cta" />
+      <div className="merch-buttons">
+        <button type="button" className="merch-btn coming-soon-btn">
+          <FaClock className="merch-icon" aria-hidden="true" />
+          <span>Coming Soon</span>
+        </button>
+        <button type="button" className="merch-btn notify-btn">
+          <FaBell className="merch-icon" aria-hidden="true" />
+          <span>Notify Me</span>
+        </button>
+      </div>
     </div> 
   </div>
 </section>
@@ -178,7 +191,12 @@ function Home() {
             creative community, and spread the word as an affiliate to earn epic rewards.</p>
 
             <div className="cta-box" >
-              <Link to="/relive" className="box1">
+              <a
+                href="https://www.youtube.com/@relivefreaksofnature/featured"
+                className="box1"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <div className="box1-text">
                  <img src={cta0} alt="Freaks of Nature" className='rel' />
                  <p>Replay your favorite DJ sets anytime on our exclusive platform</p>
@@ -186,7 +204,7 @@ function Home() {
                 <div className="box1-img">
                  <img src={cta1} alt="Freaks of Nature" className='img-fluid' />
                 </div>
-              </Link>
+              </a>
               <div className="box2">
                 <Link to="/about" className="box-a">
                   <div className="box-text">
@@ -218,9 +236,8 @@ function Home() {
           <Player
             autoplay
             loop
-            src={bottomStripeAnimation}
+            src={lineAnimation}
             className="img-fluid"
-            style={{ transform: "rotate(180deg)" }}
           />
         </div>
       </div>
