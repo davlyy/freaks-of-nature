@@ -271,9 +271,9 @@ The magnificent second edition of Tomorrowland – Around the World was adapted 
             </div>
         </div>
 
-        <div id="about-dj-comp">
+        {/* <div id="about-dj-comp">
             <Cta />
-        </div>
+        </div> */}
 
         
         </>

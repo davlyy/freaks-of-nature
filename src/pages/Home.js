@@ -153,7 +153,7 @@ function Home() {
 </section>
 
       {/* Download Section */}
-      <section className="download-section">
+      {/* <section className="download-section">
         <div className='download-div'> 
           <div className='download-text'>
            <h2>Download Our App</h2>
@@ -168,7 +168,7 @@ function Home() {
           </div>
           
         </div>
-      </section>
+      </section> */}
 
       {/* Affiliate Section */}
       <section className="affiliate-section py-5 text-center">
@@ -198,7 +198,7 @@ function Home() {
                   </div>
                 </Link>
 
-                <a href='/#' className="box-b">
+                {/* <a href='/#' className="box-b">
                   <div className="box-text">
                    <h3>Affiliate</h3>
                    <p>Join our program and win amazing prizes</p>
@@ -206,7 +206,7 @@ function Home() {
                   <div className="box-b-img">
                     <img src={cta3} alt="Freaks of Nature" className='img-fluid' />
                   </div>
-                </a>
+                </a> */}
               </div>
             </div>
           

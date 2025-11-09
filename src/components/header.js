@@ -205,7 +205,7 @@ function Header() {
         >
           <Nav className="navbar-center">
             {/* Freakyard Link */}
-            <div
+            {/* <div
               className={`nav-item-wrapper ${
                 activeDropdown === "Freakyard" ? "active" : ""
               }`}
@@ -231,9 +231,9 @@ function Header() {
                 </p>
               </Nav.Link>
               {activeDropdown === "Freakyard" && (
-                <div className="dropdown-freakyard">
+                <div className="dropdown-freakyard"> */}
                   {/* Day Pass Link */}
-                  <div
+                  {/* <div
                     className={`dropdown-item ${
                       activeSubItem === "Day Pass" ? "active" : ""
                     }`}
@@ -244,22 +244,22 @@ function Header() {
                       to={isMobile ? "/Event#day-pass" : "/Event#tickets-day-pass"}
                       className="dropdown-link"
                       onClick={(e) => {
-                        if (!isMobile) {
-                          // On desktop, navigate to tickets section and set Day Pass tab
-                          handleDropdownLinkClick("#tickets-day-pass", e);
+                        if (!isMobile) { */}
+                          {/* // On desktop, navigate to tickets section and set Day Pass tab */}
+                          {/* handleDropdownLinkClick("#tickets-day-pass", e);
                         } else {
                           handleDropdownLinkClick("#day-pass", e);
                         }
                       }}
-                    >
-                      Day Pass
+                    > */}
+                      {/* Day Pass
                       {activeSubItem === "Day Pass" && (
                         <FaArrowRight className="right-arrow" />
                       )}
-                    </Link>
+                    </Link> */}
 
                     {/* Show the description for Day Pass if it's the active one */}
-                    {activeSubItem === "Day Pass" && (
+                    {/* {activeSubItem === "Day Pass" && (
                       <div className="dropdown-description day">
                         <p className="description-title">Day Pass</p>
                         <p className="description-subtitle">
@@ -276,10 +276,10 @@ function Header() {
                         </p>
                       </div>
                     )}
-                  </div>
+                  </div> */}
 
                   {/* Weekly Pass Link */}
-                  <div
+                  {/* <div
                     className={`dropdown-item ${
                       activeSubItem === "Weekly Pass" ? "active" : ""
                     }`}
@@ -290,22 +290,22 @@ function Header() {
                       to={isMobile ? "/Event#multi-day-pass" : "/Event#tickets-multi-day-pass"}
                       className="dropdown-link"
                       onClick={(e) => {
-                        if (!isMobile) {
-                          // On desktop, navigate to tickets section and set Multi-day Pass tab
-                          handleDropdownLinkClick("#tickets-multi-day-pass", e);
+                        if (!isMobile) { */}
+                          {/* // On desktop, navigate to tickets section and set Multi-day Pass tab */}
+                          {/* handleDropdownLinkClick("#tickets-multi-day-pass", e);
                         } else {
                           handleDropdownLinkClick("#multi-day-pass", e);
                         }
                       }}
-                    >
-                      Weekly Pass
+                    > */}
+                      {/* Weekly Pass
                       {activeSubItem === "Weekly Pass" && (
                         <FaArrowRight className="right-arrow" />
                       )}
-                    </Link>
+                    </Link> */}
 
                     {/* Show the description for Weekly Pass if it's the active one */}
-                    {activeSubItem === "Weekly Pass" && (
+                    {/* {activeSubItem === "Weekly Pass" && (
                       <div className="dropdown-description week">
                         <p className="description-title">Weekly Pass</p>
                         <p className="description-subtitle">
@@ -322,10 +322,10 @@ function Header() {
                         </p>
                       </div>
                     )}
-                  </div>
+                  </div> */}
 
                   {/* DJ Comp Link */}
-                  <div
+                  {/* <div
                     className={`dropdown-item ${
                       activeSubItem === "DJ Comp" ? "active" : ""
                     }`}
@@ -341,10 +341,10 @@ function Header() {
                       {activeSubItem === "DJ Comp" && (
                         <FaArrowRight className="right-arrow" />
                       )}
-                    </Link>
+                    </Link> */}
 
                     {/* Show the description for DJ Comp if it's the active one */}
-                    {activeSubItem === "DJ Comp" && (
+                    {/* {activeSubItem === "DJ Comp" && (
                       <div className="dropdown-description djcomp">
                         <p className="description-title">DJ Competition</p>
                         <p className="description-subtitle">
@@ -361,17 +361,17 @@ function Header() {
                         </p>
                       </div>
                     )}
-                  </div>
+                  </div> */}
 
                   {/* Affiliate Link */}
-                  <div
+                  {/* <div
                     className={`dropdown-item ${
                       activeSubItem === "Affiliate" ? "active" : ""
                     }`}
                     onMouseEnter={() => setActiveSubItem("Affiliate")}
                     onMouseLeave={() => setActiveSubItem(null)}
-                  >
-                    <Link
+                  > */}
+                    {/* <Link
                       to="/Event#affiliate"
                       className="dropdown-link"
                       onClick={(e) => handleDropdownLinkClick("#affiliate", e)}
@@ -380,10 +380,10 @@ function Header() {
                       {activeSubItem === "Affiliate" && (
                         <FaArrowRight className="right-arrow" />
                       )}
-                    </Link>
+                    </Link> */}
 
                     {/* Show the description for Affiliate if it's the active one */}
-                    {activeSubItem === "Affiliate" && (
+                    {/* {activeSubItem === "Affiliate" && (
                       <div className="dropdown-description affiliate0">
                         <p className="description-title">Affiliate Program</p>
                         <p className="description-subtitle">
@@ -400,10 +400,10 @@ function Header() {
                         </p>
                       </div>
                     )}
-                  </div>
+                  </div> */}
 
                   {/* FAQ Link */}
-                  <div
+                  {/* <div
                     className={`dropdown-item ${
                       activeSubItem === "FAQ" ? "active" : ""
                     }`}
@@ -419,10 +419,10 @@ function Header() {
                       {activeSubItem === "FAQ" && (
                         <FaArrowRight className="right-arrow" />
                       )}
-                    </Link>
+                    </Link> */}
 
                     {/* Show the description for FAQ if it's the active one */}
-                    {activeSubItem === "FAQ" && (
+                    {/* {activeSubItem === "FAQ" && (
                       <div className="dropdown-description faqs">
                         <p className="description-title">FAQ</p>
                         <p className="description-subtitle">
@@ -442,8 +442,8 @@ function Header() {
                   </div>
                 </div>
               )}
-            </div>
-            <div className="nav-item-wrapper">
+            </div> */}
+            {/* <div className="nav-item-wrapper">
               <Nav.Link
                 as={Link}
                 to="/relive"
@@ -456,7 +456,7 @@ function Header() {
               >
                 Relive
               </Nav.Link>
-            </div>
+            </div> */}
             {/* About Us Link */}
             <div
               className={`nav-item-wrapper ${
@@ -656,7 +656,7 @@ function Header() {
                   </div>
 
                   {/* DJ Comp Link */}
-                  <div
+                  {/* <div
                     className={`dropdown-item ${
                       activeSubItem === "DJ Comp" ? "active" : ""
                     }`}
@@ -672,10 +672,10 @@ function Header() {
                       {activeSubItem === "DJ Comp" && (
                         <FaArrowRight className="right-arrow" />
                       )}
-                    </Link>
+                    </Link> */}
 
                     {/* Show the description for DJ Comp if it's the active one */}
-                    {activeSubItem === "DJ Comp" && (
+                    {/* {activeSubItem === "DJ Comp" && (
                       <div className="dropdown-description djcomp1">
                         <p className="description-title">DJ Comp</p>
                         <p className="description-subtitle">
@@ -695,10 +695,10 @@ function Header() {
                         </p>
                       </div>
                     )}
-                  </div>
+                  </div> */}
 
                   {/* Affiliate Link */}
-                  <div
+                  {/* <div
                     className={`dropdown-item ${
                       activeSubItem === "Affiliate" ? "active" : ""
                     }`}
@@ -714,10 +714,10 @@ function Header() {
                       {activeSubItem === "Affiliate" && (
                         <FaArrowRight className="right-arrow" />
                       )}
-                    </Link>
+                    </Link> */}
 
                     {/* Show the description for Affiliate if it's the active one */}
-                    {activeSubItem === "Affiliate" && (
+                    {/* {activeSubItem === "Affiliate" && (
                       <div className="dropdown-description affiliate01">
                         <p className="description-title">Affiliate</p>
                         <p className="description-subtitle">
@@ -736,8 +736,8 @@ function Header() {
                           everything you need!
                         </p>
                       </div>
-                    )}
-                  </div>
+                    )} */}
+                  {/* </div> */}
                 </div>
               )}
             </div>
@@ -851,7 +851,7 @@ function Header() {
           border-radius: 0px 20px 20px 20px;
           padding: 10px 24px;
           width: 562px;
-          height: 250px;
+          height: 200px;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
           z-index: 1050;
         }
@@ -872,12 +872,12 @@ function Header() {
         .dropdown-about {
           position: absolute;
           top: 100%;
-          left: -279px;
+          left: 0px;
           background-color: rgb(0 0 0 / 80%);
           border-radius: 20px;
           padding: 10px 20px;
           width: 562px;
-          height: 300px;
+          height: 200px;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
           z-index: 1050;
         }
@@ -976,22 +976,22 @@ function Header() {
         }
 
         .ab {
-          top: 142%;
+          top: 42%;
         }
         .freak-squad {
-          top: 50%;
+          top: -50%;
         }
         .timeline {
-          top: -58%;
+          top: -158%;
         }
         .partner {
-          top: -164%;
+          top: -264%;
         }
         .djcomp1 {
-          top: -272%;
+          top: -372%;
         }
         .affiliate01 {
-          top: -387%;
+          top: -487%;
         }
 
         .description-title {

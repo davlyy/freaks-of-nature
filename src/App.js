@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './assets/stolzl/font.css';
 import './global.css';
-import Relive from './pages/relive';
+// import Relive from './pages/relive';
 
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blogpost" element={<Blogpost />} />
-          <Route path="/relive" element={<Relive/>} />
+          {/* <Route path="/relive" element={<Relive/>} /> */}
         </Routes>
         <Footer />
       </div>
