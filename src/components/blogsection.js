@@ -82,7 +82,7 @@ const blogsection = () => {
 
       .blog-post-header {
         width: 100%;
-        max-width: 1200px;
+        max-width: 1440px;
       }
 
       .blog-post-header h2 {
@@ -96,9 +96,9 @@ const blogsection = () => {
 
       .blog-post-div {
         width: 100%;
-        max-width: 1200px;
+        max-width: 1440px;
         overflow-x: auto;
-        padding-bottom: 12px;
+        padding-bottom: 16px;
         scrollbar-color: #000 #f0f0f0;
         scrollbar-width: thin;
       }
@@ -119,14 +119,14 @@ const blogsection = () => {
 
       .blog-post-items-div {
         display: flex;
-        gap: 24px;
+        gap: 28px;
         width: max-content;
       }
 
       .blog-post-item {
         display: flex;
         flex-direction: column;
-        width: clamp(240px, 28vw, 320px);
+        width: clamp(220px, 60vw, 320px);
         border-radius: 20px;
         flex: 0 0 auto;
       }
@@ -173,6 +173,27 @@ const blogsection = () => {
 
         .blog-post-div {
           padding: 0 0 8px;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .blog-post-section {
+          gap: 48px;
+        }
+
+        .blog-post-items-div {
+          gap: 40px;
+        }
+
+        .blog-post-item {
+          width: clamp(320px, 22vw, 420px);
+        }
+      }
+
+      @media (min-width: 1440px) {
+        .blog-post-header,
+        .blog-post-div {
+          max-width: 1680px;
         }
       }
     `}</style>

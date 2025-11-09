@@ -212,7 +212,7 @@ function Home() {
                    <p>Would you like to know more about freaks of nature?</p>
                   </div>
                   <div className="box-a-img">
-                    <img src={cta2} alt="Freaks of Nature" className='img-fluid'/>
+                    <img src={cta2} alt="Freaks of Nature" className='img-fluid-about'/>
                   </div>
                 </Link>
 
