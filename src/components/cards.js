@@ -40,7 +40,7 @@ const AffiliateCards = () => {
       </a>
 
       <Link to="/about" className="affiliate-card affiliate-card--about">
-        <div className="affiliate-card__content about-content">
+        <div className="affiliate-card__content-about about-content">
           <div className="about-content-text">
             <h3 className="affiliate-card__title">About Us</h3>
             <p className="affiliate-card__description">
