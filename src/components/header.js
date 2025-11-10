@@ -1138,15 +1138,15 @@ function Header() {
           }
 
           .navbar-logo {
-            margin-left: 80px;
-            position: relative;
-            z-index: 1;
+            display: none;
           }
 
           .navbar-buttons {
             margin-right: 20px;
+            margin-left: auto;
             position: relative;
             z-index: 1;
+            justify-content: flex-end;
           }
 
           .hamburger-icon,
@@ -1256,7 +1256,6 @@ function Header() {
 
           .navbar-logo {
             width: 91px;
-            margin-left: 40px;
           }
 
           .navbar-custom {
@@ -1282,6 +1281,7 @@ function Header() {
             display: none;
           }
         }
+
       `}</style>
     </>
   );

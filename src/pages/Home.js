@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './home.css';
 import image from '../assets/bg.png';
-import cta0 from '../assets/cta0.png';
-import cta1 from '../assets/cta1.png';
-import cta2 from '../assets/cta2.png';
+import AffiliateCards from '../components/cards';
 import Blogsection from '../components/blogsection.js';
 import { Player } from '@lottiefiles/react-lottie-player'; // For Lottie animations
-import { Link } from 'react-router-dom';
 import { FaClock, FaBell } from 'react-icons/fa';
 import lineAnimation from '../stripsJSON/lineAnimation.json';
 
@@ -139,9 +136,7 @@ function Home() {
             autoplay
             loop
             src={lineAnimation}
-            className="img-fluid"
-
-            // style={{ transform: "rotate(180deg)" }}
+            className="img-fluid marquee-line"
           />
         </div>
       </div>
@@ -190,54 +185,18 @@ function Home() {
           <p className='para'>Catch up on iconic sets and unforgettable moments through our Relive platform, dive deep into our wild, 
             creative community, and spread the word as an affiliate to earn epic rewards.</p>
 
-            <div className="cta-box" >
-              <a
-                href="https://www.youtube.com/@relivefreaksofnature/featured"
-                className="box1"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="box1-text">
-                 <img src={cta0} alt="Freaks of Nature" className='rel' />
-                 <p>Replay your favorite DJ sets anytime on our exclusive platform</p>
-                </div>
-                <div className="box1-img">
-                 <img src={cta1} alt="Freaks of Nature" className='img-fluid' />
-                </div>
-              </a>
-              <div className="box2">
-                <Link to="/about" className="box-a">
-                  <div className="box-text">
-                   <h3>ABOUT US</h3>
-                   <p>Would you like to know more about freaks of nature?</p>
-                  </div>
-                  <div className="box-a-img">
-                    <img src={cta2} alt="Freaks of Nature" className='img-fluid-about'/>
-                  </div>
-                </Link>
-
-                {/* <a href='/#' className="box-b">
-                  <div className="box-text">
-                   <h3>Affiliate</h3>
-                   <p>Join our program and win amazing prizes</p>
-                  </div>
-                  <div className="box-b-img">
-                    <img src={cta3} alt="Freaks of Nature" className='img-fluid' />
-                  </div>
-                </a> */}
-              </div>
-            </div>
+            <AffiliateCards />
           
         </div>
       </section>
 
-      <div className="marquee-bottom">
-        <div className="bottom-marquee">
+      <div className="marquee-bottom" >
+        <div className="bottom-marquee" >
           <Player
             autoplay
             loop
             src={lineAnimation}
-            className="img-fluid"
+            className="img-fluid marquee-line"
           />
         </div>
       </div>
