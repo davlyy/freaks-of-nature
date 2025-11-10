@@ -4,7 +4,7 @@
 }
 
 /* Show only on mobile devices */
-@media (max-width: 768px) {
+@media (max-width: 1138px) {
   /* Add space below the fixed banner - accounts for banner + header height */
   body {
     padding-top: calc(20px);

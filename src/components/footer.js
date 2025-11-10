@@ -24,20 +24,20 @@ function Footer() {
 
       <div className="links-section">
       <ul>
-          <li><Link to="/Event">EVENT PAGE</Link></li>
-          <li><Link to="/about#about-us">ABOUT US</Link></li>
-          <li><Link to="/blog">BLOG</Link></li>
-          <li>FREAK</li>
+          {/* <li><Link to="/Event">EVENT PAGE</Link></li> */}
+          {/* <li><Link to="/about#about-us">ABOUT US</Link></li>
+          <li><Link to="/blog">BLOG</Link></li> */}
+          {/* <li>FREAK</li>
           <li>OUR APP</li>
-          <li><Link to="/Event#tickets">TICKETS</Link></li>
+          <li><Link to="/Event#tickets">TICKETS</Link></li> */}
         </ul>
         <ul>
-          <li><Link to="/about#partner-with-us">PARTNER WITH US</Link></li>
-          <li>AFFILIATE</li>
-          <li>DJ COMP</li>
-          <li><Link to="/relive">RELIVE</Link></li>
-          <li><Link to="/Event#faq">FAQ</Link></li>
-          <li>FREAK SQUAD</li>
+          {/* <li><Link to="/about#partner-with-us">PARTNER WITH US</Link></li> */}
+          {/* <li>AFFILIATE</li> */}
+          {/* <li>DJ COMP</li> */}
+          {/* <li><Link to="/relive">RELIVE</Link></li> */}
+          {/* <li><Link to="/Event#faq">FAQ</Link></li> */}
+          {/* <li>FREAK SQUAD</li> */}
         </ul>
       </div>
 

@@ -380,6 +380,22 @@
         width: 100%;
     }
 
+    .content1.about-resp-img {
+        width: 100%;
+        height: 50vh;
+        max-height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    img.about-resp_img,
+    img.about-resp-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
     .content1 h1{
         font-size: 66px;
     }
@@ -463,5 +479,22 @@
 
     .partner-button {
         width: 100%;
+    }
+
+    .episode-box2,
+    .episode-box {
+        height: 50vh;
+        max-height: 50vh;
+    }
+
+    .episode-box2 .slider,
+    .episode-box .slider {
+        height: 100%;
+    }
+
+    .episode-box2 .slider-image,
+    .episode-box .slider-image {
+        height: 100%;
+        object-fit: cover;
     }
 }

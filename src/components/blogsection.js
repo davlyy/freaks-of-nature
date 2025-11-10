@@ -163,7 +163,7 @@ const blogsection = () => {
         border-radius: 20px;
         border: 2px solid #000;
         box-shadow: 5px 5px 0px 0px #000;
-        height: 200px;
+        height: 160px;
       }
       }
 

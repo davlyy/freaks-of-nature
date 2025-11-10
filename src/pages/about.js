@@ -127,7 +127,7 @@ function About() {
             <div className="aboutus-text">
                 <div className='content1'>
                     <h1>ABOUT US</h1>
-                    <img src={ResponsiveImg} alt="PLUR Warrior"  className='img-fluid about-resp-img'/>
+                    <img src={ResponsiveImg} alt="PLUR Warrior" loading="lazy" className='img-fluid about-resp-img'/>
                     <h5>Freaks of Nature is a series of boutique electronic music and arts festivals brand born in Saudi and loved globally. It provides a vibrant platform for emerging artists, international headliners, and local talent.</h5>
                 </div>
                 <div className='content1 about-resp-img'>
@@ -152,12 +152,12 @@ function About() {
         <div className="episode-section" id="timeline">
             <div className="episode-div">
                 <div className="episode-date">
-                    <img src={A2021} alt="PLUR Warrior"  className='img-fluid'/>
+                    <img src={A2021} alt="PLUR Warrior" loading="lazy" className='img-fluid'/>
                 </div>
                 <div className="episode-content">
                     <div className="episode-box1">
                         <div className="ep-box-img">
-                            <img src={ep1logo} alt="PLUR Warrior" />
+                            <img src={ep1logo} alt="PLUR Warrior" loading="lazy" />
                             <h2>Episode 1
                             Freak Show </h2>
                         </div>
@@ -175,7 +175,7 @@ function About() {
 
             <div className="episode-div">
                 <div className="episode-date1">
-                    <img src={A2022} alt="PLUR Warrior"  className='img-fluid' />
+                    <img src={A2022} alt="PLUR Warrior" loading="lazy" className='img-fluid' />
                 </div>
                 <div className="episode-content res">
                    <div className="episode-box2">
@@ -183,7 +183,7 @@ function About() {
                     </div>
                     <div className="episode-box1">
                         <div className="ep-box-img">
-                            <img src={ep2logo} alt="PLUR Warrior" />
+                            <img src={ep2logo} alt="PLUR Warrior" loading="lazy" />
                             <h2>Episode 2 
                             FREAKFEST</h2>
                         </div>
@@ -196,12 +196,12 @@ function About() {
 
             <div className="episode-div">
                 <div className="episode-date">
-                    <img src={A2022} alt="PLUR Warrior"  className='img-fluid' />
+                    <img src={A2022} alt="PLUR Warrior" loading="lazy" className='img-fluid' />
                 </div>
                 <div className="episode-content">
                     <div className="episode-box1">
                         <div className="ep-box-img">
-                            <img src={ep3logo} alt="PLUR Warrior" />
+                            <img src={ep3logo} alt="PLUR Warrior" loading="lazy" />
                             <h2>Episode 3 <br />
                             FREAKS OF ARAVEIA</h2>
                         </div>
@@ -218,7 +218,7 @@ function About() {
 
             <div className="episode-div">
                 <div className="episode-date1">
-                    <img src={A2022} alt="PLUR Warrior"  className='img-fluid' />
+                    <img src={A2022} alt="PLUR Warrior" loading="lazy" className='img-fluid' />
                 </div>
                 <div className="episode-content res">
                    <div className="episode-box2">
@@ -226,7 +226,7 @@ function About() {
                     </div>
                     <div className="episode-box1">
                         <div className="ep-box-img">
-                            <img src={ep4logo} alt="PLUR Warrior" />
+                            <img src={ep4logo} alt="PLUR Warrior" loading="lazy" />
                             <h2>Episode 4 
                             XP EDITION</h2>
                         </div>
@@ -238,20 +238,20 @@ function About() {
             </div>
             <div className="episode-div">
                 <div className="episode-date">
-                    <img src={A2023} alt="PLUR Warrior"  className='img-fluid' />
+                    <img src={A2023} alt="PLUR Warrior" loading="lazy" className='img-fluid' />
                 </div>
                 <div className="episode-content">
                    
                     <div className="episode-box1">
                         <div className="ep-box-img">
-                            <img src={ep5logo} alt="PLUR Warrior" />
+                            <img src={ep5logo} alt="PLUR Warrior" loading="lazy" />
                             <h2>Episode 5 
                             QUARANCIA</h2>
                         </div>
                         <p>Episode 5 marked the powerful comeback of Freaks of Nature — bigger, louder, and more ambitious than ever before. Held in Diriyah, Riyadh, the edition brought together over 50 artists across three stages, with unforgettable performances from Lost Frequencies on the Mainstage and Nic Fanciulli commanding the Underground. Names like Toby Romeo, MORTEN, and 39 Kingdom added to a lineup that defined the new era of sound and celebration.</p>
                         <p>Quarancia wasn’t just a festival; it was an experience layered with creativity and surprise, including the first-ever invitation box that became an instant highlight among every attendee. It proved once again that the Freaks don’t just return — they rise stronger every time.</p>
                     </div>
-                    <div className="episode-box">
+                    <div className="episode-box2">
                         <Slider images={episodeImages.ep5} />
                     </div>
                 </div>
@@ -259,7 +259,7 @@ function About() {
             </div>
             <div className="episode-div">
                 <div className="episode-date1">
-                    <img src={A2023} alt="PLUR Warrior"  className='img-fluid' />
+                    <img src={A2023} alt="PLUR Warrior" loading="lazy" className='img-fluid' />
                 </div>
                 <div className="episode-content res">
                    <div className="episode-box2">
@@ -267,7 +267,7 @@ function About() {
                     </div>
                     <div className="episode-box1">
                         <div className="ep-box-img">
-                            <img src={ep6logo} alt="PLUR Warrior" />
+                            <img src={ep6logo} alt="PLUR Warrior" loading="lazy" />
                             <h2>Episode 6 
                             ADE EDITION</h2>
                         </div>
@@ -279,13 +279,13 @@ function About() {
             </div>
             <div className="episode-div">
                 <div className="episode-date">
-                    <img src={A2025} alt="PLUR Warrior"  className='img-fluid' />
+                    <img src={A2025} alt="PLUR Warrior" loading="lazy" className='img-fluid' />
                 </div>
-                <div className="episode-content res">
+                <div className="episode-content">
                    
                     <div className="episode-box1">
                         <div className="ep-box-img">
-                            <img src={ep7logo} alt="PLUR Warrior" />
+                            <img src={ep7logo} alt="PLUR Warrior" loading="lazy" />
                             <h2>ADE
                             SHOWCASE</h2>
                         </div>
@@ -301,7 +301,7 @@ function About() {
             
         </div>
 
-        <div className="partner-section" id="partner-with-us">
+        {/* <div className="partner-section" id="partner-with-us">
             <h2>Partner with us</h2>
             <div className="partner-div">
                 <div className="partner-box c1">
@@ -351,7 +351,7 @@ function About() {
                  </div>
                 </div>
             </div>
-        </div>
+        </div> */}
 
         {/* <div id="about-dj-comp">
             <Cta />

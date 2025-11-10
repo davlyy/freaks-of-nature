@@ -145,7 +145,7 @@
 
 @media (max-width: 1200px) {
   .affiliate-card-grid {
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
   }
 }
 

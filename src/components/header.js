@@ -9,11 +9,11 @@ function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [activeSubItem, setActiveSubItem] = useState("Day Pass"); // Default active sub-item
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1140);
 
   // Update isMobile state on window resize
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 1024);
+    const handleResize = () => setIsMobile(window.innerWidth <= 1140);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -204,6 +204,20 @@ function Header() {
          in={isNavOpen} //????/
         >
           <Nav className="navbar-center">
+            <div className="nav-item-wrapper">
+              <Nav.Link
+                as={Link}
+                to="/"
+                className={`nav-link ${location.pathname === "/" ? "active-link" : ""}`}
+                onClick={() => {
+                  setActiveDropdown(null);
+                  setIsNavOpen(false);
+                  handleMainNavLinkClick();
+                }}
+              >
+                Home
+              </Nav.Link>
+            </div>
             {/* Freakyard Link */}
             {/* <div
               className={`nav-item-wrapper ${
@@ -897,7 +911,7 @@ function Header() {
           top: 100%;
           left: 0px;
           background-color: rgb(0 0 0 / 80%);
-          border-radius: 20px;
+          border-radius: 0px 20px 20px 20px;
           padding: 10px 20px;
           width: 562px;
           height: 200px;
@@ -1058,33 +1072,7 @@ function Header() {
           }
         }
 
-        /*----------------Tab Responsive ------------*/
-        @media (max-width: 1024px) {
-          .navbar-logo {
-            margin-left: 26px;
-          }
-          .navbar-custom {
-            padding: 0px 0px;
-          }
-          .navbar-center {
-            margin-left: 0px;
-          }
-
-          .navbar-nav .nav-link {
-            font-size: 16px;
-            margin: 10px 0;
-          }
-          .nav-link {
-            padding: 0px 14px !important;
-          }
-
-          .navbar-buttons {
-            margin-right: 26px;
-            gap: 10px;
-          }
-        }
-
-        @media (max-width: 880px) {
+        @media (max-width: 1140px) {
           .sticky-top {
             position: sticky;
             top: 54px; /* Account for countdown banner height (18px padding + 16px font + 18px padding + 2px border) */
@@ -1125,6 +1113,18 @@ function Header() {
             transform: translateY(0);
           }
 
+          .navbar-expand-lg .navbar-toggler {
+            display: block !important;
+          }
+
+          .navbar-expand-lg .navbar-collapse {
+            display: none !important;
+          }
+
+          .navbar-expand-lg .navbar-collapse.show {
+            display: block !important;
+          }
+
           .navbar-toggler {
             order: -1;
             margin-left: 10px;
@@ -1136,6 +1136,14 @@ function Header() {
           .navbar-nav {
             align-items: flex-start;
             width: 100%;
+          }
+
+          .navbar-custom {
+            padding: 0px;
+          }
+
+          .navbar-center {
+            margin-left: 0;
           }
 
           .b2 {
@@ -1152,6 +1160,7 @@ function Header() {
             position: relative;
             z-index: 1;
             justify-content: flex-end;
+            gap: 10px;
           }
 
           .hamburger-icon,
