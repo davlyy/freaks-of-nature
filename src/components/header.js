@@ -760,12 +760,17 @@ function Header() {
           </Nav>
         </Navbar.Collapse>
         <div className="navbar-buttons">
-          <button type="button" className="b1">
+          <a
+            className="b1"
+            href="https://beacons.ai/werfreaksofnature/e7:freakyard"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Join Next Event
-          </button>
+          </a>
           <a
             className="b2"
-            href="https://www.instagram.com/werfreaksofnature/"
+            href="https://www.instagram.com/werfreaksofnature/?follow"
             target="_blank"
             rel="noopener noreferrer"
           >

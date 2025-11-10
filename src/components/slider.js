@@ -1,26 +1,40 @@
-import React, { useState, useEffect, useCallback } from "react";
-import img from "../assets/Egroup.png";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
+import PropTypes from "prop-types";
+import fallbackImage from "../assets/Egroup.png";
 
-const Slider = () => {
-    const images = [img, img, img]; 
+const Slider = ({ images = [], autoPlayInterval = 3000 }) => {
+    const slides = useMemo(() => {
+        if (Array.isArray(images) && images.length > 0) {
+            return images.filter(Boolean);
+        }
+        return [fallbackImage];
+    }, [images]);
+
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const handleNext = useCallback(() => {
-        setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
-    }, [images.length]);
+        setCurrentIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
+    }, [slides.length]);
 
-    const handlePrev = () => {
-        setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
-    };
+    const handlePrev = useCallback(() => {
+        setCurrentIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
+    }, [slides.length]);
 
-    
     useEffect(() => {
+        setCurrentIndex(0);
+    }, [slides]);
+
+    useEffect(() => {
+        if (slides.length <= 1) {
+            return undefined;
+        }
+
         const interval = setInterval(() => {
             handleNext();
-        }, 3000);
+        }, autoPlayInterval);
 
-        return () => clearInterval(interval); 
-    }, [handleNext]);
+        return () => clearInterval(interval);
+    }, [handleNext, slides.length, autoPlayInterval]);
 
     return (
         <div className="slider">
@@ -32,8 +46,8 @@ const Slider = () => {
                         transition: "transform 0.5s ease-in-out",
                     }}
                 >
-                    {images.map((image, index) => (
-                        <img key={index} src={image} alt={`Slide ${index + 1}`} className="slider-image" />
+                    {slides.map((image) => (
+                        <img key={image} src={image} alt="Episode slide" className="slider-image" />
                     ))}
                 </div>
                 <button className="slider-button prev" onClick={handlePrev}>
@@ -44,7 +58,7 @@ const Slider = () => {
                 </button>
             </div>
 
-            <style jsx>{`
+            <style>{`
                 .slider {
                     position: relative;
                     width: 100%;
@@ -53,6 +67,7 @@ const Slider = () => {
                     overflow: hidden;
                     border-radius: 25px;
                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                    height: 100%;
                 }
 
                 .slider-content {
@@ -70,9 +85,10 @@ const Slider = () => {
 
                 .slider-image {
                     width: 100%;
-                    height: auto;
+                    height: 100%;
                     display: block;
                     flex-shrink: 0;
+                    object-fit: cover;
                 }
                 .slider-button {
                     position: absolute;
@@ -122,3 +138,8 @@ const Slider = () => {
 };
 
 export default Slider;
+
+Slider.propTypes = {
+    images: PropTypes.arrayOf(PropTypes.string),
+    autoPlayInterval: PropTypes.number,
+};

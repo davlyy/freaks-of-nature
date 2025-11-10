@@ -41,7 +41,7 @@ function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const now = new Date().getTime();
+      const now = Date.now();
       const distance = targetDate - now;
 
       if (distance <= 0) {
@@ -112,10 +112,17 @@ function Home() {
           </div>
 
           <div className="cta-buttons">
-            <button type="button" className="b1">Join Next Event</button>
+            <a
+              className="b1"
+              href="https://beacons.ai/werfreaksofnature/e7:freakyard"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Join Next Event
+            </a>
             <a
               className="b2"
-              href="https://www.instagram.com/werfreaksofnature/"
+              href="https://www.instagram.com/werfreaksofnature/?follow"
               target="_blank"
               rel="noopener noreferrer"
             >
