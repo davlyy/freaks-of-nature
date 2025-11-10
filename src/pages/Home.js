@@ -158,10 +158,15 @@ function Home() {
           <FaClock className="merch-icon" aria-hidden="true" />
           <span>Coming Soon</span>
         </button>
-        <button type="button" className="merch-btn notify-btn">
+        <a
+          className="merch-btn notify-btn"
+          href="https://beacons.ai/werfreaksofnature/e7:freakyard"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FaBell className="merch-icon" aria-hidden="true" />
           <span>Notify Me</span>
-        </button>
+        </a>
       </div>
     </div> 
   </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Event from './pages/Event';
 import About from './pages/about';
@@ -28,7 +28,8 @@ function App() {
           <Route path="/Event" element={<Event />} />
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/blogpost" element={<Blogpost />} />
+          <Route path="/blogpost" element={<Navigate to="/blog" replace />} />
+          <Route path="/blog/:slug" element={<Blogpost />} />
           {/* <Route path="/relive" element={<Relive/>} /> */}
         </Routes>
         <Footer />

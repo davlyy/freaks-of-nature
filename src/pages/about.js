@@ -202,7 +202,7 @@ function About() {
                     <div className="episode-box1">
                         <div className="ep-box-img">
                             <img src={ep3logo} alt="PLUR Warrior" />
-                            <h2>Episode 3 
+                            <h2>Episode 3 <br />
                             FREAKS OF ARAVEIA</h2>
                         </div>
                         <p>Episode 3 was the first big-scale chapter in the Freaks of Nature journey — a milestone event held in Diriyah, Saudi Arabia, in November 2022. Three stages lit up the night with a powerful mix of international and local talent, featuring Mesto, Toby Romeo, Kaze, Seth Hills, Mike & Me, alongside Saudi trailblazers like Dish Dash, Cosmicat, Igniter, Viva, and many more.</p>

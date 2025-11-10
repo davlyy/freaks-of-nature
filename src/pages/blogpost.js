@@ -1,108 +1,129 @@
-import React  from "react";
-import Postimg from "../assets/postimage.png";
+import React from "react";
+import { Link, Navigate, useParams } from "react-router-dom";
 import share from "../assets/share.svg";
 import Blogsection from "../components/blogsection";
 import Comment from "../components/comment";
+import { blogPostsBySlug } from "../data/blogPosts";
 
 const Blogpost = () => {
-    
-    return (
-        <>
-           <div className="blogpost-section">
-             <div className="blogpost-div">
-                 <div className="blogpost-post-container">
-                     <div className="post-div1">
-                         <p>Home <span style={{color:"black"}}>/ Post Titile</span> </p>
-                     </div>
-                     <div className="post-div2">
-                         <h1>Post Title</h1>
-                     </div>
-                     <div className="post-div3">
-                         <p>Author</p>
-                         < vl className="vl"/>
-                         <p>Category</p>
-                         < vl className="vl"/>
-                         <span style={{color:"#00000080"}}>Published Date</span>
-                     </div>
-                     <div className="post-div4">
-                          <div className="post-content">
-                             <div className="post-image ">
-                                 <img src={Postimg} alt="Post" className="post-image img-fluid" />
-                             </div>
-                             <div className="post-text">
-                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ligula nibh, interdum non enim sit amet, iaculis aliquet nunc. 
-                                     Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam sit amet ipsum ac velit egestas ultrices. 
-                                     Vestibulum et neque id ex semper varius a sit amet metus. Vivamus congue dolor eget aliquam hendrerit. Etiam iaculis finibus egestas. 
-                                     Nam viverra urna quis odio efficitur malesuada. Maecenas rhoncus enim eu scelerisque rutrum. 
-                                     Pellentesque et mollis enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                     Curabitur sed commodo leo. Suspendisse potenti. Maecenas gravida ipsum placerat ligula posuere, ut rhoncus velit eleifend.
-                                 </p>
+  const { slug } = useParams();
+  const post = blogPostsBySlug[slug];
 
-                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ligula nibh, interdum non enim sit amet, iaculis aliquet nunc. 
-                                     Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam sit amet ipsum ac velit egestas ultrices. 
-                                     Vestibulum et neque id ex semper varius a sit amet metus. Vivamus congue dolor eget aliquam hendrerit. Etiam iaculis finibus egestas. 
-                                     Nam viverra urna quis odio efficitur malesuada. Maecenas rhoncus enim eu scelerisque rutrum. 
-                                     Pellentesque et mollis enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                     Curabitur sed commodo leo. Suspendisse potenti. Maecenas gravida ipsum placerat ligula posuere, ut rhoncus velit eleifend.
-                                 </p>
+  if (!post) {
+    return <Navigate to="/blog" replace />;
+  }
 
-                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ligula nibh, interdum non enim sit amet, iaculis aliquet nunc. 
-                                     Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam sit amet ipsum ac velit egestas ultrices. 
-                                     Vestibulum et neque id ex semper varius a sit amet metus. Vivamus congue dolor eget aliquam hendrerit. Etiam iaculis finibus egestas. 
-                                     Nam viverra urna quis odio efficitur malesuada. Maecenas rhoncus enim eu scelerisque rutrum. 
-                                     Pellentesque et mollis enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                     Curabitur sed commodo leo. Suspendisse potenti. Maecenas gravida ipsum placerat ligula posuere, ut rhoncus velit eleifend.
-                                 </p>
-                             </div>
+  return (
+    <>
+      <div className="blogpost-section">
+        <div className="blogpost-div">
+          <div className="blogpost-post-container">
+            <div className="post-div1">
+              <p style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <Link to="/" className="breadcrumb-link">
+                  Home
+                </Link>
+                <span> / </span>
+                <Link to="/blog" className="breadcrumb-link">
+                  Blog
+                </Link>
+                <span className="current-page"> / {post.title}</span>
+              </p>
+            </div>
+            <div className="post-div2">
+              <h1>{post.title}</h1>
+            </div>
+            <div className="post-div3">
+              <p>{post.author}</p>
+              <div className="vl" />
+              <p>{post.category}</p>
+              <div className="vl" />
+              <span style={{ color: "#00000080" }}>{post.publishedDate}</span>
+              {post.readingTime ? (
+                <>
+                  <div className="vl" />
+                  <span style={{ color: "#00000080" }}>{post.readingTime}</span>
+                </>
+              ) : null}
+            </div>
+            <div className="post-div4">
+              <div className="post-content">
+                <div className="post-image ">
+                  <img
+                    src={post.heroImage}
+                    alt={post.title}
+                    className="post-image img-fluid"
+                  />
+                </div>
+                <div className="post-text">
+                  {post.introduction?.map((paragraph) => (
+                    <p key={`${post.slug}-intro-${paragraph.length}`}>
+                      {paragraph}
+                    </p>
+                  ))}
 
-                             <div className="post-tags-div">
-                                  <div className="post-tags">
-                                      <p>#DESIGN</p>
-                                      <p>#WEB</p>
-                                      <p>#UXUI</p>
-                                  </div>
-                                  <div className="post-tags">
+                  {post.sections.map((section) => (
+                    <div key={section.id} className="post-section">
+                      <h2 id={section.id}>{section.title}</h2>
+                      {section.body?.map((paragraph, index) => (
+                        <p key={`${section.id}-body-${index}`}>{paragraph}</p>
+                      ))}
+                      {section.list ? (
+                        <ul className="section-list">
+                          {section.list.map((item) => (
+                            <li key={`${section.id}-${item.title}`}>
+                              <strong>{item.title}:</strong> {item.description}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                      {section.footer?.map((paragraph, index) => (
+                        <p key={`${section.id}-footer-${index}`}>{paragraph}</p>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="post-tags-div">
+                  <div className="post-tags">
+                    {post.tags?.map((tag) => (
+                      <p key={tag}>{tag}</p>
+                    ))}
+                  </div>
+                  {/* <div className="post-tags">
                                     <button>
                                         <img src={share} alt="share" className="share-icon" />
                                     </button>
-                                  </div>
-                             </div>
-                          </div>
+                                  </div> */}
+                </div>
+              </div>
 
-                          <vl className="vl1"/>
+              <div className="vl1" />
 
-                          <div className="blogpost-sidebar">
-                             <div className="blogpost-sidebar-div">
-                                  <h3>Table of Contents</h3>
-                                  <ul style={{marginTop:"30px"}}>
-                                      <li>lorem ipsum</li>
-                                      <li>lorem ipsum
-                                          <ul>
-                                              <li style={{marginLeft:"20px"}}>lorem ipsum
-                                                  <ul>
-                                                      <li style={{marginLeft:"20px"}}>lorem ipsum</li>
-                                                  </ul>
-                                              </li>
-                                          </ul>
-                                      </li>
-                                      <li>lorem ipsum</li>
-                                  </ul>  
-                             </div>
-                          </div>
-                     </div>
-                 </div>
+              <div className="blogpost-sidebar">
+                <div className="blogpost-sidebar-div">
+                  <h3>Table of Contents</h3>
+                  <ul style={{ marginTop: "30px" }}>
+                    {post.sections.map((section) => (
+                      <li key={`toc-${section.id}`}>
+                        <a href={`#${section.id}`} className="toc-link">
+                          {section.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-                 
-             </div>
-           </div>
+      <Blogsection />
 
-           <Blogsection/>
+      {/* <Comment/> */}
 
-           <Comment/>
-                       
-
-
-           <style jsx>{`
+      <style jsx>{`
                 .blogpost-section {
                     width: 100%;
                     display: flex;
@@ -119,13 +140,21 @@ const Blogpost = () => {
                     flex-direction: column;
                     gap: 10px;
                 }
-                .post-div1 {
+                .post-div1,
+                .post-div1 a {
                     display: flex;
                     opacity: 0.5;
                     font-size: 18px;
                     color: #ED196F;
                     font-weight: 500;
                     
+                }
+                .post-div1 a {
+                    text-decoration: none;
+                }
+                .post-div1 .current-page {
+                    color: black;
+                    font-weight: bold;
                 }
                 .current-page {
                     color: black;
@@ -174,6 +203,33 @@ const Blogpost = () => {
                     line-height: 24px;
                     margin: 70px 0 0 20px;
                 }    
+                .post-text p:first-of-type {
+                    margin-top: 40px;
+                }
+                .post-section p {
+                    margin: 20px 0 0 20px;
+                }
+                .post-section h2 {
+                    font-size: 32px;
+                    font-weight: bold;
+                    color: #000;
+                    margin: 70px 0 0 20px;
+                    line-height: 38px;
+                }
+                .post-section .section-list {
+                    margin: 30px 0 0 40px;
+                    padding: 0;
+                    list-style-type: disc;
+                    color: #000;
+                    font-size: 20px;
+                    line-height: 28px;
+                }
+                .post-section .section-list li {
+                    margin-bottom: 12px;
+                }
+                .post-section .section-list strong {
+                    color: #ED196F;
+                }
                 
                 .blogpost-sidebar-div h3 {
                     font-size: 32px;
@@ -185,11 +241,19 @@ const Blogpost = () => {
                     padding: 0;
                     list-style-type: none;
                 }
-                .blogpost-sidebar-div li {
+                .blogpost-sidebar-div li,
+                .blogpost-sidebar-div a {
                     margin: 14px 0;
                     font-size: 18px;
                     font-weight: normal;
                     color: #ED196F;
+                }
+                .toc-link {
+                    text-decoration: none;
+                    color: inherit;
+                }
+                .toc-link:hover {
+                    text-decoration: underline;
                 }
 
                 .post-tags-div {
@@ -255,6 +319,13 @@ const Blogpost = () => {
                 } 
                     
                   @media (max-width: 600px) {
+                    .post-div1{
+                       display: none;
+                    }
+                    .post-div3{
+                        margin-top: 20px;
+                        text-align: center;
+                    }
                        .blogpost-div {
                           width: 100%;
                           padding: 50px 20px 0;
@@ -272,11 +343,18 @@ const Blogpost = () => {
                         .post-content {
                             width: 100%;
                         }
-
+                        .post-text p:first-of-type{
+                            margin-top: 10px;
+                        }
                         .post-text p {
                             margin: 30px 0 0;
-                            font-size: 12px;
+                            font-size: 16px;
                             line-height: 16px;
+                        }
+                        .post-text h2{
+                            font-size: 24px;
+                            text-align: left;
+                            margin: 30px 0 0 0;
                         }
 
                         .post-tags-div {
@@ -295,8 +373,8 @@ const Blogpost = () => {
                     }
                 
             `}</style>
-        </>
-    );
-};  
+    </>
+  );
+};
 
 export default Blogpost;

@@ -1,152 +1,197 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import icon from "../assets/arrow.svg";
 import blogimg1 from "../assets/featuredimg.png";
-import blogimg2 from "../assets/categoryimg1.png";
-import blogimg3 from "../assets/categoryimg2.png";
-import Blogsection from '../components/blogsection.js';
+import Blogsection from "../components/blogsection.js";
+import blogPosts from "../data/blogPosts";
 
+const FALLBACK_FEATURE = {
+    heroImage: blogimg1,
+    title: "Post Title",
+    categoryLabel: "Categories",
+    author: "Author",
+    readingTime: "a min ago",
+    preview:
+        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.",
+    slug: "",
+};
 
+function BlogCard({ post, className, hidePreview }) {
+    const cardData = post || FALLBACK_FEATURE;
+    const cardContent = (
+        <>
+            <img src={cardData.heroImage} alt={cardData.title} className="blog-image featured-image"  />
+            <div className="blog-box">
+                <div className="blog-div">
+                    <p className="blog-title">{cardData.title}</p>
+                    {/* <p className="blog-category">{cardData.categoryLabel || cardData.category}</p> */}
+                </div>
+                <div className="blog-div1">
+                    <p className="blog-author">{cardData.author}</p>
+                    <p className="blog-time">{cardData.readingTime}</p>
+                </div>
+                {!hidePreview && cardData.preview ? (
+                    <div className="blog-text">
+                        <p>{cardData.preview}</p>
+                    </div>
+                ) : null}
+            </div>
+        </>
+    );
+
+    if (cardData.slug) {
+        return (
+            <Link className={className} to={`/blog/${cardData.slug}`}>
+                {cardContent}
+            </Link>
+        );
+    }
+
+    return (
+        <div className={className}>
+            {cardContent}
+        </div>
+    );
+}
+
+BlogCard.propTypes = {
+    post: PropTypes.shape({
+        slug: PropTypes.string,
+        heroImage: PropTypes.string,
+        title: PropTypes.string,
+        category: PropTypes.string,
+        categoryLabel: PropTypes.string,
+        author: PropTypes.string,
+        readingTime: PropTypes.string,
+        preview: PropTypes.string,
+    }),
+    className: PropTypes.string.isRequired,
+    hidePreview: PropTypes.bool,
+};
+
+BlogCard.defaultProps = {
+    post: null,
+    hidePreview: false,
+};
+
+function CategoryBox({ post, hidePreview }) {
+    const cardData = post || FALLBACK_FEATURE;
+    const cardContent = (
+        <>
+            <img src={cardData.heroImage} alt={cardData.title} className="blog-image featured-image" />
+            <div className="blog-box1">
+                <div className="blog-div">
+                    <p className="blog-title">{cardData.title}</p>
+                    {/* <p className="blog-category">{cardData.categoryLabel || cardData.category}</p> */}
+                </div>
+                <div className="blog-div1">
+                    <p className="blog-author">{cardData.author}</p>
+                    <p className="blog-time">{cardData.readingTime}</p>
+                </div>
+                {!hidePreview && cardData.preview ? (
+                    <div className="blog-text">
+                        <p>{cardData.preview}</p>
+                    </div>
+                ) : null}
+            </div>
+        </>
+    );
+
+    if (cardData.slug) {
+        return (
+            <Link className="category-box" to={`/blog/${cardData.slug}`}>
+                {cardContent}
+            </Link>
+        );
+    }
+
+    return (
+        <div className="category-box">
+            {cardContent}
+        </div>
+    );
+}
+
+CategoryBox.propTypes = {
+    post: PropTypes.shape({
+        slug: PropTypes.string,
+        heroImage: PropTypes.string,
+        title: PropTypes.string,
+        category: PropTypes.string,
+        categoryLabel: PropTypes.string,
+        author: PropTypes.string,
+        readingTime: PropTypes.string,
+        preview: PropTypes.string,
+    }),
+    hidePreview: PropTypes.bool,
+};
+
+CategoryBox.defaultProps = {
+    post: null,
+    hidePreview: false,
+};
 
 function Blog() {
+    const featuredPosts = blogPosts.slice(0, 2);
+    const categoryPosts = blogPosts.slice(2, 5);
+    const [categoryPrimary, ...rawCategorySecondary] = categoryPosts;
+    const paddedCategorySecondary = [...rawCategorySecondary];
+
+    while (paddedCategorySecondary.length < 2) {
+        paddedCategorySecondary.push(null);
+    }
+
+    const hasResponsiveSecondary = rawCategorySecondary.length > 0;
+
+    const shouldHidePreview = (post) =>
+        post?.slug === "what-freak-really-means" ||
+        post?.slug === "disrupt-lead-partnership-freakyard-2025";
+
     return <>
         <div className="blog-section">
             <div className="blog-container">
                 <div className="blog-header">
                     <h1>Featured Posts</h1>
-                    <button >More <img src={icon} alt="Freaks of Nature" className="img-fluid arrow" /></button>
+                    {/* <button >More <img src={icon} alt="Freaks of Nature" className="img-fluid arrow" /></button> */}
                 </div>
 
                 <div className="featured-items-container">
-                    <Link className="featured-item" to="/blogpost">
-                        <img src={blogimg1} alt="Blog 1" className="blog-image" />
-                        <div className="blog-box">
-                            <div className="blog-div">
-                                <p className="blog-title">Post Title</p>
-                                <p className="blog-category">Categories</p>
-                            </div>
-                            <div className="blog-div1">
-                                <p className="blog-author">Author</p>
-                                <p className="blog-time">a min ago</p>
-                            </div>
-                            <div className="blog-text">
-                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
-                            </div>
-                        </div>
-                    </Link>
-
-                    <Link className="featured-item" to="/blogpost">
-                        <img src={blogimg1} alt="Blog 1" className="blog-image" />
-                        <div className="blog-box">
-                            <div className="blog-div">
-                                <p className="blog-title">Post Title</p>
-                                <p className="blog-category">Categories</p>
-                            </div>
-                            <div className="blog-div1">
-                                <p className="blog-author">Author</p>
-                                <p className="blog-time">a min ago</p>
-                            </div>
-                            <div className="blog-text">
-                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
-                            </div>
-                        </div>
-                    </Link>
+                    <BlogCard post={featuredPosts[0]} className="featured-item" />
+                    <BlogCard post={featuredPosts[1]} className="featured-item" />
                 </div>
             </div>
 
             <div className="blog-container">
                 <div className="blog-header">
                     <h1>Category</h1>
-                    <button >More <img src={icon} alt="Freaks of Nature" className="img-fluid arrow" /></button>
+                    {/* <button >More <img src={icon} alt="Freaks of Nature" className="img-fluid arrow" /></button> */}
                 </div>
 
                 <div className="category-items-container">
-                    <Link className="category-item" to="/blogpost"> 
-                        <img src={blogimg2} alt="Blog 1" className="blog-image" />
-                        <div className="blog-box">
-                            <div className="blog-div">
-                                <p className="blog-title">Post Title</p>
-                                <p className="blog-category">Categories</p>
-                            </div>
-                            <div className="blog-div1">
-                                <p className="blog-author">Author</p>
-                                <p className="blog-time">a min ago</p>
-                            </div>
-                            <div className="blog-text">
-                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
-                            </div>
-                        </div>
-                    </Link>
+                    <BlogCard post={categoryPrimary} className="category-item" />
 
-                    <div className="category-item1-responsive">
-                    <Link className="category-item" to="/blogpost"> 
-                        <img src={blogimg2} alt="Blog 1" className="blog-image" />
-                        <div className="blog-box">
-                            <div className="blog-div">
-                                <p className="blog-title">Post Title</p>
-                                <p className="blog-category">Categories</p>
-                            </div>
-                            <div className="blog-div1">
-                                <p className="blog-author">Author</p>
-                                <p className="blog-time">a min ago</p>
-                            </div>
-                            <div className="blog-text">
-                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
-                            </div>
+                    {hasResponsiveSecondary ? (
+                        <div className="category-item1-responsive">
+                            {rawCategorySecondary.map((post, index) => (
+                                <BlogCard
+                                    key={post?.slug || `category-responsive-${index}`}
+                                    post={post}
+                                    className="category-item"
+                                    hidePreview={shouldHidePreview(post)}
+                                />
+                            ))}
                         </div>
-                    </Link>
-                    <Link className="category-item" to="/blogpost"> 
-                        <img src={blogimg2} alt="Blog 1" className="blog-image" />
-                        <div className="blog-box">
-                            <div className="blog-div">
-                                <p className="blog-title">Post Title</p>
-                                <p className="blog-category">Categories</p>
-                            </div>
-                            <div className="blog-div1">
-                                <p className="blog-author">Author</p>
-                                <p className="blog-time">a min ago</p>
-                            </div>
-                            <div className="blog-text">
-                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
-                            </div>
-                        </div>
-                    </Link>
-                    </div>
+                    ) : null}
 
                     <div className="category-item2">
-                        <Link className="category-box" to="/blogpost">
-                          <img src={blogimg3} alt="Blog 1" className="blog-image" />
-                          <div className="blog-box1">
-                             <div className="blog-div">
-                                 <p className="blog-title">Post Title</p>
-                                 <p className="blog-category">Categories</p>
-                             </div>
-                             <div className="blog-div1">
-                                 <p className="blog-author">Author</p>
-                                 <p className="blog-time">a min ago</p>
-                             </div>
-                             <div className="blog-text">
-                                 <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
-                             </div>
-                          </div>
-                        </Link>
-
-                        <Link className="category-box" to="/blogpost">
-                          <img src={blogimg3} alt="Blog 1" className="blog-image" />
-                          <div className="blog-box1">
-                             <div className="blog-div">
-                                 <p className="blog-title">Post Title</p>
-                                 <p className="blog-category">Categories</p>
-                             </div>
-                             <div className="blog-div1">
-                                 <p className="blog-author">Author</p>
-                                 <p className="blog-time">a min ago</p>
-                             </div>
-                             <div className="blog-text">
-                                 <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
-                             </div>
-                          </div>
-                        </Link>
+                        {paddedCategorySecondary.map((post, index) => (
+                            <CategoryBox
+                                key={post?.slug || `category-box-${index}`}
+                                post={post}
+                                hidePreview={shouldHidePreview(post)}
+                            />
+                        ))}
                     </div>
 
                 </div>
@@ -163,6 +208,12 @@ function Blog() {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+        }
+        .featured-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 30px 30px 0 0;
         }
         .blog-container {
             width: 1620px;
@@ -260,7 +311,7 @@ function Blog() {
             .blog-text {
                 font-size: 20px;
                 color: #000000cc;
-                width: 622px;
+                /* width: 622px; */
             }
 
         .category-items-container {
@@ -400,7 +451,12 @@ function Blog() {
             }       
         
             @media (max-width: 500px) {
-                
+                .featured-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
             .blog-container {
                 padding: 30px 20px;
                 gap: 10px;

@@ -1,11 +1,23 @@
 import React from "react";
-import blogimg1 from "../assets/blogimg1.png";
-import blogimg2 from "../assets/blogimg2.png";
-import blogimg3 from "../assets/blogimg3.png";
-import blogimg4 from "../assets/blogimg4.png";
-import blogimg5 from "../assets/blogimg5.png";
+import { Link } from "react-router-dom";
+import blogPosts from "../data/blogPosts";
 
 const blogsection = () => {
+  const featuredPosts = blogPosts.slice(0, 5);
+
+  const getSubtitle = (post) => {
+    if (post.preview) {
+      const trimmed = post.preview.trim();
+      if (trimmed.length <= 120) {
+        return trimmed;
+      }
+      return `${trimmed.slice(0, 117)}...`;
+    }
+
+    const parts = [post.categoryLabel || post.category, post.readingTime];
+    return parts.filter(Boolean).join(" • ") || "Read more";
+  };
+
   return (
     <>
     <div className="blog-post-section">
@@ -13,58 +25,24 @@ const blogsection = () => {
         <h2>Our Blog</h2>
       </div>
      <div className="blog-post-div">
-     
       <div className="blog-post-items-div">
-        
-        <div className="blog-post-item">
-          <img src={blogimg1} alt="Blog 1" className="blog-post-image" />
-          <div className="blog-post-caption">
-            <p className="blog-post-heading">Lorem Ipsum</p>
-            <p className="blog-post-text">Lorem Ipsum</p>
-          </div>
-          
-        </div>
-        
-        <div className="blog-post-item">
-          <img src={blogimg2} alt="Blog 2" className="blog-post-image" />
-          <div className="blog-post-caption">
-            <p className="blog-post-heading">Lorem Ipsum</p>
-            <p className="blog-post-text">Lorem Ipsum</p>
-          </div>
-
-        </div>
-        
-        <div className="blog-post-item">
-          <img src={blogimg3} alt="Blog 3" className="blog-post-image" />
-          <div className="blog-post-caption">
-            <p className="blog-post-heading">Lorem Ipsum</p>
-            <p className="blog-post-text">Lorem Ipsum</p>
-          </div>
-        </div>
-        
-        <div className="blog-post-item">
-          <img src={blogimg4} alt="Blog 4" className="blog-post-image" />
-          <div className="blog-post-caption">
-            <p className="blog-post-heading">Lorem Ipsum</p>
-            <p className="blog-post-text">Lorem Ipsum</p>
-          </div>
-        </div>
-        
-        <div className="blog-post-item">
-          <img src={blogimg5} alt="Blog 5" className="blog-post-image" />
-          <div className="blog-post-caption">
-            <p className="blog-post-heading">Lorem Ipsum</p>
-            <p className="blog-post-text">Lorem Ipsum</p>
-          </div>
-        </div>
-
-        <div className="blog-post-item">
-          <img src={blogimg5} alt="Blog 5" className="blog-post-image" />
-          <div className="blog-post-caption">
-            <p className="blog-post-heading">Lorem Ipsum</p>
-            <p className="blog-post-text">Lorem Ipsum</p>
-          </div>
-        </div>
+        {featuredPosts.map((post) => (
+          <Link
+            to={`/blog/${post.slug}`}
+            className="blog-post-item"
+            key={post.slug}
+          >
+            <img
+              src={post.heroImage}
+              alt={post.title}
+              className="blog-post-image"
+            />
+            <div className="blog-post-caption">
+              <p className="blog-post-heading">{post.title}</p>
+              {/* <p className="blog-post-text">{getSubtitle(post)}</p> */}
+            </div>
+          </Link>
+        ))}
       </div>
      </div>
     </div>
@@ -136,6 +114,7 @@ const blogsection = () => {
         border-radius: 20px;
         border: 2px solid #000;
         box-shadow: 5px 5px 0px 0px #000;
+        height: 250px;
       }
 
       .blog-post-caption {
@@ -165,15 +144,27 @@ const blogsection = () => {
 
         .blog-post-header h2 {
           text-align: center;
+        
         }
 
         .blog-post-caption {
           text-align: center;
+          
+        }
+        .blog-post-heading {
+          font-size: 16px;
         }
 
         .blog-post-div {
           padding: 0 0 8px;
         }
+        .blog-post-image {
+        width: 100%;
+        border-radius: 20px;
+        border: 2px solid #000;
+        box-shadow: 5px 5px 0px 0px #000;
+        height: 200px;
+      }
       }
 
       @media (min-width: 1024px) {
@@ -188,6 +179,7 @@ const blogsection = () => {
         .blog-post-item {
           width: clamp(320px, 22vw, 420px);
         }
+        
       }
 
       @media (min-width: 1440px) {
