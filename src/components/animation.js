@@ -355,13 +355,27 @@ const Animation = () => {
                         width: 1335px;
                     }
                 }
+                @media (max-width: 1338px) {
+                    .hugs-text {
+                        width: 1000px;
+                        padding: 0;
+
+                    }
+                    .hugs-text h2 {
+                        font-size: 64px;
+                    }
+                    .about-text1{
+                      margin-bottom: 20px;
+                    }
+                }
 
                 @media (max-width: 1200px) {
                     .hugs-text {
-                        width: 1000px;
+                        width: 700px;
+                        padding: 0;
                     }
                     .hugs-text h2 {
-                        font-size: 94px;
+                        font-size: 54px;
                     }
                 }
 

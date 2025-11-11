@@ -11,30 +11,68 @@ const Slider = ({ images = [], autoPlayInterval = 3000 }) => {
     }, [images]);
 
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [loadedSlides, setLoadedSlides] = useState(() => slides.map(() => false));
+    const intervalRef = React.useRef(null);
+
+    const clearAutoPlay = useCallback(() => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+        }
+    }, []);
+
+    const startAutoPlay = useCallback(() => {
+        if (slides.length <= 1 || autoPlayInterval <= 0) {
+            return;
+        }
+
+        clearAutoPlay();
+        intervalRef.current = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
+        }, autoPlayInterval);
+    }, [autoPlayInterval, clearAutoPlay, slides.length]);
 
     const handleNext = useCallback(() => {
         setCurrentIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
-    }, [slides.length]);
+        startAutoPlay();
+    }, [slides.length, startAutoPlay]);
 
     const handlePrev = useCallback(() => {
         setCurrentIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
-    }, [slides.length]);
+        startAutoPlay();
+    }, [slides.length, startAutoPlay]);
+
+    useEffect(() => {
+        setLoadedSlides(slides.map(() => false));
+    }, [slides]);
+
+    const handleImageLoad = useCallback((index) => {
+        setLoadedSlides((prev) => {
+            if (prev[index]) {
+                return prev;
+            }
+            const updated = [...prev];
+            updated[index] = true;
+            return updated;
+        });
+    }, []);
+
+    const handleImageError = useCallback((event, index) => {
+        if (event.target.src !== fallbackImage) {
+            event.target.src = fallbackImage;
+            return;
+        }
+        handleImageLoad(index);
+    }, [handleImageLoad]);
 
     useEffect(() => {
         setCurrentIndex(0);
     }, [slides]);
 
     useEffect(() => {
-        if (slides.length <= 1) {
-            return undefined;
-        }
-
-        const interval = setInterval(() => {
-            handleNext();
-        }, autoPlayInterval);
-
-        return () => clearInterval(interval);
-    }, [handleNext, slides.length, autoPlayInterval]);
+        startAutoPlay();
+        return clearAutoPlay;
+    }, [startAutoPlay, clearAutoPlay]);
 
     return (
         <div className="slider">
@@ -46,14 +84,24 @@ const Slider = ({ images = [], autoPlayInterval = 3000 }) => {
                         transition: "transform 0.5s ease-in-out",
                     }}
                 >
-                    {slides.map((image) => (
-                        <img
-                            key={image}
-                            src={image}
-                            alt="Episode slide"
-                            className="slider-image"
-                            loading="lazy"
-                        />
+                    {slides.map((image, index) => (
+                        <div
+                            className="slider-slide"
+                            key={`${image}-${index}`}
+                            aria-busy={!loadedSlides[index]}
+                        >
+                            {!loadedSlides[index] && (
+                                <div className="slider-placeholder" aria-hidden="true" />
+                            )}
+                            <img
+                                src={image}
+                                alt="Episode slide"
+                                className={`slider-image${loadedSlides[index] ? " loaded" : ""}`}
+                                loading="lazy"
+                                onLoad={() => handleImageLoad(index)}
+                                onError={(event) => handleImageError(event, index)}
+                            />
+                        </div>
                     ))}
                 </div>
                 <button className="slider-button prev" onClick={handlePrev}>
@@ -89,12 +137,42 @@ const Slider = ({ images = [], autoPlayInterval = 3000 }) => {
                     height: 100%;
                 }
 
+                .slider-slide {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    flex-shrink: 0;
+                    border-radius: inherit;
+                    overflow: hidden;
+                }
+
+                .slider-placeholder {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(
+                        90deg,
+                        rgba(240, 240, 240, 0.9) 25%,
+                        rgba(224, 224, 224, 0.9) 37%,
+                        rgba(240, 240, 240, 0.9) 63%
+                    );
+                    background-size: 400% 100%;
+                    animation: slider-placeholder-shimmer 1.4s ease infinite;
+                }
+
                 .slider-image {
                     width: 100%;
                     height: 100%;
                     display: block;
-                    flex-shrink: 0;
                     object-fit: cover;
+                    opacity: 0;
+                    transition: opacity 0.4s ease;
+                }
+
+                .slider-image.loaded {
+                    opacity: 1;
                 }
                 .slider-button {
                     position: absolute;
@@ -136,6 +214,15 @@ const Slider = ({ images = [], autoPlayInterval = 3000 }) => {
                     
                       background-color: rgba(0, 0, 0, 0.5);
                   }
+                }
+
+                @keyframes slider-placeholder-shimmer {
+                    0% {
+                        background-position: 200% 0;
+                    }
+                    100% {
+                        background-position: -200% 0;
+                    }
                 }
 
             `}</style>

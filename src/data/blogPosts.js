@@ -254,7 +254,7 @@ const fourthPost = {
   author: "Freaks of Nature Editorial",
   publishedDate: "February 14, 2025",
   readingTime: "7 min read",
-  heroImage: blogMeaningImage,
+  heroImage: blogPartnershipImage,
   tags: ["#Identity", "#FreaksOfNature", "#Culture"],
   preview:
     "Being a Freak isn’t a label — it’s liberation. Here’s how Freaks of Nature turns structure into emotion and why showing up as your real self is the heartbeat of the movement.",
@@ -323,7 +323,7 @@ const fifthPost = {
   author: "Freaks of Nature Editorial",
   publishedDate: "February 18, 2025",
   readingTime: "5 min read",
-  heroImage: blogPartnershipImage,
+  heroImage: blogMeaningImage,
   tags: ["#Partnership", "#Freakyard2025", "#SaudiCreatives"],
   preview:
     "",

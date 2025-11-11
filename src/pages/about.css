@@ -1,3 +1,123 @@
+.about-section-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px;
+    gap: 60px;
+    background-color: #fff;
+}
+
+.about-row-container {
+    width: 1620px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-text-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.about-text-block h1 {
+    font-size: 96px;
+    font-weight: bold;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.about-text-block h5 {
+    font-size: 24px;
+    font-weight: normal;
+    color: #000;
+}
+
+.about-text-block p {
+    font-size: 24px;
+    font-weight: normal;
+    color: #000;
+}
+
+.about-image-block {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-image-block img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Responsive styles */
+@media (max-width: 1920px) {
+    .about-row-container {
+        width: 1335px;
+    }
+    
+    .about-text-block h5 {
+        font-size: 20px;
+    }
+    
+    .about-text-block p {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1343px) {
+    .about-section-wrapper {
+        padding: 50px 20px;
+    }
+    
+    .about-row-container {
+        width: 100%;
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .about-text-block h1 {
+        font-size: 80px;
+        text-align: center;
+    }
+    
+    .about-text-block h5,
+    .about-text-block p {
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    .about-image-block img {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 953px) {
+    .about-section-wrapper {
+        padding: 20px;
+    }
+    
+    .about-text-block h1 {
+        font-size: 66px;
+    }
+    
+    .about-text-block h5,
+    .about-text-block p {
+        font-size: 20px;
+        line-height: 26px;
+    }
+    
+    .about-image-block img {
+        max-width: 100%;
+    }
+}
+
 .about-hero{
     width: 100%;
     display: flex;
@@ -6,10 +126,20 @@
     align-items: center;
     padding: 100px;
     background-image: url('../assets/aboutHero.png');
-    background-position: 30% 100% ;
+    background-position: 45% 100% ;
     background-repeat: no-repeat;
     gap: 110px;
 }
+@media (max-width: 2162px) {
+    .about-hero{
+        background-position: 40% 100% ;
+    }
+}
+/* @media (max-width: 1660px) {
+    .about-hero{
+        background-position: 30% 100% ;
+    }
+} */
 
 .about-resp-img{
     display: none;
@@ -201,10 +331,140 @@
     justify-content: center;
 }
 
+@media (max-width: 1920px) {
+    .about-hero{
+        background-size: 97%;
+        background-position: 40% 100%;
+    }
+}
+@media (max-width: 1840px) {
+    .about-hero{
+        background-size: 95%;
+        background-position: 30% 100%;
+    }
+}
+@media (max-width: 1792px) {
+    .about-hero{
+        background-size: 97%;
+        background-position: bottom 50px right 50px;
+    }
+}
+@media (max-width: 1628px) {
+    .about-hero{
+        background-size: 97%;
+        background-position: bottom 100px right 50px;
+    }
+    .hugs-animation{
+        width: 90% !important;
+    }
+
+    .aboutus-text{
+       width: 1335px;
+    }
+
+    .about-text1{
+        margin-left: 74px;
+    }    
+
+    .content1 h5{
+        font-size: 20px;
+    }
+    .content1 p{
+            font-size: 20px;
+            width: 348px;
+    }   
+
+    .episode-div{
+        width: 1335px;
+    }
+
+    .episode-content{
+        gap: 20px;
+    }
+
+    .episode-box1{
+        height: auto;
+        padding: 38px 28px;
+    }
+    .episode-box1 p{
+        font-size: 18px;
+    }
+
+    .partner-div{
+        width: 1335px;
+    }
+
+    .partner-box{
+        width: 430px;
+    }
+
+    .partner-button{
+        width: 380px;
+    }
+}
+/* @media (max-width: 1920px) {
+    .about-hero{
+        background-size: 97%;
+        background-position: 40% 100%;
+    }
+    .hugs-animation{
+        width: 90% !important;
+    }
+
+    .aboutus-text{
+       width: 1335px;
+    }
+
+    .about-text1{
+        margin-left: 74px;
+    }    
+
+    .content1 h5{
+        font-size: 20px;
+    }
+    .content1 p{
+            font-size: 20px;
+            width: 348px;
+    }   
+
+    .episode-div{
+        width: 1335px;
+    }
+
+    .episode-content{
+        gap: 20px;
+    }
+
+    .episode-box1{
+        height: auto;
+        padding: 38px 28px;
+    }
+    .episode-box1 p{
+        font-size: 18px;
+    }
+
+    .partner-div{
+        width: 1335px;
+    }
+
+    .partner-box{
+        width: 430px;
+    }
+
+    .partner-button{
+        width: 380px;
+    }
+
+  
+} */
+
 @media (max-width: 1500px) {
     .about-hero{
         background-size: 97%;
         background-position: -14% -25%;
+    }
+    .hugs-animation{
+        width: 90% !important;
     }
 
     .aboutus-text{
@@ -277,15 +537,29 @@
     }   
 
 }
-
 @media (max-width: 1080px) {
+    .hugs-text{
+        align-items: center !important;
+    }
+}
+
+@media (max-width: 1343px) {
     .about-hero{
         background-position: bottom center;
         flex-direction: column;
         gap: 0px;
-        height: 1080px;
+        height: 1180px;
     }
-
+    .hugs-text{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        padding: 0px;
+        gap: 20px;
+        width: 100%;
+    }
     .aboutus-text{
         flex-direction: column;
         align-items: center;
@@ -361,7 +635,7 @@
 
 }
 
-@media (max-width: 468px) {
+@media (max-width: 953px) {
     .about-hero{
         background-image: none;
         padding: 20px;
@@ -382,7 +656,7 @@
 
     .content1.about-resp-img {
         width: 100%;
-        height: 50vh;
+        /* height: 50vh; */
         max-height: 50vh;
         display: flex;
         align-items: center;
@@ -391,10 +665,16 @@
 
     img.about-resp_img,
     img.about-resp-img {
-        width: 100%;
-        height: 100%;
+        align-items: center;
+        margin: 0 auto;
+        /* width: 100%; */
+        /* height: 100%; */
         object-fit: cover;
     }
+    /* .content1{
+        display: flex;
+        justify-content: center;
+    } */
 
     .content1 h1{
         font-size: 66px;
@@ -414,6 +694,8 @@
 
     .hugs-text{
         padding: 0px;
+        flex-direction: row;
+        text-align: center;
     }
 
     .episode-section {
@@ -434,8 +716,9 @@
     .episode-box1{
         width: 100%;
         padding: 20px 20px 340px;
-        box-shadow: 5px 5px 0px 0px #000;
-        border-radius: 15px;
+        box-shadow: 5px 0px 0px 0px #000;
+        border-radius: 15px 15px 0 0;
+        border-bottom: 0 solid #000;
     }
 
     .episode-box2{

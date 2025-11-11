@@ -145,6 +145,7 @@ function About() {
             </div>
         </div>
 
+
         <div id="freak-squad">
             <Animation />
         </div>

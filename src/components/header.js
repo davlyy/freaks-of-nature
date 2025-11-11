@@ -73,6 +73,16 @@ function Header() {
       const hashValue = targetHash.replace('#', '');
       window.location.hash = hashValue;
       
+      if (hashValue === "about-us") {
+        setTimeout(() => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        }, 150);
+        return;
+      }
+
       // Calculate header height properly
       // Desktop: 124px header
       // Mobile (≤880px): 124px header + countdown banner offset (54px) = 178px total
@@ -480,20 +490,46 @@ function Header() {
               onMouseLeave={handleMouseLeave}
             >
               <Nav.Link
-                as={isMobile ? "div" : Link}
-                to={isMobile ? undefined : "/about"}
+                as={Link}
+                to="/about"
                 className={`nav-link ${
                   activeDropdown === "About Us" ? "active-link" : ""
                 }`}
                 onClick={(event) => {
-                  toggleDropdown(event, "About Us");
-                  if (!isMobile) {
+                  if (isMobile) {
+                    const clickedToggle = event.target.closest(".dropdown-icon");
+                    if (clickedToggle) {
+                      toggleDropdown(event, "About Us");
+                      return;
+                    }
+                    handleDropdownLinkClick("#about-us", event);
+                  } else {
+                    toggleDropdown(event, "About Us");
                     handleMainNavLinkClick();
                   }
                 }}
               >
-                About Us
-                <span className="dropdown-icon">
+                <span className="nav-link-label">About Us</span>
+                <span
+                  className="dropdown-icon"
+                  role="button"
+                  tabIndex={0}
+                  onClick={(event) => {
+                    if (isMobile) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      toggleDropdown(event, "About Us");
+                    }
+                  }}
+                  onKeyDown={(event) => {
+                    if (!isMobile) return;
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      toggleDropdown(event, "About Us");
+                    }
+                  }}
+                >
                   <FaChevronDown />
                 </span>
               </Nav.Link>
@@ -508,7 +544,7 @@ function Header() {
                     onMouseLeave={() => setActiveSubItem(null)}
                   >
                     <Link
-                      to="/about#about-us"
+                      to={isMobile ? "/about" : "/about#about-us"}
                       className="dropdown-link"
                       onClick={(e) => handleDropdownLinkClick("#about-us", e)}
                     >
@@ -788,7 +824,7 @@ function Header() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn More
+            Follow Us
           </a>
         </div>
       </Navbar>
@@ -1256,6 +1292,9 @@ function Header() {
 
           .dropdown-icon {
             transition: transform 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
           }
 
           .nav-item-wrapper.active .dropdown-icon {

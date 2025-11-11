@@ -126,7 +126,7 @@ function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Learn More
+              Follow Us
             </a>
         </div>
         </div>
