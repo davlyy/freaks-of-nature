@@ -1094,23 +1094,23 @@ function Header() {
             background-color: #000;
             padding: 130px 40px 40px;
             border-radius: 0 0 20px 20px;
-            transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+            transition: none !important;
             /* max-height: 80vh;
             overflow-y: auto; */
           }
           
           .navbar-collapse.collapsing {
-            transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+            transition: none !important;
           }
           
           .navbar-collapse:not(.show) {
             opacity: 0;
-            transform: translateY(-10px);
+            transform: none;
           }
           
           .navbar-collapse.show {
             opacity: 1;
-            transform: translateY(0);
+            transform: none;
           }
 
           .navbar-expand-lg .navbar-toggler {

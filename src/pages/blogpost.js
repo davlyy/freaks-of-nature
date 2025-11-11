@@ -172,6 +172,7 @@ const Blogpost = () => {
                     gap: 0px;
                     font-size: 18px;
                     color: #ED196F;
+                    flex-wrap: wrap;
                 }
                 .post-div3 p {
                     margin: 0;
@@ -268,6 +269,7 @@ const Blogpost = () => {
                 .post-tags {
                     display: flex;
                     gap: 16px;
+                    flex-wrap: wrap;
                 }
                     .post-tags p {
                         font-size: 20px;
@@ -331,10 +333,16 @@ const Blogpost = () => {
                           padding: 50px 20px 0;
                         }
                        .post-div2 h1 {
-                          font-size: 40px;
+                          font-size: 24px;
                         }
                         .post-div3 {
                             font-size: 16px;
+                            flex-direction: column;
+                            align-items: center;
+                            gap: 8px;
+                        }
+                        .post-div3 .vl {
+                            display: none;
                         }
                         .post-div4 {
                             flex-direction: column;
@@ -360,9 +368,13 @@ const Blogpost = () => {
                         .post-tags-div {
                             margin: 50px 0 0;
                             padding: 20px 0;
+                            flex-direction: column;
+                            align-items: center;
+                            gap: 12px;
                         }
                         .post-tags {
-                            gap: 16px;
+                            gap: 12px;
+                            justify-content: center;
                         }
                             .post-tags p {
                                 font-size: 12px;

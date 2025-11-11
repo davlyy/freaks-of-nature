@@ -270,6 +270,14 @@
       height: clamp(180px, 55vw, 270px);
     }
 
+    .marquee-container {
+     
+      width: 100%;
+     
+   }
+   .marquee-bottom{
+    width: 100%;
+   }
     .merch-buttons {
       position: static;
       margin-top: 24px;

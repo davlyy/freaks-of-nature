@@ -47,7 +47,13 @@ const Slider = ({ images = [], autoPlayInterval = 3000 }) => {
                     }}
                 >
                     {slides.map((image) => (
-                        <img key={image} src={image} alt="Episode slide" className="slider-image" />
+                        <img
+                            key={image}
+                            src={image}
+                            alt="Episode slide"
+                            className="slider-image"
+                            loading="lazy"
+                        />
                     ))}
                 </div>
                 <button className="slider-button prev" onClick={handlePrev}>
