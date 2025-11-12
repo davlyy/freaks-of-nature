@@ -6,6 +6,7 @@ import Blogsection from '../components/blogsection.js';
 import { Player } from '@lottiefiles/react-lottie-player'; // For Lottie animations
 import { FaClock, FaBell } from 'react-icons/fa';
 import lineAnimation from '../stripsJSON/lineAnimation.json';
+import ribbon from '../stripsJSON/ribbon.json';
 
 const FESTIVAL_MONTH = 1; // February (0-indexed months)
 const FESTIVAL_START_DAY = 5;
@@ -142,7 +143,7 @@ function Home() {
           <Player
             autoplay
             loop
-            src={lineAnimation}
+            src={ribbon}
             className="img-fluid marquee-line"
           />
         </div>
@@ -207,7 +208,7 @@ function Home() {
           <Player
             autoplay
             loop
-            src={lineAnimation}
+            src={ribbon}
             className="img-fluid marquee-line"
           />
         </div>
