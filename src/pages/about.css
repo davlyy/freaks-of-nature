@@ -135,11 +135,12 @@
     flex-direction: column;
     align-items: center;
     padding: 100px;
-    background-image: url('../../public/assets/aboutHero.png');
+    background-image: url('../assets/aboutHero.png');
     background-position: 40% 100% ;
     background-repeat: no-repeat;
     gap: 110px;
-    background-size: auto;
+    background-size: 1789px 1180px; /* Force original dimensions */
+
 }
 @media (max-width: 2162px) {
     .about-hero{
